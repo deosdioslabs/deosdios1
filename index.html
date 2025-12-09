@@ -780,6 +780,7 @@
     <script>
         // Navigation
         function showPage(pageId) {
+            event.preventDefault();
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
