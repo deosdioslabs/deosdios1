@@ -600,9 +600,9 @@
             <div class="logo">DEOS DIOS</div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#" onclick="showPage('home')">Home</a></li>
-                <li><a href="#" onclick="showPage('protocol')">Protocol</a></li>
-                <li><a href="#" onclick="showPage('faq')">FAQ</a></li>
+                <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+                <li><a href="#" onclick="showPage('protocol'); return false;">Protocol</a></li>
+                <li><a href="#" onclick="showPage('faq'); return false;">FAQ</a></li>
             </ul>
         </div>
     </nav>
@@ -618,7 +618,7 @@
                     Stop guessing. Stop wasting money on deodorants that don't work for your unique body chemistry. 
                     Our proprietary profiling system matches you with products scientifically designed for your biology.
                 </p>
-                <a href="#" class="cta-button" onclick="showPage('protocol')">Begin Protocol</a>
+                <a href="#" class="cta-button" onclick="showPage('protocol'); return false;">Begin Protocol</a>
             </div>
         </section>
 
@@ -714,7 +714,7 @@
                 <div id="recommendationsContainer"></div>
 
                 <div style="text-align: center; margin-top: 3rem;">
-                    <a href="#" class="cta-button" onclick="showPage('protocol'); resetQuiz();">Retake Protocol</a>
+                    <a href="#" class="cta-button" onclick="showPage('protocol'); resetQuiz(); return false;">Retake Protocol</a>
                 </div>
             </div>
         </section>
@@ -780,7 +780,6 @@
     <script>
         // Navigation
         function showPage(pageId) {
-            event.preventDefault();
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
