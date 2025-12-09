@@ -5,770 +5,191 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEOS DIOS - Know Your Odor</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: #0F0F0F;
-            color: #FFFFFF;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(197, 164, 103, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: #C5A467;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #FFFFFF;
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: #C5A467;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(197, 164, 103, 0.05) 0%, transparent 70%);
-            animation: pulse 15s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(5deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 300;
-            letter-spacing: 8px;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 300;
-            letter-spacing: 2px;
-            color: #C5A467;
-            margin-bottom: 3rem;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            letter-spacing: 0.5px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: #C5A467;
-            color: #0F0F0F;
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            border: 2px solid #C5A467;
-            font-size: 0.9rem;
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: #C5A467;
-            transform: translateY(-2px);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 300;
-            letter-spacing: 4px;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .gold-accent {
-            color: #C5A467;
-        }
-
-        /* How It Works */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .step-card {
-            text-align: center;
-            padding: 2rem;
-            border: 1px solid rgba(197, 164, 103, 0.2);
-            transition: all 0.3s;
-        }
-
-        .step-card:hover {
-            border-color: #C5A467;
-            transform: translateY(-5px);
-        }
-
-        .step-number {
-            font-size: 3rem;
-            color: #C5A467;
-            font-weight: 300;
-            margin-bottom: 1rem;
-        }
-
-        .step-card h3 {
-            font-size: 1.4rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .step-card p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-        }
-
-        /* FAQ Section */
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid rgba(197, 164, 103, 0.2);
-            padding: 2rem 0;
-        }
-
-        .faq-question {
-            font-size: 1.3rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-            color: #C5A467;
-        }
-
-        .faq-answer {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        /* Email Capture */
-        .email-section {
-            background: linear-gradient(135deg, rgba(197, 164, 103, 0.1) 0%, rgba(197, 164, 103, 0.05) 100%);
-            border: 1px solid rgba(197, 164, 103, 0.3);
-            padding: 4rem 2rem;
-            text-align: center;
-            margin: 4rem 0;
-        }
-
-        .email-form {
-            display: flex;
-            gap: 1rem;
-            max-width: 600px;
-            margin: 2rem auto 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .email-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 1rem 1.5rem;
-            background: #0F0F0F;
-            border: 1px solid rgba(197, 164, 103, 0.3);
-            color: #FFFFFF;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-        }
-
-        .email-input:focus {
-            outline: none;
-            border-color: #C5A467;
-        }
-
-        .email-submit {
-            padding: 1rem 2.5rem;
-            background: #C5A467;
-            color: #0F0F0F;
-            border: none;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .email-submit:hover {
-            background: #d4b379;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(197, 164, 103, 0.2);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: #C5A467;
-            margin-bottom: 1rem;
-        }
-
-        .footer-text {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        /* Protocol Page (Quiz) */
-        .protocol-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .quiz-intro {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .quiz-intro h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            margin-bottom: 1.5rem;
-        }
-
-        .quiz-intro p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-        }
-
-        /* Question Styling */
-        .question-card {
-            background: rgba(197, 164, 103, 0.05);
-            border: 1px solid rgba(197, 164, 103, 0.2);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .question-title {
-            font-size: 1.4rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-            color: #C5A467;
-        }
-
-        .question-why {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .option-button {
-            display: block;
-            width: 100%;
-            padding: 1rem 1.5rem;
-            margin-bottom: 0.8rem;
-            background: #0F0F0F;
-            border: 1px solid rgba(197, 164, 103, 0.3);
-            color: #FFFFFF;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-
-        .option-button:hover {
-            border-color: #C5A467;
-            background: rgba(197, 164, 103, 0.1);
-        }
-
-        .option-button.selected {
-            border-color: #C5A467;
-            background: rgba(197, 164, 103, 0.15);
-        }
-
-        .progress-bar {
-            height: 3px;
-            background: rgba(197, 164, 103, 0.2);
-            margin-bottom: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #C5A467;
-            transition: width 0.3s;
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 3rem;
-        }
-
-        .nav-btn {
-            padding: 1rem 2.5rem;
-            background: transparent;
-            border: 1px solid #C5A467;
-            color: #C5A467;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .nav-btn:hover {
-            background: #C5A467;
-            color: #0F0F0F;
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        /* Results Page */
-        .results-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .profile-summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .profile-metric {
-            text-align: center;
-            padding: 2rem;
-            border: 1px solid rgba(197, 164, 103, 0.2);
-        }
-
-        .metric-value {
-            font-size: 2rem;
-            color: #C5A467;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .insight-box {
-            background: rgba(197, 164, 103, 0.05);
-            border-left: 3px solid #C5A467;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .recommendation-card {
-            border: 1px solid rgba(197, 164, 103, 0.2);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            transition: all 0.3s;
-        }
-
-        .recommendation-card:hover {
-            border-color: #C5A467;
-            transform: translateX(5px);
-        }
-
-        .rec-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1.5rem;
-        }
-
-        .rec-name {
-            font-size: 1.6rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            color: #C5A467;
-        }
-
-        .rec-rank {
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: rgba(197, 164, 103, 0.3);
-        }
-
-        .rec-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .rec-tag {
-            padding: 0.4rem 1rem;
-            background: rgba(197, 164, 103, 0.1);
-            border: 1px solid rgba(197, 164, 103, 0.3);
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        .rec-description {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .buy-button {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: #C5A467;
-            color: #0F0F0F;
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .buy-button:hover {
-            background: #d4b379;
-        }
-
-        /* Hide sections by default */
-        .page-section {
-            display: none;
-        }
-
-        .page-section.active {
-            display: block;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: #C5A467;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0F0F0F; color: #FFFFFF; line-height: 1.6; overflow-x: hidden; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(197, 164, 103, 0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: 3px; color: #C5A467; cursor: pointer; }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.95rem; letter-spacing: 1px; transition: color 0.3s; text-transform: uppercase; font-weight: 500; cursor: pointer; }
+        .nav-links a:hover { color: #C5A467; }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(197, 164, 103, 0.05) 0%, transparent 70%); animation: pulse 15s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.1) rotate(5deg); } }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; letter-spacing: 8px; margin-bottom: 1.5rem; line-height: 1.1; }
+        .hero-subtitle { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 300; letter-spacing: 2px; color: #C5A467; margin-bottom: 3rem; }
+        .hero-description { font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.7); max-width: 700px; margin: 0 auto 3rem; letter-spacing: 0.5px; }
+        .cta-button { display: inline-block; padding: 1.2rem 3rem; background: #C5A467; color: #0F0F0F; text-decoration: none; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; border: none; font-size: 0.9rem; cursor: pointer; }
+        .cta-button:hover { background: #d4b379; transform: translateY(-2px); }
+        section { padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; letter-spacing: 4px; margin-bottom: 3rem; text-align: center; }
+        .gold-accent { color: #C5A467; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-top: 4rem; }
+        .step-card { text-align: center; padding: 2rem; border: 1px solid rgba(197, 164, 103, 0.2); transition: all 0.3s; }
+        .step-card:hover { border-color: #C5A467; transform: translateY(-5px); }
+        .step-number { font-size: 3rem; color: #C5A467; font-weight: 300; margin-bottom: 1rem; }
+        .step-card h3 { font-size: 1.4rem; font-weight: 500; letter-spacing: 2px; margin-bottom: 1rem; }
+        .step-card p { color: rgba(255, 255, 255, 0.7); line-height: 1.8; }
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid rgba(197, 164, 103, 0.2); padding: 2rem 0; }
+        .faq-question { font-size: 1.3rem; font-weight: 500; letter-spacing: 1px; margin-bottom: 1rem; color: #C5A467; }
+        .faq-answer { color: rgba(255, 255, 255, 0.8); line-height: 1.8; font-size: 1.05rem; }
+        .email-section { background: linear-gradient(135deg, rgba(197, 164, 103, 0.1) 0%, rgba(197, 164, 103, 0.05) 100%); border: 1px solid rgba(197, 164, 103, 0.3); padding: 4rem 2rem; text-align: center; margin: 4rem 0; }
+        .email-form { display: flex; gap: 1rem; max-width: 600px; margin: 2rem auto 0; flex-wrap: wrap; justify-content: center; }
+        .email-input { flex: 1; min-width: 250px; padding: 1rem 1.5rem; background: #0F0F0F; border: 1px solid rgba(197, 164, 103, 0.3); color: #FFFFFF; font-size: 1rem; letter-spacing: 0.5px; }
+        .email-input:focus { outline: none; border-color: #C5A467; }
+        .email-submit { padding: 1rem 2.5rem; background: #C5A467; color: #0F0F0F; border: none; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+        .email-submit:hover { background: #d4b379; }
+        footer { border-top: 1px solid rgba(197, 164, 103, 0.2); padding: 3rem 2rem; text-align: center; }
+        .footer-logo { font-size: 1.8rem; font-weight: 700; letter-spacing: 3px; color: #C5A467; margin-bottom: 1rem; }
+        .footer-text { color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; letter-spacing: 1px; }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        .protocol-container { max-width: 900px; margin: 0 auto; }
+        .quiz-intro { text-align: center; margin-bottom: 4rem; }
+        .quiz-intro h2 { font-size: 2.5rem; font-weight: 300; letter-spacing: 3px; margin-bottom: 1.5rem; }
+        .quiz-intro p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.7); line-height: 1.8; }
+        .question-card { background: rgba(197, 164, 103, 0.05); border: 1px solid rgba(197, 164, 103, 0.2); padding: 2.5rem; margin-bottom: 2rem; }
+        .question-title { font-size: 1.4rem; font-weight: 500; letter-spacing: 1px; margin-bottom: 1rem; color: #C5A467; }
+        .question-why { font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); font-style: italic; margin-bottom: 1.5rem; }
+        .option-button { display: block; width: 100%; padding: 1rem 1.5rem; margin-bottom: 0.8rem; background: #0F0F0F; border: 1px solid rgba(197, 164, 103, 0.3); color: #FFFFFF; text-align: left; cursor: pointer; transition: all 0.3s; font-size: 1rem; }
+        .option-button:hover { border-color: #C5A467; background: rgba(197, 164, 103, 0.1); }
+        .option-button.selected { border-color: #C5A467; background: rgba(197, 164, 103, 0.15); }
+        .progress-bar { height: 3px; background: rgba(197, 164, 103, 0.2); margin-bottom: 3rem; position: relative; overflow: hidden; }
+        .progress-fill { height: 100%; background: #C5A467; transition: width 0.3s; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 3rem; }
+        .nav-btn { padding: 1rem 2.5rem; background: transparent; border: 1px solid #C5A467; color: #C5A467; cursor: pointer; transition: all 0.3s; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .nav-btn:hover:not(:disabled) { background: #C5A467; color: #0F0F0F; }
+        .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .results-container { max-width: 1000px; margin: 0 auto; }
+        .profile-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .profile-metric { text-align: center; padding: 2rem; border: 1px solid rgba(197, 164, 103, 0.2); }
+        .metric-value { font-size: 2rem; color: #C5A467; font-weight: 300; margin-bottom: 0.5rem; text-transform: capitalize; }
+        .metric-label { font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); letter-spacing: 1px; text-transform: uppercase; }
+        .insight-box { background: rgba(197, 164, 103, 0.05); border-left: 3px solid #C5A467; padding: 1.5rem; margin: 1.5rem 0; }
+        .recommendation-card { border: 1px solid rgba(197, 164, 103, 0.2); padding: 2.5rem; margin-bottom: 2rem; transition: all 0.3s; }
+        .recommendation-card:hover { border-color: #C5A467; transform: translateX(5px); }
+        .rec-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem; }
+        .rec-name { font-size: 1.6rem; font-weight: 500; letter-spacing: 1px; color: #C5A467; }
+        .rec-rank { font-size: 2.5rem; font-weight: 300; color: rgba(197, 164, 103, 0.3); }
+        .rec-meta { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .rec-tag { padding: 0.4rem 1rem; background: rgba(197, 164, 103, 0.1); border: 1px solid rgba(197, 164, 103, 0.3); font-size: 0.85rem; letter-spacing: 1px; }
+        .rec-description { color: rgba(255, 255, 255, 0.8); line-height: 1.8; margin-bottom: 1.5rem; }
+        .buy-button { display: inline-block; padding: 0.8rem 2rem; background: #C5A467; color: #0F0F0F; text-decoration: none; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; transition: all 0.3s; }
+        .buy-button:hover { background: #d4b379; }
+        .mobile-menu-btn { display: none; background: none; border: none; color: #C5A467; font-size: 1.5rem; cursor: pointer; }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: #0F0F0F;
-                flex-direction: column;
-                gap: 0;
-                border-top: 1px solid rgba(197, 164, 103, 0.2);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                border-bottom: 1px solid rgba(197, 164, 103, 0.1);
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 1.5rem 2rem;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .email-form {
-                flex-direction: column;
-            }
-
-            .email-input {
-                min-width: 100%;
-            }
-
-            .hero h1 {
-                letter-spacing: 4px;
-            }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #0F0F0F; flex-direction: column; gap: 0; border-top: 1px solid rgba(197, 164, 103, 0.2); }
+            .nav-links.active { display: flex; }
+            .nav-links li { border-bottom: 1px solid rgba(197, 164, 103, 0.1); }
+            .nav-links a { display: block; padding: 1.5rem 2rem; }
+            .mobile-menu-btn { display: block; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .email-form { flex-direction: column; }
+            .email-input { min-width: 100%; }
+            .hero h1 { letter-spacing: 4px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">DEOS DIOS</div>
+            <div class="logo" onclick="showPage('home')">DEOS DIOS</div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
-                <li><a href="#" onclick="showPage('protocol'); return false;">Protocol</a></li>
-                <li><a href="#" onclick="showPage('faq'); return false;">FAQ</a></li>
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('protocol')">Protocol</a></li>
+                <li><a onclick="showPage('faq')">FAQ</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- HOME PAGE -->
     <div id="home-page" class="page-section active">
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
                 <h1>DEOS DIOS</h1>
                 <p class="hero-subtitle">Know Your Odor. Own Your Scent.</p>
-                <p class="hero-description">
-                    Stop guessing. Stop wasting money on deodorants that don't work for your unique body chemistry. 
-                    Our proprietary profiling system matches you with products scientifically designed for your biology.
-                </p>
-                <a href="#" class="cta-button" onclick="showPage('protocol'); return false;">Begin Protocol</a>
+                <p class="hero-description">Stop guessing. Stop wasting money on deodorants that don't work for your unique body chemistry. Our proprietary profiling system matches you with products scientifically designed for your biology.</p>
+                <button class="cta-button" onclick="showPage('protocol')">Begin Protocol</button>
             </div>
         </section>
 
-        <!-- How It Works -->
         <section>
             <h2 class="section-title">The <span class="gold-accent">Protocol</span></h2>
             <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <h3>Deep Profile</h3>
-                    <p>Our comprehensive questionnaire analyzes your body chemistry, lifestyle, and odor patterns through science-backed questions.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <h3>Algorithm Match</h3>
-                    <p>Advanced matching system processes your unique profile against our database of premium deodorant formulations.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <h3>Precision Results</h3>
-                    <p>Receive personalized recommendations tailored specifically to your body's needs. No more trial and error.</p>
-                </div>
+                <div class="step-card"><div class="step-number">01</div><h3>Deep Profile</h3><p>Our comprehensive questionnaire analyzes your body chemistry, lifestyle, and odor patterns through science-backed questions.</p></div>
+                <div class="step-card"><div class="step-number">02</div><h3>Algorithm Match</h3><p>Advanced matching system processes your unique profile against our database of premium deodorant formulations.</p></div>
+                <div class="step-card"><div class="step-number">03</div><h3>Precision Results</h3><p>Receive personalized recommendations tailored specifically to your body's needs. No more trial and error.</p></div>
             </div>
         </section>
 
-        <!-- Email Capture -->
         <section class="email-section">
             <h2 class="section-title" style="margin-bottom: 1rem;">Stay Informed</h2>
-            <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">
-                Be the first to know when we launch custom formulations based on collected data.
-            </p>
+            <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">Be the first to know when we launch custom formulations based on collected data.</p>
             <form class="email-form" onsubmit="handleEmailSubmit(event)">
                 <input type="email" class="email-input" placeholder="Your email address" required>
                 <button type="submit" class="email-submit">Notify Me</button>
             </form>
         </section>
 
-        <!-- Why Section -->
         <section>
             <h2 class="section-title">Why <span class="gold-accent">DEOS DIOS</span></h2>
             <div class="steps-grid">
-                <div class="step-card">
-                    <h3>Science First</h3>
-                    <p>Based on dermatological research, microbiome science, and genetic factors that influence body odor.</p>
-                </div>
-                <div class="step-card">
-                    <h3>No Marketing BS</h3>
-                    <p>Cut through the noise of buzzwords and false promises. We match you with what actually works.</p>
-                </div>
-                <div class="step-card">
-                    <h3>Data Driven</h3>
-                    <p>Every recommendation improves as more users provide feedback, creating a smarter system over time.</p>
-                </div>
+                <div class="step-card"><h3>Science First</h3><p>Based on dermatological research, microbiome science, and genetic factors that influence body odor.</p></div>
+                <div class="step-card"><h3>No Marketing BS</h3><p>Cut through the noise of buzzwords and false promises. We match you with what actually works.</p></div>
+                <div class="step-card"><h3>Data Driven</h3><p>Every recommendation improves as more users provide feedback, creating a smarter system over time.</p></div>
             </div>
         </section>
     </div>
 
-    <!-- PROTOCOL PAGE (QUIZ) -->
     <div id="protocol-page" class="page-section">
         <section style="padding-top: 8rem;">
             <div class="protocol-container">
                 <div class="quiz-intro">
                     <h2>The Protocol</h2>
-                    <p>Answer honestly. The more accurate your responses, the better your match. This takes approximately 8-10 minutes.</p>
+                    <p>Answer honestly. The more accurate your responses, the better your match. This takes approximately 5-7 minutes.</p>
                 </div>
-
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
-                </div>
-
+                <div class="progress-bar"><div class="progress-fill" id="progressBar" style="width: 0%"></div></div>
                 <div id="quizContainer"></div>
-
                 <div class="nav-buttons">
                     <button class="nav-btn" onclick="previousQuestion()" id="prevBtn">Previous</button>
                     <button class="nav-btn" onclick="nextQuestion()" id="nextBtn">Next</button>
-                    <button class="nav-btn" onclick="showResults()" id="resultsBtn" style="display: none;">View Results</button>
+                    <button class="nav-btn" onclick="submitQuiz()" id="resultsBtn" style="display: none;">View Results</button>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- RESULTS PAGE -->
     <div id="results-page" class="page-section">
         <section style="padding-top: 8rem;">
             <div class="results-container">
                 <h2 class="section-title">Your <span class="gold-accent">Profile</span></h2>
-
                 <div class="profile-summary" id="profileSummary"></div>
-
                 <div id="insightsContainer"></div>
-
                 <h3 class="section-title" style="font-size: 2rem; margin-top: 4rem;">Your Matches</h3>
                 <div id="recommendationsContainer"></div>
-
                 <div style="text-align: center; margin-top: 3rem;">
-                    <a href="#" class="cta-button" onclick="showPage('protocol'); resetQuiz(); return false;">Retake Protocol</a>
+                    <button class="cta-button" onclick="showPage('protocol'); resetQuiz();">Retake Protocol</button>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- FAQ PAGE -->
     <div id="faq-page" class="page-section">
         <section style="padding-top: 8rem;">
             <h2 class="section-title">Frequently Asked <span class="gold-accent">Questions</span></h2>
             <div class="faq-container">
-                <div class="faq-item">
-                    <h3 class="faq-question">How accurate is the profiling system?</h3>
-                    <p class="faq-answer">Our algorithm starts at approximately 65-70% accuracy and improves continuously as we collect feedback data. Factors like genetics (ABCC11 gene), diet, hormones, and lifestyle all play documented roles in body odor, which our questionnaire captures.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Is this service free?</h3>
-                    <p class="faq-answer">Yes, the profiling and recommendations are completely free. We earn through affiliate partnerships when you purchase recommended products. In the future, we'll offer premium options including custom-formulated deodorants based on aggregated data.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">What if the recommendations don't work?</h3>
-                    <p class="faq-answer">Your feedback helps us improve. If a recommendation doesn't work, return to your profile and we'll provide alternative matches. Every data point makes our algorithm smarter for everyone.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Do you sell deodorants?</h3>
-                    <p class="faq-answer">Not yet. Currently, we match you with the best existing products on the market. Our long-term vision includes creating premium, custom-formulated deodorants based on the profile data we collect. Join our email list to be notified when we launch.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Is my data private?</h3>
-                    <p class="faq-answer">We collect anonymous data to improve our matching algorithm. Individual profiles are never sold or shared. We use aggregated, anonymized data to identify patterns and develop future products.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Why does body odor vary so much between people?</h3>
-                    <p class="faq-answer">Body odor is influenced by genetics (like the ABCC11 gene), diet, hormonal fluctuations, medications, stress levels, and the unique bacterial ecosystem on your skin. This is why one-size-fits-all deodorants fail for so many people.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">How long does it take to see results?</h3>
-                    <p class="faq-answer">The questionnaire takes 8-10 minutes. Results are instant. However, give any new deodorant 1-2 weeks to work with your body chemistry. Natural deodorants in particular may require a 2-4 week adjustment period.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Can I update my profile later?</h3>
-                    <p class="faq-answer">Yes. Life changes affect body chemistry—new medications, diet changes, hormonal shifts. Retake the protocol anytime to get updated recommendations.</p>
-                </div>
+                <div class="faq-item"><h3 class="faq-question">How accurate is the profiling system?</h3><p class="faq-answer">Our algorithm starts at approximately 65-70% accuracy and improves continuously as we collect feedback data. Factors like genetics (ABCC11 gene), diet, hormones, and lifestyle all play documented roles in body odor, which our questionnaire captures.</p></div>
+                <div class="faq-item"><h3 class="faq-question">Is this service free?</h3><p class="faq-answer">Yes, the profiling and recommendations are completely free. We earn through affiliate partnerships when you purchase recommended products. In the future, we'll offer premium options including custom-formulated deodorants based on aggregated data.</p></div>
+                <div class="faq-item"><h3 class="faq-question">What if the recommendations don't work?</h3><p class="faq-answer">Your feedback helps us improve. If a recommendation doesn't work, return to your profile and we'll provide alternative matches. Every data point makes our algorithm smarter for everyone.</p></div>
+                <div class="faq-item"><h3 class="faq-question">Do you sell deodorants?</h3><p class="faq-answer">Not yet. Currently, we match you with the best existing products on the market. Our long-term vision includes creating premium, custom-formulated deodorants based on the profile data we collect. Join our email list to be notified when we launch.</p></div>
+                <div class="faq-item"><h3 class="faq-question">Is my data private?</h3><p class="faq-answer">We collect anonymous data to improve our matching algorithm. Individual profiles are never sold or shared. We use aggregated, anonymized data to identify patterns and develop future products.</p></div>
+                <div class="faq-item"><h3 class="faq-question">Why does body odor vary so much between people?</h3><p class="faq-answer">Body odor is influenced by genetics (like the ABCC11 gene), diet, hormonal fluctuations, medications, stress levels, and the unique bacterial ecosystem on your skin. This is why one-size-fits-all deodorants fail for so many people.</p></div>
             </div>
         </section>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-logo">DEOS DIOS</div>
@@ -778,88 +199,138 @@
     </footer>
 
     <script>
-        // Navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(pageId + '-page').classList.add('active');
-            window.scrollTo(0, 0);
+        function showPage(p){document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));document.getElementById(p+'-page').classList.add('active');window.scrollTo(0,0);document.getElementById('navLinks').classList.remove('active');}
+        function toggleMobileMenu(){document.getElementById('navLinks').classList.toggle('active');}
+        function handleEmailSubmit(e){e.preventDefault();alert('Thank you! We\'ll notify you when custom formulations launch.');e.target.reset();}
+
+        const quizData=[
+            {id:'age',q:'Age range?',why:'Hormones shift with age',opts:['Under 18','18-25','26-35','36-45','46-55','56+']},
+            {id:'sex',q:'Biological sex?',why:'Affects sweat chemistry',opts:['Male','Female','Prefer not to say']},
+            {id:'earwax',q:'Earwax type?',why:'Dry=genetic low odor',opts:['Dry/flaky','Wet/sticky','Not sure']},
+            {id:'sweat',q:'Daily sweat?',why:'More sweat=stronger products',opts:['Minimal','Light','Moderate','Heavy','Excessive']},
+            {id:'timing',q:'Odor timing?',why:'Shows bacterial speed',opts:['2-3hrs','Midday','Evening','After exercise','Rarely']},
+            {id:'type',q:'Odor type?',why:'Reveals bacteria',opts:['Acidic','Oniony','Musty','Sweet','Ammonia','Mild']},
+            {id:'intensity',q:'Odor strength?',why:'Product strength needed',opts:['1-Mild','2-Noticeable','3-Moderate','4-Strong','5-Severe']},
+            {id:'diet',q:'Diet type?',why:'Food affects odor',opts:['Heavy meat','Balanced','Pescatarian','Vegetarian','Vegan','Keto']},
+            {id:'activity',q:'Activity level?',why:'Affects volume',opts:['Sedentary','Light','Moderate','Very active','Athlete']},
+            {id:'current',q:'Current deo type?',why:'Avoid past failures',opts:['Antiperspirant','Natural','Clinical','None','All fail']},
+            {id:'sensitive',q:'Skin sensitivity?',why:'Guides gentle options',opts:['Very sensitive','Somewhat','Normal','Tough']},
+            {id:'pref',q:'Preference?',why:'Matches values',opts:['Aluminum-free','Natural preferred','Clinical strength','Whatever works','Luxury']}
+        ];
+
+        let currentQ=0,answers={};
+
+        function renderQ(){
+            const q=quizData[currentQ];
+            document.getElementById('quizContainer').innerHTML=`
+                <div class="question-card">
+                    <div class="question-title">${q.q}</div>
+                    <div class="question-why">Why: ${q.why}</div>
+                    ${q.opts.map(o=>`<button class="option-button ${answers[q.id]===o?'selected':''}" onclick="selectAnswer('${q.id}','${o}')">${o}</button>`).join('')}
+                </div>`;
+            document.getElementById('progressBar').style.width=((currentQ+1)/quizData.length*100)+'%';
+            document.getElementById('prevBtn').disabled=currentQ===0;
+            document.getElementById('nextBtn').style.display=currentQ<quizData.length-1?'block':'none';
+            document.getElementById('resultsBtn').style.display=currentQ===quizData.length-1?'block':'none';
+        }
+
+        function selectAnswer(id,val){answers[id]=val;renderQ();}
+        function nextQuestion(){if(answers[quizData[currentQ].id]){currentQ++;renderQ();}}
+        function previousQuestion(){if(currentQ>0){currentQ--;renderQ();}}
+        function resetQuiz(){currentQ=0;answers={};renderQ();}
+
+        function submitQuiz(){
+            const profile={sweat:'moderate',intensity:'moderate',sensitivity:'normal'};
+            if(answers.sweat==='Heavy'||answers.sweat==='Excessive')profile.sweat='heavy';
+            if(answers.sweat==='Minimal'||answers.sweat==='Light')profile.sweat='light';
+            if(answers.intensity==='4-Strong'||answers.intensity==='5-Severe')profile.intensity='high';
+            if(answers.intensity==='1-Mild'||answers.intensity==='2-Noticeable')profile.intensity='low';
+            if(answers.sensitive==='Very sensitive')profile.sensitivity='sensitive';
+
+            const recs=[];
             
-            // Close mobile menu
-            document.getElementById('navLinks').classList.remove('active');
+            // Premium luxury brands
+            if(answers.pref==='Luxury'||answers.pref==='Natural preferred'){
+                recs.push({name:'Salt & Stone Natural Deodorant',why:'Premium natural formula with probiotics. Luxury packaging, high-performance protection without compromising ingredients.',type:'Premium Natural',price:'$$$'});
+                recs.push({name:'Aesop Herbal Roll-On Deodorant',why:'Botanical luxury deodorant with zinc ricinoleate. Sophisticated scent profile and premium efficacy.',type:'Luxury Natural',price:'$$$$'});
+            }
+
+            if(profile.sweat==='heavy'&&profile.intensity==='high'){
+                recs.push({name:'Certain Dri Clinical Strength',why:'Your high sweat + odor needs maximum aluminum protection. Apply at night for 72-hour coverage.',type:'Clinical',price:'$$'});
+                recs.push({name:'SweatBlock Antiperspirant Wipes',why:'For excessive sweating, these provide up to 7 days of protection per application.',type:'Clinical',price:'$$$'});
+            }
+
+            if(answers.pref==='Aluminum-free'||answers.current==='Natural'){
+                recs.push({name:'Lume Whole Body Deodorant',why:'Different mechanism than baking soda naturals. Blocks odor before it starts. 72-hour protection.',type:'Natural',price:'$$'});
+                recs.push({name:'Native Deodorant',why:'Premium natural option with probiotics. Wide scent range, works for active lifestyles.',type:'Natural',price:'$$'});
+            }
+
+            if(profile.sensitivity==='sensitive'){
+                recs.push({name:'Vanicream Clinical Strength',why:'Fragrance-free, dye-free, dermatologist-tested. Effective without irritation for reactive skin.',type:'Gentle Clinical',price:'$$'});
+                recs.push({name:'Dove 0% Aluminum',why:'¼ moisturizing cream makes it extremely gentle. Aluminum-free protection for sensitive underarms.',type:'Gentle Natural',price:'$'});
+            }
+
+            if(answers.type==='Oniony'||answers.diet==='Heavy meat'||answers.diet==='Keto'){
+                recs.push({name:'Crystal Body Deodorant',why:'Mineral salt neutralizes diet-related odors without blocking pores. Great for food-based smells.',type:'Natural',price:'$'});
+            }
+
+            if(answers.activity==='Very active'||answers.activity==='Athlete'){
+                recs.push({name:'Degree Clinical Protection Sport',why:'Motion-activated technology. Releases protection as you move. Built for athletes.',type:'Clinical Sport',price:'$$'});
+                recs.push({name:'Old Spice Pure Sport High Endurance',why:'Budget-friendly athletic protection. Long-lasting for active lifestyles.',type:'Sport',price:'$'});
+            }
+
+            if(profile.sweat==='light'&&answers.pref==='Natural preferred'){
+                recs.push({name:'Schmidt\'s Natural Deodorant',why:'Light sweat means natural works well. Plant-based with activated charcoal odor absorption.',type:'Natural',price:'$$'});
+                recs.push({name:'Corpus Natural Deodorant',why:'Premium natural with elegant scents. Effective for low-sweat individuals.',type:'Premium Natural',price:'$$$'});
+            }
+
+            if(answers.current==='All fail'){
+                recs.push({name:'Lume Whole Body',why:'Works differently than everything you\'ve tried. Blocks odor at source, not masking.',type:'Natural',price:'$$'});
+                recs.push({name:'Certain Dri Prescription Strength',why:'When everything fails, go clinical. Strongest legal OTC formula available.',type:'Clinical',price:'$$'});
+            }
+
+            if(recs.length===0){
+                recs.push({name:'Dove Advanced Care',why:'Balanced protection for most body types. 48hr odor/wetness with moisturizers.',type:'Standard',price:'$'});
+                recs.push({name:'Secret Clinical Strength',why:'Reliable all-day protection. Great everyday option for moderate needs.',type:'Clinical',price:'$$'});
+            }
+
+            document.getElementById('profileSummary').innerHTML=`
+                <div class="profile-metric"><div class="metric-value">${profile.sweat}</div><div class="metric-label">Sweat Level</div></div>
+                <div class="profile-metric"><div class="metric-value">${profile.intensity}</div><div class="metric-label">Odor Intensity</div></div>
+                <div class="profile-metric"><div class="metric-value">${profile.sensitivity}</div><div class="metric-label">Skin Type</div></div>
+            `;
+
+            const insights=[];
+            if(answers.earwax==='Dry/flaky')insights.push('Your dry earwax suggests the ABCC11 gene variant - you naturally produce less body odor than most people.');
+            if(answers.diet==='Heavy meat'||answers.diet==='Keto')insights.push('Your diet significantly impacts odor. Reducing red meat may decrease odor intensity.');
+            if(answers.timing==='2-3hrs')insights.push('Rapid odor development suggests very active bacteria. You need antimicrobial ingredients, not just fragrance.');
+            if(answers.sensitive==='Very sensitive')insights.push('Your irritation history suggests sensitivity to baking soda, fragrance, or alcohol. We prioritized gentle formulations.');
+            if(answers.current==='Natural'&&answers.pref==='Natural preferred')insights.push('Natural deodorants need 2-4 weeks to work. The detox period is real. Our picks work during transition.');
+
+            document.getElementById('insightsContainer').innerHTML=insights.length?`
+                <h3 style="font-size:1.5rem;color:#C5A467;margin:2rem 0 1rem;">Key Insights</h3>
+                ${insights.map(i=>`<div class="insight-box">${i}</div>`).join('')}
+            `:'';
+
+            document.getElementById('recommendationsContainer').innerHTML=recs.slice(0,4).map((r,i)=>`
+                <div class="recommendation-card">
+                    <div class="rec-header">
+                        <div class="rec-name">${r.name}</div>
+                        <div class="rec-rank">#${i+1}</div>
+                    </div>
+                    <div class="rec-meta">
+                        <div class="rec-tag">${r.type}</div>
+                        <div class="rec-tag">${r.price}</div>
+                    </div>
+                    <div class="rec-description">${r.why}</div>
+                    <a href="#" class="buy-button" onclick="alert('Add your Amazon affiliate link here!');return false;">View Product</a>
+                </div>
+            `).join('');
+
+            showPage('results');
         }
 
-        function toggleMobileMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
-        // Email form
-        function handleEmailSubmit(e) {
-            e.preventDefault();
-            alert('Thank you for your interest! We\'ll notify you when custom formulations launch.');
-            e.target.reset();
-        }
-
-        // Quiz Logic
-        const quizData = {
-            sections: [
-                {
-                    title: "The Basics",
-                    questions: [
-                        {
-                            id: "age",
-                            question: "What's your age range?",
-                            why: "Hormones and body chemistry shift with age",
-                            options: ["Under 18", "18-25", "26-35", "36-45", "46-55", "56+"]
-                        },
-                        {
-                            id: "sex",
-                            question: "Biological sex assigned at birth?",
-                            why: "Hormonal differences affect sweat composition",
-                            options: ["Male", "Female", "Prefer not to say"]
-                        },
-                        {
-                            id: "earwax",
-                            question: "What type of earwax do you have?",
-                            why: "Dry earwax = less body odor production (it's genetic!)",
-                            options: ["Dry and flaky", "Wet and sticky", "Not sure"]
-                        }
-                    ]
-                },
-                {
-                    title: "Your Sweat",
-                    questions: [
-                        {
-                            id: "sweat_amount",
-                            question: "How much do you sweat on a typical day?",
-                            why: "More sweat = more bacteria food = more odor potential",
-                            options: ["Barely at all", "Light sweating", "Moderate sweating", "Heavy sweating", "Excessive sweating"]
-                        },
-                        {
-                            id: "odor_timing",
-                            question: "When do you typically notice body odor?",
-                            why: "Timing tells us how fast bacteria colonize",
-                            options: ["Within 2-3 hours", "By midday (4-6 hours)", "Late afternoon", "Only after exercise", "Rarely or never"]
-                        }
-                    ]
-                },
-                {
-                    title: "The Smell",
-                    questions: [
-                        {
-                            id: "odor_type",
-                            question: "How would you describe your body odor?",
-                            why: "Odor type reveals your bacterial ecosystem",
-                            options: ["Sharp/acidic", "Onion-y", "Musty", "Sweet/fruity", "Ammonia-like", "Barely noticeable"]
-                        },
-                        {
-                            id: "odor_intensity",
-                            question: "How strong is your odor at its worst?",
-                            why: "Intensity guides product strength needed",
-                            options: ["1 - Barely noticeable", "2 - I notice it", "3 - Others might notice", "4 - Obviously strong", "5 - Severe problem"]
-                        }
-                    ]
-                },
-                {
-                    title: "Lifestyle",
+        renderQ();
+    </script>
+</body>
+</html>
