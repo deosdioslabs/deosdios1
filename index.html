@@ -17,16 +17,20 @@
         .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(197, 164, 103, 0.05) 0%, transparent 70%); animation: pulse 15s ease-in-out infinite; }
         @keyframes pulse { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.1) rotate(5deg); } }
         .hero-content { position: relative; z-index: 1; max-width: 900px; }
-        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; letter-spacing: 8px; margin-bottom: 1.5rem; line-height: 1.1; }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; letter-spacing: 8px; margin-bottom: 1.5rem; line-height: 1.1; text-transform: uppercase; }
         .hero-subtitle { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 300; letter-spacing: 2px; color: #C5A467; margin-bottom: 3rem; }
         .hero-description { font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.7); max-width: 700px; margin: 0 auto 3rem; letter-spacing: 0.5px; }
-        .cta-button { display: inline-block; padding: 1.2rem 3rem; background: #C5A467; color: #0F0F0F; text-decoration: none; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; border: none; font-size: 0.9rem; cursor: pointer; }
+        .cta-button { display: inline-flex; align-items: center; gap: 0.8rem; padding: 1.2rem 3rem; background: #C5A467; color: #0F0F0F; text-decoration: none; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; border: none; font-size: 0.9rem; cursor: pointer; }
+        .cta-button::after { content: '→'; font-size: 1.5rem; transition: transform 0.3s; }
+        .cta-button:hover::after { transform: translateX(5px); }
         .cta-button:hover { background: #d4b379; transform: translateY(-2px); }
         section { padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; }
         .section-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; letter-spacing: 4px; margin-bottom: 3rem; text-align: center; }
         .gold-accent { color: #C5A467; }
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-top: 4rem; }
-        .step-card { text-align: center; padding: 2rem; border: 1px solid rgba(197, 164, 103, 0.2); transition: all 0.3s; }
+        .step-card { text-align: center; padding: 2rem; border: 1px solid rgba(197, 164, 103, 0.2); transition: all 0.3s; position: relative; overflow: hidden; }
+        .step-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #C5A467, transparent); transform: scaleX(0); transition: transform 0.3s; }
+        .step-card:hover::before { transform: scaleX(1); }
         .step-card:hover { border-color: #C5A467; transform: translateY(-5px); }
         .step-number { font-size: 3rem; color: #C5A467; font-weight: 300; margin-bottom: 1rem; }
         .step-card h3 { font-size: 1.4rem; font-weight: 500; letter-spacing: 2px; margin-bottom: 1rem; }
@@ -35,7 +39,7 @@
         .faq-item { border-bottom: 1px solid rgba(197, 164, 103, 0.2); padding: 2rem 0; }
         .faq-question { font-size: 1.3rem; font-weight: 500; letter-spacing: 1px; margin-bottom: 1rem; color: #C5A467; }
         .faq-answer { color: rgba(255, 255, 255, 0.8); line-height: 1.8; font-size: 1.05rem; }
-        .email-section { background: linear-gradient(135deg, rgba(197, 164, 103, 0.1) 0%, rgba(197, 164, 103, 0.05) 100%); border: 1px solid rgba(197, 164, 103, 0.3); padding: 4rem 2rem; text-align: center; margin: 4rem 0; }
+        .email-section { background: linear-gradient(135deg, rgba(197, 164, 103, 0.1) 0%, rgba(197, 164, 103, 0.05) 100%); border: 1px solid rgba(197, 164, 103, 0.3); padding: 4rem 2rem; text-align: center; margin: 4rem auto; max-width: 900px; }
         .email-form { display: flex; gap: 1rem; max-width: 600px; margin: 2rem auto 0; flex-wrap: wrap; justify-content: center; }
         .email-input { flex: 1; min-width: 250px; padding: 1rem 1.5rem; background: #0F0F0F; border: 1px solid rgba(197, 164, 103, 0.3); color: #FFFFFF; font-size: 1rem; letter-spacing: 0.5px; }
         .email-input:focus { outline: none; border-color: #C5A467; }
@@ -50,6 +54,9 @@
         .quiz-intro { text-align: center; margin-bottom: 4rem; }
         .quiz-intro h2 { font-size: 2.5rem; font-weight: 300; letter-spacing: 3px; margin-bottom: 1.5rem; }
         .quiz-intro p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.7); line-height: 1.8; }
+        .section-header { text-align: center; margin-bottom: 2rem; }
+        .section-header h3 { font-size: 1.8rem; color: #C5A467; letter-spacing: 2px; margin-bottom: 0.5rem; }
+        .section-progress { font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); }
         .question-card { background: rgba(197, 164, 103, 0.05); border: 1px solid rgba(197, 164, 103, 0.2); padding: 2.5rem; margin-bottom: 2rem; }
         .question-title { font-size: 1.4rem; font-weight: 500; letter-spacing: 1px; margin-bottom: 1rem; color: #C5A467; }
         .question-why { font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); font-style: italic; margin-bottom: 1.5rem; }
@@ -118,13 +125,29 @@
         <section>
             <h2 class="section-title">The <span class="gold-accent">Protocol</span></h2>
             <div class="steps-grid">
-                <div class="step-card"><div class="step-number">01</div><h3>Deep Profile</h3><p>Our comprehensive questionnaire analyzes your body chemistry, lifestyle, and odor patterns through science-backed questions.</p></div>
-                <div class="step-card"><div class="step-number">02</div><h3>Algorithm Match</h3><p>Advanced matching system processes your unique profile against our database of premium deodorant formulations.</p></div>
-                <div class="step-card"><div class="step-number">03</div><h3>Precision Results</h3><p>Receive personalized recommendations tailored specifically to your body's needs. No more trial and error.</p></div>
+                <div class="step-card">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🧬</div>
+                    <div class="step-number">01</div>
+                    <h3>Deep Profile</h3>
+                    <p>Our comprehensive questionnaire analyzes your body chemistry, lifestyle, and odor patterns through science-backed questions.</p>
+                </div>
+                <div class="step-card">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">⚡</div>
+                    <div class="step-number">02</div>
+                    <h3>Algorithm Match</h3>
+                    <p>Advanced matching system processes your unique profile against our database of premium deodorant formulations.</p>
+                </div>
+                <div class="step-card">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎯</div>
+                    <div class="step-number">03</div>
+                    <h3>Precision Results</h3>
+                    <p>Receive personalized recommendations tailored specifically to your body's needs. No more trial and error.</p>
+                </div>
             </div>
         </section>
 
         <section class="email-section">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📬</div>
             <h2 class="section-title" style="margin-bottom: 1rem;">Stay Informed</h2>
             <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">Be the first to know when we launch custom formulations based on collected data.</p>
             <form class="email-form" onsubmit="handleEmailSubmit(event)">
@@ -136,9 +159,21 @@
         <section>
             <h2 class="section-title">Why <span class="gold-accent">DEOS DIOS</span></h2>
             <div class="steps-grid">
-                <div class="step-card"><h3>Science First</h3><p>Based on dermatological research, microbiome science, and genetic factors that influence body odor.</p></div>
-                <div class="step-card"><h3>No Marketing BS</h3><p>Cut through the noise of buzzwords and false promises. We match you with what actually works.</p></div>
-                <div class="step-card"><h3>Data Driven</h3><p>Every recommendation improves as more users provide feedback, creating a smarter system over time.</p></div>
+                <div class="step-card">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🔬</div>
+                    <h3>Science First</h3>
+                    <p>Based on dermatological research, microbiome science, and genetic factors that influence body odor.</p>
+                </div>
+                <div class="step-card">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">✨</div>
+                    <h3>No Marketing BS</h3>
+                    <p>Cut through the noise of buzzwords and false promises. We match you with what actually works.</p>
+                </div>
+                <div class="step-card">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
+                    <h3>Data Driven</h3>
+                    <p>Every recommendation improves as more users provide feedback, creating a smarter system over time.</p>
+                </div>
             </div>
         </section>
     </div>
@@ -148,9 +183,10 @@
             <div class="protocol-container">
                 <div class="quiz-intro">
                     <h2>The Protocol</h2>
-                    <p>Answer honestly. The more accurate your responses, the better your match. This takes approximately 5-7 minutes.</p>
+                    <p>Answer honestly. The more accurate your responses, the better your match. This takes approximately 8-10 minutes.</p>
                 </div>
                 <div class="progress-bar"><div class="progress-fill" id="progressBar" style="width: 0%"></div></div>
+                <div id="sectionHeader"></div>
                 <div id="quizContainer"></div>
                 <div class="nav-buttons">
                     <button class="nav-btn" onclick="previousQuestion()" id="prevBtn">Previous</button>
@@ -203,95 +239,213 @@
         function toggleMobileMenu(){document.getElementById('navLinks').classList.toggle('active');}
         function handleEmailSubmit(e){e.preventDefault();alert('Thank you! We\'ll notify you when custom formulations launch.');e.target.reset();}
 
-        const quizData=[
-            {id:'age',q:'Age range?',why:'Hormones shift with age',opts:['Under 18','18-25','26-35','36-45','46-55','56+']},
-            {id:'sex',q:'Biological sex?',why:'Affects sweat chemistry',opts:['Male','Female','Prefer not to say']},
-            {id:'earwax',q:'Earwax type?',why:'Dry=genetic low odor',opts:['Dry/flaky','Wet/sticky','Not sure']},
-            {id:'sweat',q:'Daily sweat?',why:'More sweat=stronger products',opts:['Minimal','Light','Moderate','Heavy','Excessive']},
-            {id:'timing',q:'Odor timing?',why:'Shows bacterial speed',opts:['2-3hrs','Midday','Evening','After exercise','Rarely']},
-            {id:'type',q:'Odor type?',why:'Reveals bacteria',opts:['Acidic','Oniony','Musty','Sweet','Ammonia','Mild']},
-            {id:'intensity',q:'Odor strength?',why:'Product strength needed',opts:['1-Mild','2-Noticeable','3-Moderate','4-Strong','5-Severe']},
-            {id:'diet',q:'Diet type?',why:'Food affects odor',opts:['Heavy meat','Balanced','Pescatarian','Vegetarian','Vegan','Keto']},
-            {id:'activity',q:'Activity level?',why:'Affects volume',opts:['Sedentary','Light','Moderate','Very active','Athlete']},
-            {id:'current',q:'Current deo type?',why:'Avoid past failures',opts:['Antiperspirant','Natural','Clinical','None','All fail']},
-            {id:'sensitive',q:'Skin sensitivity?',why:'Guides gentle options',opts:['Very sensitive','Somewhat','Normal','Tough']},
-            {id:'pref',q:'Preference?',why:'Matches values',opts:['Aluminum-free','Natural preferred','Clinical strength','Whatever works','Luxury']}
+        const quizSections = [
+            {
+                name: 'The Basics',
+                questions: [
+                    {id:'age',q:'What is your age range?',why:'Hormones and body chemistry shift with age',opts:['Under 18','18-25','26-35','36-45','46-55','56+']},
+                    {id:'sex',q:'Biological sex assigned at birth?',why:'Hormonal differences affect sweat composition',opts:['Male','Female','Prefer not to say']},
+                    {id:'ethnicity',q:'Ancestry/ethnicity? (optional but helpful)',why:'The ABCC11 gene varies by ancestry and affects body odor',opts:['East Asian','South Asian','African','European','Latino/Hispanic','Middle Eastern','Mixed','Other']},
+                    {id:'earwax',q:'What type of earwax do you have?',why:'Dry earwax = less body odor production (genetic marker)',opts:['Dry and flaky','Wet and sticky','Not sure']}
+                ]
+            },
+            {
+                name: 'Your Sweat',
+                questions: [
+                    {id:'sweat_amount',q:'How much do you sweat on a typical day?',why:'More sweat = more bacteria food = more odor potential',opts:['Barely at all - pretty dry','Light sweating','Moderate - damp by end of day','Heavy - soaking through shirts','Excessive - impacts daily life']},
+                    {id:'sweat_triggers',q:'What triggers your sweat most?',why:'Different triggers mean different sweat composition',opts:['Exercise','Heat/humidity','Stress/anxiety','Spicy food','Just existing','Not much']},
+                    {id:'odor_timing',q:'When do you typically notice body odor?',why:'Timing tells us how fast bacteria colonize',opts:['Within 2-3 hours','By midday (4-6 hours)','Late afternoon','Only after exercise','Rarely or never']},
+                    {id:'shirt_evidence',q:'What do your shirts tell you?',why:'Stains reveal pH and product interaction',opts:['Yellow pit stains','White crusty residue','Stiff fabric','Discoloration only','Shirts stay pristine']}
+                ]
+            },
+            {
+                name: 'The Smell',
+                questions: [
+                    {id:'odor_type',q:'How would you describe your body odor?',why:'Odor type reveals your bacterial ecosystem',opts:['Sharp/acidic (vinegar-like)','Onion-y or garlicky','Musty or stale','Sweet or fruity','Ammonia-like','Barely noticeable','Changes day to day']},
+                    {id:'odor_intensity',q:'How strong is your odor at its worst?',why:'Intensity guides product strength needed',opts:['1 - Others probably don\'t notice','2 - I notice, others might not','3 - Close contacts probably notice','4 - It\'s obvious in a room','5 - It\'s interfering with my life']},
+                    {id:'stress_smell',q:'Does your odor change when you\'re stressed?',why:'Stress sweat comes from different glands',opts:['Yes, much stronger/different','Slightly more noticeable','No real difference','Not sure']}
+                ]
+            },
+            {
+                name: 'Lifestyle',
+                questions: [
+                    {id:'diet_type',q:'How would you describe your diet?',why:'Red meat and keto can increase body odor',opts:['Heavy meat eater','Moderate meat, balanced','Pescatarian','Vegetarian','Vegan','Low carb/Keto','All over the place']},
+                    {id:'diet_specifics',q:'Do you regularly consume these?',why:'These foods contain sulfur compounds that exit through sweat',opts:['Lots of garlic/onions','Spicy foods','Cruciferous veggies','Alcohol 3+ times/week','Coffee 2+ cups/day','None regularly']},
+                    {id:'activity_level',q:'How physically active are you?',why:'Activity affects sweat volume and product durability',opts:['Sedentary - desk job','Lightly active','Moderately active - 2-3x/week','Very active - 4-5x/week','Extremely active - daily intense']}
+                ]
+            },
+            {
+                name: 'Deodorant History',
+                questions: [
+                    {id:'current_type',q:'What type of deodorant do you currently use?',why:'Understanding what you\'ve tried helps us avoid failures',opts:['Antiperspirant (aluminum)','Natural (no aluminum)','Clinical strength','Nothing currently','Everything fails']},
+                    {id:'natural_experience',q:'Have you tried natural/aluminum-free deodorants?',why:'Natural works for some chemistries but not others',opts:['Yes, they work great','Yes, they failed','Yes, mixed results','No, never tried','Currently using and struggling']},
+                    {id:'past_failures',q:'Problems you\'ve experienced with deodorants?',why:'Past problems guide us toward gentle options',opts:['Skin irritation/rashes','Itching or burning','Didn\'t prevent odor','Didn\'t prevent wetness','Stained clothes','Stopped working over time','No major issues']},
+                    {id:'reapplication',q:'How often are you willing to reapply?',why:'Some products need reapplication, others last 24-48 hours',opts:['Once a day max','Twice a day is fine','I\'ll reapply whenever needed','Every few hours if it works']}
+                ]
+            },
+            {
+                name: 'Skin & Preferences',
+                questions: [
+                    {id:'skin_sensitivity',q:'How sensitive is your underarm skin?',why:'Sensitive skin needs gentler formulations',opts:['Very sensitive - reacts to many products','Somewhat sensitive','Not particularly sensitive','Tough as nails']},
+                    {id:'shaving_habits',q:'Do you shave your underarms?',why:'Shaving creates micro-cuts that react with ingredients',opts:['Yes, daily or almost daily','Yes, a few times a week','Occasionally','Never']},
+                    {id:'scent_preference',q:'What\'s your scent preference?',why:'Scent is personal - we\'ll match accordingly',opts:['Unscented/fragrance-free only','Light, barely-there','Fresh/clean scents','Strong fragrance','Don\'t care as long as it works']},
+                    {id:'values',q:'What matters to you?',why:'Your values help narrow to brands you\'ll feel good about',opts:['Aluminum-free','Cruelty-free/vegan','Sustainable packaging','Clinical/dermatologist tested','Luxury/premium brands','Just want it to work']}
+                ]
+            },
+            {
+                name: 'Final Details',
+                questions: [
+                    {id:'climate',q:'What\'s your climate like?',why:'Climate affects sweat rate and product durability',opts:['Hot and humid','Hot and dry','Moderate/temperate','Cold most of year','Varies by season']},
+                    {id:'primary_concern',q:'What\'s your #1 concern?',why:'This helps us prioritize your top match',opts:['Stopping odor completely','Reducing wetness/sweat','Both equally','Gentle on sensitive skin','Long-lasting protection','Natural ingredients']},
+                    {id:'budget',q:'What\'s your budget per deodorant?',why:'We\'ll find options in your price range',opts:['Under $8 - drugstore','$8-15 - mid-range','$15-25 - premium','$25-40 - luxury','$40+ - I\'ll pay anything that works']}
+                ]
+            }
         ];
 
-        let currentQ=0,answers={};
+        let currentSection=0,currentQ=0,answers={};
+
+        function getCurrentQuestion(){
+            let totalQ=0;
+            for(let i=0;i<currentSection;i++)totalQ+=quizSections[i].questions.length;
+            return quizSections[currentSection].questions[currentQ];
+        }
+
+        function getTotalQuestions(){
+            return quizSections.reduce((sum,section)=>sum+section.questions.length,0);
+        }
+
+        function getGlobalQuestionIndex(){
+            let idx=0;
+            for(let i=0;i<currentSection;i++)idx+=quizSections[i].questions.length;
+            return idx+currentQ;
+        }
 
         function renderQ(){
-            const q=quizData[currentQ];
+            const section=quizSections[currentSection];
+            const q=section.questions[currentQ];
+            const globalIdx=getGlobalQuestionIndex();
+            const totalQ=getTotalQuestions();
+
+            document.getElementById('sectionHeader').innerHTML=`
+                <div class="section-header">
+                    <h3>${section.name}</h3>
+                    <div class="section-progress">Section ${currentSection+1} of ${quizSections.length} • Question ${globalIdx+1} of ${totalQ}</div>
+                </div>`;
+
             document.getElementById('quizContainer').innerHTML=`
                 <div class="question-card">
                     <div class="question-title">${q.q}</div>
-                    <div class="question-why">Why: ${q.why}</div>
-                    ${q.opts.map(o=>`<button class="option-button ${answers[q.id]===o?'selected':''}" onclick="selectAnswer('${q.id}','${o}')">${o}</button>`).join('')}
+                    <div class="question-why">Why we ask: ${q.why}</div>
+                    ${q.opts.map(o=>`<button class="option-button ${answers[q.id]===o?'selected':''}" onclick="selectAnswer('${q.id}','${o.replace(/'/g,"\\'")}')">${o}</button>`).join('')}
                 </div>`;
-            document.getElementById('progressBar').style.width=((currentQ+1)/quizData.length*100)+'%';
-            document.getElementById('prevBtn').disabled=currentQ===0;
-            document.getElementById('nextBtn').style.display=currentQ<quizData.length-1?'block':'none';
-            document.getElementById('resultsBtn').style.display=currentQ===quizData.length-1?'block':'none';
+
+            document.getElementById('progressBar').style.width=((globalIdx+1)/totalQ*100)+'%';
+            document.getElementById('prevBtn').disabled=currentSection===0&&currentQ===0;
+            
+            const isLastQ=currentSection===quizSections.length-1&&currentQ===section.questions.length-1;
+            document.getElementById('nextBtn').style.display=isLastQ?'none':'block';
+            document.getElementById('resultsBtn').style.display=isLastQ?'block':'none';
         }
 
         function selectAnswer(id,val){answers[id]=val;renderQ();}
-        function nextQuestion(){if(answers[quizData[currentQ].id]){currentQ++;renderQ();}}
-        function previousQuestion(){if(currentQ>0){currentQ--;renderQ();}}
-        function resetQuiz(){currentQ=0;answers={};renderQ();}
+
+        function nextQuestion(){
+            const q=getCurrentQuestion();
+            if(!answers[q.id])return;
+
+            const section=quizSections[currentSection];
+            if(currentQ<section.questions.length-1){
+                currentQ++;
+            }else if(currentSection<quizSections.length-1){
+                currentSection++;
+                currentQ=0;
+            }
+            renderQ();
+        }
+
+        function previousQuestion(){
+            if(currentQ>0){
+                currentQ--;
+            }else if(currentSection>0){
+                currentSection--;
+                currentQ=quizSections[currentSection].questions.length-1;
+            }
+            renderQ();
+        }
+
+        function resetQuiz(){currentSection=0;currentQ=0;answers={};renderQ();}
 
         function submitQuiz(){
-            const profile={sweat:'moderate',intensity:'moderate',sensitivity:'normal'};
-            if(answers.sweat==='Heavy'||answers.sweat==='Excessive')profile.sweat='heavy';
-            if(answers.sweat==='Minimal'||answers.sweat==='Light')profile.sweat='light';
-            if(answers.intensity==='4-Strong'||answers.intensity==='5-Severe')profile.intensity='high';
-            if(answers.intensity==='1-Mild'||answers.intensity==='2-Noticeable')profile.intensity='low';
-            if(answers.sensitive==='Very sensitive')profile.sensitivity='sensitive';
+            const profile={sweat:'moderate',intensity:'moderate',sensitivity:'normal',preference:'standard'};
+            
+            if(answers.sweat_amount?.includes('Heavy')||answers.sweat_amount?.includes('Excessive'))profile.sweat='heavy';
+            if(answers.sweat_amount?.includes('Barely')||answers.sweat_amount?.includes('Light'))profile.sweat='light';
+            if(answers.odor_intensity?.includes('4')||answers.odor_intensity?.includes('5'))profile.intensity='high';
+            if(answers.odor_intensity?.includes('1')||answers.odor_intensity?.includes('2'))profile.intensity='low';
+            if(answers.skin_sensitivity?.includes('Very sensitive'))profile.sensitivity='sensitive';
+            if(answers.values?.includes('Luxury')||answers.budget?.includes('luxury')||answers.budget?.includes('$40+'))profile.preference='luxury';
 
             const recs=[];
             
-            // Premium luxury brands
-            if(answers.pref==='Luxury'||answers.pref==='Natural preferred'){
-                recs.push({name:'Salt & Stone Natural Deodorant',why:'Premium natural formula with probiotics. Luxury packaging, high-performance protection without compromising ingredients.',type:'Premium Natural',price:'$$$'});
-                recs.push({name:'Aesop Herbal Roll-On Deodorant',why:'Botanical luxury deodorant with zinc ricinoleate. Sophisticated scent profile and premium efficacy.',type:'Luxury Natural',price:'$$$$'});
+            // Premium/Luxury recommendations
+            if(profile.preference==='luxury'||answers.values?.includes('Luxury')||answers.budget?.includes('$25')||answers.budget?.includes('$40')){
+                recs.push({name:'Salt & Stone Natural Deodorant',why:'Premium natural formula with probiotics and seaweed extracts. Luxury packaging meets high-performance protection. Ideal for those who want clean ingredients without compromise.',type:'Premium Natural',price:'$,link:'#'});
+                recs.push({name:'Aesop Herbal Roll-On Deodorant',why:'Botanical luxury with zinc ricinoleate and essential oils. Sophisticated scent profile from a heritage brand. For the discerning individual.',type:'Luxury Natural',price:'$$',link:'#'});
+                recs.push({name:'Corpus Natural Deodorant',why:'Premium natural with elegant, complex fragrances. Plant-based enzymes and natural extracts. Effective for light to moderate sweat.',type:'Premium Natural',price:'$,link:'#'});
             }
 
+            // Heavy sweat + high odor = clinical strength
             if(profile.sweat==='heavy'&&profile.intensity==='high'){
-                recs.push({name:'Certain Dri Clinical Strength',why:'Your high sweat + odor needs maximum aluminum protection. Apply at night for 72-hour coverage.',type:'Clinical',price:'$$'});
-                recs.push({name:'SweatBlock Antiperspirant Wipes',why:'For excessive sweating, these provide up to 7 days of protection per application.',type:'Clinical',price:'$$$'});
+                recs.push({name:'Certain Dri Clinical Strength',why:'Maximum-strength aluminum chloride for severe sweat and odor. Apply at night for 72-hour protection. Doctor-recommended for hyperhidrosis.',type:'Clinical Antiperspirant',price:'$',link:'#'});
+                recs.push({name:'SweatBlock Antiperspirant Wipes',why:'Prescription-strength protection without prescription. Up to 7 days per application. For those who\'ve tried everything.',type:'Clinical Wipes',price:'$,link:'#'});
             }
 
-            if(answers.pref==='Aluminum-free'||answers.current==='Natural'){
-                recs.push({name:'Lume Whole Body Deodorant',why:'Different mechanism than baking soda naturals. Blocks odor before it starts. 72-hour protection.',type:'Natural',price:'$$'});
-                recs.push({name:'Native Deodorant',why:'Premium natural option with probiotics. Wide scent range, works for active lifestyles.',type:'Natural',price:'$$'});
+            // Natural deodorant seekers
+            if(answers.values?.includes('Aluminum-free')||answers.current_type?.includes('Natural')||answers.values?.includes('Cruelty-free')){
+                recs.push({name:'Lume Whole Body Deodorant',why:'Revolutionary odor-blocking technology. Works differently than baking soda naturals - prevents odor at the source. 72-hour clinically proven protection.',type:'Natural Deodorant',price:'$',link:'#'});
+                recs.push({name:'Native Deodorant',why:'Premium natural with probiotics and clean ingredients. Wide range of sophisticated scents. Aluminum, paraben, and sulfate-free.',type:'Natural Deodorant',price:'$',link:'#'});
+                recs.push({name:'Myro Deodorant',why:'Refillable premium natural deodorant. Sustainable, effective, and beautifully designed. Perfect for eco-conscious consumers.',type:'Premium Natural',price:'$',link:'#'});
             }
 
-            if(profile.sensitivity==='sensitive'){
-                recs.push({name:'Vanicream Clinical Strength',why:'Fragrance-free, dye-free, dermatologist-tested. Effective without irritation for reactive skin.',type:'Gentle Clinical',price:'$$'});
-                recs.push({name:'Dove 0% Aluminum',why:'¼ moisturizing cream makes it extremely gentle. Aluminum-free protection for sensitive underarms.',type:'Gentle Natural',price:'$'});
+            // Sensitive skin
+            if(profile.sensitivity==='sensitive'||answers.past_failures?.includes('irritation')){
+                recs.push({name:'Vanicream Clinical Strength Deodorant',why:'Dermatologist-developed for sensitive skin. Fragrance-free, dye-free, gluten-free. Clinical-strength protection without irritation.',type:'Gentle Clinical',price:'$',link:'#'});
+                recs.push({name:'Dove 0% Aluminum Deodorant',why:'� moisturizing cream formula. Gentle on reactive skin while providing effective odor protection. Budget-friendly sensitivity solution.',type:'Gentle Natural',price:',link:'#'});
             }
 
-            if(answers.type==='Oniony'||answers.diet==='Heavy meat'||answers.diet==='Keto'){
-                recs.push({name:'Crystal Body Deodorant',why:'Mineral salt neutralizes diet-related odors without blocking pores. Great for food-based smells.',type:'Natural',price:'$'});
+            // Diet-related odor (oniony, meat-heavy)
+            if(answers.odor_type?.includes('Onion')||answers.diet_type?.includes('Heavy meat')||answers.diet_type?.includes('Keto')){
+                recs.push({name:'Crystal Body Deodorant Stick',why:'Mineral salt (potassium alum) neutralizes odor-causing bacteria. Especially effective for diet-related odors as it works chemically, not by masking.',type:'Natural Mineral',price:',link:'#'});
             }
 
-            if(answers.activity==='Very active'||answers.activity==='Athlete'){
-                recs.push({name:'Degree Clinical Protection Sport',why:'Motion-activated technology. Releases protection as you move. Built for athletes.',type:'Clinical Sport',price:'$$'});
-                recs.push({name:'Old Spice Pure Sport High Endurance',why:'Budget-friendly athletic protection. Long-lasting for active lifestyles.',type:'Sport',price:'$'});
+            // Athletic/very active
+            if(answers.activity_level?.includes('Very active')||answers.activity_level?.includes('Extremely')){
+                recs.push({name:'Degree Clinical Protection Sport',why:'Motion-activated microsphere technology releases more protection as you move. Designed specifically for athletes and active lifestyles.',type:'Clinical Sport',price:'$',link:'#'});
+                recs.push({name:'Arm & Hammer Ultramax',why:'Baking soda-based sport protection. Long-lasting odor control for intense workouts. Budget-friendly athletic option.',type:'Sport Deodorant',price:',link:'#'});
             }
 
-            if(profile.sweat==='light'&&answers.pref==='Natural preferred'){
-                recs.push({name:'Schmidt\'s Natural Deodorant',why:'Light sweat means natural works well. Plant-based with activated charcoal odor absorption.',type:'Natural',price:'$$'});
-                recs.push({name:'Corpus Natural Deodorant',why:'Premium natural with elegant scents. Effective for low-sweat individuals.',type:'Premium Natural',price:'$$$'});
+            // Stress sweater
+            if(answers.stress_smell?.includes('much stronger')){
+                recs.push({name:'Secret Clinical Strength Stress Response',why:'Specifically formulated for stress sweat, which comes from apocrine glands and smells different. Targets emotional sweating with advanced protection.',type:'Clinical Stress Formula',price:'$',link:'#'});
             }
 
-            if(answers.current==='All fail'){
-                recs.push({name:'Lume Whole Body',why:'Works differently than everything you\'ve tried. Blocks odor at source, not masking.',type:'Natural',price:'$$'});
-                recs.push({name:'Certain Dri Prescription Strength',why:'When everything fails, go clinical. Strongest legal OTC formula available.',type:'Clinical',price:'$$'});
+            // Light sweater wanting natural
+            if(profile.sweat==='light'&&(answers.values?.includes('Aluminum-free')||answers.values?.includes('Natural'))){
+                recs.push({name:'Schmidt\'s Natural Deodorant',why:'With light sweat production, natural options excel. Plant-based with activated charcoal. Wide variety of scents from subtle to bold.',type:'Natural Deodorant',price:'$',link:'#'});
+                recs.push({name:'Type:A The Visionary Deodorant',why:'Clean, minimal ingredient list. Designed for low-sweat individuals who prioritize ingredient transparency.',type:'Premium Natural',price:'$,link:'#'});
             }
 
+            // Budget-conscious
+            if(answers.budget?.includes('Under $8')){
+                recs.push({name:'Mitchum Advanced Control',why:'Drugstore pricing with clinical-level performance. Proven oxygen odor control technology. Best value for money.',type:'Standard Antiperspirant',price:',link:'#'});
+                recs.push({name:'Speed Stick Power',why:'No-frills, effective protection at the lowest price point. Works reliably for moderate odor control.',type:'Standard Deodorant',price:',link:'#'});
+            }
+
+            // Default catch-all
             if(recs.length===0){
-                recs.push({name:'Dove Advanced Care',why:'Balanced protection for most body types. 48hr odor/wetness with moisturizers.',type:'Standard',price:'$'});
-                recs.push({name:'Secret Clinical Strength',why:'Reliable all-day protection. Great everyday option for moderate needs.',type:'Clinical',price:'$$'});
+                recs.push({name:'Dove Advanced Care Antiperspirant',why:'Balanced protection for most body chemistry types. 48-hour odor and wetness protection with moisturizers. Reliable everyday choice.',type:'Standard Antiperspirant',price:',link:'#'});
+                recs.push({name:'Degree MotionSense',why:'Motion-activated protection that responds to your body\'s needs. Great all-day option for moderate activity.',type:'Standard Antiperspirant',price:',link:'#'});
+                recs.push({name:'Native Deodorant',why:'Premium natural option that works for most people. Clean ingredients with effective protection.',type:'Natural Deodorant',price:'$',link:'#'});
             }
 
             document.getElementById('profileSummary').innerHTML=`
@@ -301,18 +455,20 @@
             `;
 
             const insights=[];
-            if(answers.earwax==='Dry/flaky')insights.push('Your dry earwax suggests the ABCC11 gene variant - you naturally produce less body odor than most people.');
-            if(answers.diet==='Heavy meat'||answers.diet==='Keto')insights.push('Your diet significantly impacts odor. Reducing red meat may decrease odor intensity.');
-            if(answers.timing==='2-3hrs')insights.push('Rapid odor development suggests very active bacteria. You need antimicrobial ingredients, not just fragrance.');
-            if(answers.sensitive==='Very sensitive')insights.push('Your irritation history suggests sensitivity to baking soda, fragrance, or alcohol. We prioritized gentle formulations.');
-            if(answers.current==='Natural'&&answers.pref==='Natural preferred')insights.push('Natural deodorants need 2-4 weeks to work. The detox period is real. Our picks work during transition.');
+            if(answers.earwax==='Dry and flaky')insights.push('Your dry earwax suggests the ABCC11 gene variant, which means you naturally produce less body odor than most people. You likely need less aggressive deodorant.');
+            if(answers.diet_type?.includes('Heavy meat')||answers.diet_type?.includes('Keto')||answers.diet_specifics?.includes('garlic'))insights.push('Your diet significantly impacts your body odor. Foods high in sulfur (meat, garlic, onions) are metabolized and released through sweat. Consider dietary adjustments if odor is a major concern.');
+            if(answers.odor_timing?.includes('2-3 hours'))insights.push('Rapid odor development suggests very active bacterial colonization. You need products with strong antimicrobial ingredients, not just fragrance masking.');
+            if(answers.skin_sensitivity?.includes('Very sensitive')||answers.past_failures?.includes('irritation'))insights.push('Your skin irritation history suggests sensitivity to common ingredients like baking soda, fragrance, or alcohol. We\'ve prioritized gentle, dermatologist-tested formulations.');
+            if(answers.stress_smell?.includes('much stronger'))insights.push('Stress triggers apocrine sweat glands (vs. eccrine for heat). Apocrine sweat is higher in proteins and fats, creating stronger odor. Look for products specifically designed for stress sweat.');
+            if(answers.natural_experience?.includes('failed')&&answers.values?.includes('Aluminum-free'))insights.push('Natural deodorants require a 2-4 week adjustment period as your body detoxes from aluminum. The transition period is real. Our recommendations include options that work during this phase.');
+            if(answers.shirt_evidence?.includes('Yellow'))insights.push('Yellow staining indicates high protein content in your sweat combining with aluminum. Consider aluminum-free options or apply antiperspirant at night to reduce staining.');
 
             document.getElementById('insightsContainer').innerHTML=insights.length?`
-                <h3 style="font-size:1.5rem;color:#C5A467;margin:2rem 0 1rem;">Key Insights</h3>
+                <h3 style="font-size:1.5rem;color:#C5A467;margin:2rem 0 1rem;">Key Insights About Your Body Chemistry</h3>
                 ${insights.map(i=>`<div class="insight-box">${i}</div>`).join('')}
             `:'';
 
-            document.getElementById('recommendationsContainer').innerHTML=recs.slice(0,4).map((r,i)=>`
+            document.getElementById('recommendationsContainer').innerHTML=recs.slice(0,5).map((r,i)=>`
                 <div class="recommendation-card">
                     <div class="rec-header">
                         <div class="rec-name">${r.name}</div>
@@ -323,7 +479,7 @@
                         <div class="rec-tag">${r.price}</div>
                     </div>
                     <div class="rec-description">${r.why}</div>
-                    <a href="#" class="buy-button" onclick="alert('Add your Amazon affiliate link here!');return false;">View Product</a>
+                    <a href="${r.link}" class="buy-button" target="_blank" rel="noopener">View Product</a>
                 </div>
             `).join('');
 
