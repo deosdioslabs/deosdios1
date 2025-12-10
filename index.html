@@ -302,18 +302,26 @@
     </footer>
 
     <script>
-        function showPage(p){
+        // Define all functions in global scope FIRST
+        window.showPage = function(p) {
             document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
             document.getElementById(p+'-page').classList.add('active');
             window.scrollTo(0,0);
             document.getElementById('navLinks').classList.remove('active');
-        }
-        function toggleMobileMenu(){document.getElementById('navLinks').classList.toggle('active');}
-        function handleEmailSubmit(e){e.preventDefault();alert('Thank you! We\'ll notify you when custom formulations launch.');e.target.reset();}
+        };
+        
+        window.toggleMobileMenu = function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        };
+        
+        window.handleEmailSubmit = function(e) {
+            e.preventDefault();
+            alert('Thank you! We\'ll notify you when custom formulations launch.');
+            e.target.reset();
+        };
 
         // Make sure navigation works on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Additional initialization if needed
             console.log('DEOS DIOS loaded');
         });
 
@@ -536,10 +544,11 @@
             if(answers.earwax==='Dry and flaky')insights.push('Your dry earwax suggests the ABCC11 gene variant, which means you naturally produce less body odor than most people. You likely need less aggressive deodorant.');
             if(answers.diet_type?.includes('Heavy meat')||answers.diet_type?.includes('Keto')||answers.diet_specifics?.includes('garlic'))insights.push('Your diet significantly impacts your body odor. Foods high in sulfur (meat, garlic, onions) are metabolized and released through sweat. Consider dietary adjustments if odor is a major concern.');
             if(answers.odor_timing?.includes('2-3 hours'))insights.push('Rapid odor development suggests very active bacterial colonization. You need products with strong antimicrobial ingredients, not just fragrance masking.');
-            if(answers.skin_sensitivity?.includes('Very sensitive')||answers.past_failures?.includes('irritation'))insights.push('Your skin irritation history suggests sensitivity to common ingredients like baking soda, fragrance, or alcohol. We\'ve prioritized gentle, dermatologist-tested formulations.');
+            if(answers.skin_sensitivity?.includes('Very sensitive')||answers.past_failures?.includes('irritation'))insights.push('CRITICAL: Most natural deodorant rashes are caused by BAKING SODA, not the brand itself. Salt & Stone, Native, and Schmidt\'s all use it in most formulas. Even premium brands like Corpus can irritate if you\'re baking soda-sensitive. Look for "baking soda-free" or "sensitive" formulations. Lume uses mandelic acid instead - different mechanism, no burns.');
             if(answers.stress_smell?.includes('much stronger'))insights.push('Stress triggers apocrine sweat glands (vs. eccrine for heat). Apocrine sweat is higher in proteins and fats, creating stronger odor. Look for products specifically designed for stress sweat.');
-            if(answers.natural_experience?.includes('failed')&&answers.values?.includes('Aluminum-free'))insights.push('Natural deodorants require a 2-4 week adjustment period as your body detoxes from aluminum. The transition period is real. Our recommendations include options that work during this phase.');
+            if(answers.natural_experience?.includes('failed')&&answers.values?.includes('Aluminum-free'))insights.push('Natural deodorants require a 2-4 week adjustment period as your body detoxes from aluminum. The transition period is real. You might also be baking soda-sensitive - try Lume or Native Sensitive instead of regular naturals.');
             if(answers.shirt_evidence?.includes('Yellow'))insights.push('Yellow staining indicates high protein content in your sweat combining with aluminum. Consider aluminum-free options or apply antiperspirant at night to reduce staining.');
+            if(answers.values?.includes('Luxury')&&answers.past_failures?.includes('irritation'))insights.push('WHY PREMIUM BRANDS STILL CAUSE RASHES: Salt & Stone\'s floral scents (Neroli, Rose) contain more essential oils = higher irritation risk. Their Santal & Vetiver is gentler. If you reacted to one S&S scent, don\'t write off the brand - try their unscented or different scent family. It\'s the OILS, not the base formula.');
 
             document.getElementById('insightsContainer').innerHTML=insights.length?`
                 <h3 style="font-size:1.5rem;color:#C5A467;margin:2rem 0 1rem;">Key Insights About Your Body Chemistry</h3>
