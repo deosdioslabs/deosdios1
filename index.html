@@ -14,9 +14,11 @@
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.95rem; letter-spacing: 1px; transition: color 0.3s; text-transform: uppercase; font-weight: 500; cursor: pointer; }
         .nav-links a:hover { color: #C5A467; }
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); z-index: 0; opacity: 0.15; filter: grayscale(100%); }
+        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, transparent 0%, #0F0F0F 100%); z-index: 1; }
         .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(197, 164, 103, 0.05) 0%, transparent 70%); animation: pulse 15s ease-in-out infinite; }
         @keyframes pulse { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.1) rotate(5deg); } }
-        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; }
         .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; letter-spacing: 8px; margin-bottom: 1.5rem; line-height: 1.1; text-transform: uppercase; }
         .hero-subtitle { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 300; letter-spacing: 2px; color: #C5A467; margin-bottom: 3rem; }
         .hero-description { font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.7); max-width: 700px; margin: 0 auto 3rem; letter-spacing: 0.5px; }
@@ -105,15 +107,18 @@
             <div class="logo" onclick="showPage('home')">DEOS DIOS</div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a onclick="showPage('home')">Home</a></li>
-                <li><a onclick="showPage('protocol')">Protocol</a></li>
-                <li><a onclick="showPage('faq')">FAQ</a></li>
+                <li><a href="#" data-page="home" onclick="showPage('home'); return false;">Home</a></li>
+                <li><a href="#" data-page="protocol" onclick="showPage('protocol'); return false;">Protocol</a></li>
+                <li><a href="#" data-page="faq" onclick="showPage('faq'); return false;">FAQ</a></li>
             </ul>
         </div>
     </nav>
 
     <div id="home-page" class="page-section active">
         <section class="hero">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="https://cdn.pixabay.com/video/2023/03/23/155453-811958298_large.mp4" type="video/mp4">
+            </video>
             <div class="hero-content">
                 <h1>DEOS DIOS</h1>
                 <p class="hero-subtitle">Know Your Odor. Own Your Scent.</p>
@@ -126,19 +131,16 @@
             <h2 class="section-title">The <span class="gold-accent">Protocol</span></h2>
             <div class="steps-grid">
                 <div class="step-card">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">🧬</div>
                     <div class="step-number">01</div>
                     <h3>Deep Profile</h3>
                     <p>Our comprehensive questionnaire analyzes your body chemistry, lifestyle, and odor patterns through science-backed questions.</p>
                 </div>
                 <div class="step-card">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">⚡</div>
                     <div class="step-number">02</div>
                     <h3>Algorithm Match</h3>
                     <p>Advanced matching system processes your unique profile against our database of premium deodorant formulations.</p>
                 </div>
                 <div class="step-card">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎯</div>
                     <div class="step-number">03</div>
                     <h3>Precision Results</h3>
                     <p>Receive personalized recommendations tailored specifically to your body's needs. No more trial and error.</p>
@@ -147,7 +149,6 @@
         </section>
 
         <section class="email-section">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">📬</div>
             <h2 class="section-title" style="margin-bottom: 1rem;">Stay Informed</h2>
             <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">Be the first to know when we launch custom formulations based on collected data.</p>
             <form class="email-form" onsubmit="handleEmailSubmit(event)">
@@ -160,17 +161,14 @@
             <h2 class="section-title">Why <span class="gold-accent">DEOS DIOS</span></h2>
             <div class="steps-grid">
                 <div class="step-card">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">🔬</div>
                     <h3>Science First</h3>
                     <p>Based on dermatological research, microbiome science, and genetic factors that influence body odor.</p>
                 </div>
                 <div class="step-card">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">✨</div>
                     <h3>No Marketing BS</h3>
                     <p>Cut through the noise of buzzwords and false promises. We match you with what actually works.</p>
                 </div>
                 <div class="step-card">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
                     <h3>Data Driven</h3>
                     <p>Every recommendation improves as more users provide feedback, creating a smarter system over time.</p>
                 </div>
@@ -222,6 +220,8 @@
                 <div class="faq-item"><h3 class="faq-question">Do you sell deodorants?</h3><p class="faq-answer">Not yet. Currently, we match you with the best existing products on the market. Our long-term vision includes creating premium, custom-formulated deodorants based on the profile data we collect. Join our email list to be notified when we launch.</p></div>
                 <div class="faq-item"><h3 class="faq-question">Is my data private?</h3><p class="faq-answer">We collect anonymous data to improve our matching algorithm. Individual profiles are never sold or shared. We use aggregated, anonymized data to identify patterns and develop future products.</p></div>
                 <div class="faq-item"><h3 class="faq-question">Why does body odor vary so much between people?</h3><p class="faq-answer">Body odor is influenced by genetics (like the ABCC11 gene), diet, hormonal fluctuations, medications, stress levels, and the unique bacterial ecosystem on your skin. This is why one-size-fits-all deodorants fail for so many people.</p></div>
+                <div class="faq-item"><h3 class="faq-question">How long does it take to see results?</h3><p class="faq-answer">The questionnaire takes 8-10 minutes. Results are instant. However, give any new deodorant 1-2 weeks to work with your body chemistry. Natural deodorants in particular may require a 2-4 week adjustment period.</p></div>
+                <div class="faq-item"><h3 class="faq-question">Can I update my profile later?</h3><p class="faq-answer">Yes. Life changes affect body chemistry—new medications, diet changes, hormonal shifts. Retake the protocol anytime to get updated recommendations.</p></div>
             </div>
         </section>
     </div>
@@ -230,14 +230,30 @@
         <div class="footer-content">
             <div class="footer-logo">DEOS DIOS</div>
             <p class="footer-text">Premium Body Odor Profiling • deosdios.com</p>
-            <p class="footer-text" style="margin-top: 1rem; font-size: 0.8rem;">© 2024 DEOS DIOS. All rights reserved.</p>
+            <p class="footer-text" style="margin-top: 1rem; font-size: 0.8rem;">© 2025 DEOS DIOS. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        function showPage(p){document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));document.getElementById(p+'-page').classList.add('active');window.scrollTo(0,0);document.getElementById('navLinks').classList.remove('active');}
+        function showPage(p){
+            document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+            document.getElementById(p+'-page').classList.add('active');
+            window.scrollTo(0,0);
+            document.getElementById('navLinks').classList.remove('active');
+        }
         function toggleMobileMenu(){document.getElementById('navLinks').classList.toggle('active');}
         function handleEmailSubmit(e){e.preventDefault();alert('Thank you! We\'ll notify you when custom formulations launch.');e.target.reset();}
+
+        // Make sure navigation works on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-page');
+                    if (page) showPage(page);
+                });
+            });
+        });
 
         const quizSections = [
             {
