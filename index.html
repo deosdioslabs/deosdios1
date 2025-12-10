@@ -14,7 +14,7 @@
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.95rem; letter-spacing: 1px; transition: color 0.3s; text-transform: uppercase; font-weight: 500; cursor: pointer; }
         .nav-links a:hover { color: #C5A467; }
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
-        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); z-index: 0; opacity: 0.15; filter: grayscale(100%); }
+        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); z-index: 0; opacity: 0.15; filter: grayscale(100%); object-fit: cover; }
         .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, transparent 0%, #0F0F0F 100%); z-index: 1; }
         .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(197, 164, 103, 0.05) 0%, transparent 70%); animation: pulse 15s ease-in-out infinite; }
         @keyframes pulse { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.1) rotate(5deg); } }
@@ -107,9 +107,10 @@
             <div class="logo" onclick="showPage('home')">DEOS DIOS</div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#" data-page="home" onclick="showPage('home'); return false;">Home</a></li>
-                <li><a href="#" data-page="protocol" onclick="showPage('protocol'); return false;">Protocol</a></li>
-                <li><a href="#" data-page="faq" onclick="showPage('faq'); return false;">FAQ</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('about')">About</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('protocol')">Protocol</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('faq')">FAQ</a></li>
             </ul>
         </div>
     </nav>
@@ -171,6 +172,72 @@
                 <div class="step-card">
                     <h3>Data Driven</h3>
                     <p>Every recommendation improves as more users provide feedback, creating a smarter system over time.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="about-page" class="page-section">
+        <section style="padding-top: 8rem;">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2 class="section-title">Our <span class="gold-accent">Manifesto</span></h2>
+                
+                <div style="margin: 3rem 0; padding: 0 2rem;">
+                    <h3 style="font-size: 1.8rem; color: #C5A467; margin-bottom: 2rem; letter-spacing: 2px;">The deodorant industry has failed you.</h3>
+                    
+                    <p style="font-size: 1.15rem; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 2rem;">
+                        Not because the products don't work—but because <strong>no product works for everyone</strong>. Your body chemistry is as unique as your fingerprint. What works for your friend, your partner, your colleague, may fail spectacularly on you.
+                    </p>
+
+                    <p style="font-size: 1.15rem; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 2rem;">
+                        Yet the industry sells you on <em>promises</em>. "24-hour protection." "Clinical strength." "All-natural confidence." They market to the masses, ignoring the fundamental truth: <strong>body odor is personal</strong>.
+                    </p>
+
+                    <div style="border-left: 3px solid #C5A467; padding-left: 2rem; margin: 3rem 0;">
+                        <p style="font-size: 1.3rem; line-height: 1.8; color: #C5A467; font-style: italic;">
+                            "We believe you deserve better than trial and error. Better than bathroom drawers full of abandoned deodorants. Better than the shame of wondering if people notice."
+                        </p>
+                    </div>
+
+                    <h3 style="font-size: 1.8rem; color: #C5A467; margin: 3rem 0 2rem; letter-spacing: 2px;">The science they ignore.</h3>
+
+                    <p style="font-size: 1.15rem; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 2rem;">
+                        Body odor isn't random. It's influenced by genetics—the ABCC11 gene determines whether you're a high or low odor producer. It's shaped by diet—sulfur compounds from garlic, onions, and red meat exit through your sweat. It's affected by hormones, stress levels, medications, the bacterial ecosystem living on your skin.
+                    </p>
+
+                    <p style="font-size: 1.15rem; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 2rem;">
+                        These factors create a <strong>biological signature</strong>. Your odor profile. And yet, brands act like one formula can serve everyone.
+                    </p>
+
+                    <h3 style="font-size: 1.8rem; color: #C5A467; margin: 3rem 0 2rem; letter-spacing: 2px;">Our approach is different.</h3>
+
+                    <p style="font-size: 1.15rem; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 2rem;">
+                        <strong>DEOS DIOS</strong> doesn't sell you products. We sell you <em>precision</em>. We ask the questions brands ignore. We analyze the variables the industry overlooks. We match you with formulations designed for your specific chemistry.
+                    </p>
+
+                    <p style="font-size: 1.15rem; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 2rem;">
+                        No buzzwords. No false promises. Just science, data, and honesty.
+                    </p>
+
+                    <h3 style="font-size: 1.8rem; color: #C5A467; margin: 3rem 0 2rem; letter-spacing: 2px;">What we're building.</h3>
+
+                    <p style="font-size: 1.15rem; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 2rem;">
+                        Today, we guide you to existing products that match your profile. Tomorrow, we'll create <strong>custom formulations</strong> based on the data we collect—deodorants designed not for the average person, but for <em>you</em>.
+                    </p>
+
+                    <p style="font-size: 1.15rem; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 2rem;">
+                        This is the future of personal care: personalized, precise, and unapologetically honest.
+                    </p>
+
+                    <div style="border-left: 3px solid #C5A467; padding-left: 2rem; margin: 3rem 0;">
+                        <p style="font-size: 1.3rem; line-height: 1.8; color: #C5A467; font-style: italic;">
+                            "Your body is unique. Your solution should be too."
+                        </p>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 4rem;">
+                        <button class="cta-button" onclick="showPage('protocol')">Begin Your Profile</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -246,13 +313,8 @@
 
         // Make sure navigation works on page load
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const page = this.getAttribute('data-page');
-                    if (page) showPage(page);
-                });
-            });
+            // Additional initialization if needed
+            console.log('DEOS DIOS loaded');
         });
 
         const quizSections = [
