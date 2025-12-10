@@ -64,7 +64,7 @@
         .question-why { font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); font-style: italic; margin-bottom: 1.5rem; }
         .option-button { display: block; width: 100%; padding: 1rem 1.5rem; margin-bottom: 0.8rem; background: #0F0F0F; border: 1px solid rgba(197, 164, 103, 0.3); color: #FFFFFF; text-align: left; cursor: pointer; transition: all 0.3s; font-size: 1rem; }
         .option-button:hover { border-color: #C5A467; background: rgba(197, 164, 103, 0.1); }
-        .option-button.selected { border-color: #C5A467; background: rgba(197, 164, 103, 0.15); }
+        .option-button.selected { border-color: #C5A467; background: rgba(197, 164, 103, 0.15); transform: scale(0.98); }
         .progress-bar { height: 3px; background: rgba(197, 164, 103, 0.2); margin-bottom: 3rem; position: relative; overflow: hidden; }
         .progress-fill { height: 100%; background: #C5A467; transition: width 0.3s; }
         .nav-buttons { display: flex; justify-content: space-between; margin-top: 3rem; }
@@ -422,7 +422,7 @@
                 <div class="question-card">
                     <div class="question-title">${q.q}</div>
                     <div class="question-why">Why we ask: ${q.why}</div>
-                    ${q.opts.map(o=>`<button class="option-button ${answers[q.id]===o?'selected':''}" onclick="window.selectAnswer('${q.id}','${o.replace(/'/g,"\\'")}')">${o}</button>`).join('')}
+                    ${q.opts.map(o=>`<button class="option-button ${answers[q.id]===o?'selected':''}" onclick="window.selectAnswer('${q.id}','${o.replace(/'/g,"&#39;")}')">${o}</button>`).join('')}
                 </div>`;
 
             document.getElementById('progressBar').style.width=((globalIdx+1)/totalQ*100)+'%';
@@ -433,7 +433,16 @@
             document.getElementById('resultsBtn').style.display=isLastQ?'block':'none';
         };
 
-        window.selectAnswer = function(id,val){answers[id]=val;window.renderQ();};
+        window.selectAnswer = function(id,val){
+            answers[id]=val;
+            window.renderQ();
+            // Auto-advance after selection (300ms delay for visual feedback)
+            setTimeout(function() {
+                if(currentSection < quizSections.length-1 || currentQ < quizSections[currentSection].questions.length-1) {
+                    window.nextQuestion();
+                }
+            }, 300);
+        };
 
         window.nextQuestion = function(){
             const q=window.getCurrentQuestion();
@@ -629,96 +638,18 @@
         };
 
         window.renderQ();
+        
+        /* ===================== PAGE LOAD ===================== */
+        window.addEventListener('load', () => {
+            const hash = location.hash.replace('#','');
+            showRoute(hash || 'home');
+        });
+        
+        /* ===================== URL CHANGE ===================== */
+        window.addEventListener('hashchange', () => {
+            const hash = location.hash.replace('#','');
+            showRoute(hash || 'home');
+        });
     </script>
-    <script>
-/* ===================== ROUTING ===================== */
-
-function setRoute(route) {
-  location.hash = route;
-}
-
-function showRoute(route) {
-  const sections = document.querySelectorAll('.page-section');
-  sections.forEach(s => s.classList.remove('active'));
-
-  const idMap = {
-    home: 'home-page',
-    about: 'about-page',
-    manifesto: 'about-page',
-    protocol: 'protocol-page',
-    faq: 'faq-page'
-  };
-
-  const targetId = idMap[route] || 'home-page';
-  const target = document.getElementById(targetId);
-  if (target) target.classList.add('active');
-
-  const navLinks = document.getElementById('navLinks');
-  if (navLinks) navLinks.classList.remove('active');
-
-  window.scrollTo(0, 0);
-}
-
-window.showPage = function(page) {
-  setRoute(page);
-  showRoute(page);
-};
-
-/* ===================== MOBILE MENU ===================== */
-
-window.toggleMobileMenu = function() {
-  const navLinks = document.getElementById('navLinks');
-  if (navLinks) navLinks.classList.toggle('active');
-};
-
-/* ===================== PROTOCOL ENGINE ===================== */
-
-let currentQuestion = 0;
-const answers = {};
-
-function highlightAnswer(button) {
-  const siblings = button.parentElement.querySelectorAll('button');
-  siblings.forEach(b => b.classList.remove('selected-answer'));
-  button.classList.add('selected-answer');
-}
-
-function nextQuestion() {
-  const questions = document.querySelectorAll('.protocol-question');
-
-  if (currentQuestion < questions.length - 1) {
-    questions[currentQuestion].classList.remove('active');
-    currentQuestion++;
-    questions[currentQuestion].classList.add('active');
-  }
-}
-
-window.selectAnswer = function(questionId, value, btn) {
-  answers[questionId] = value;
-  highlightAnswer(btn);
-  setTimeout(nextQuestion, 300);
-};
-
-/* ===================== PAGE LOAD ===================== */
-
-window.addEventListener('load', () => {
-  const hash = location.hash.replace('#','');
-  showRoute(hash || 'home');
-
-  // activate first protocol step
-  const questions = document.querySelectorAll('.protocol-question');
-  if (questions.length) {
-    questions.forEach(q => q.classList.remove('active'));
-    currentQuestion = 0;
-    questions[0].classList.add('active');
-  }
-});
-
-/* ===================== URL CHANGE ===================== */
-
-window.addEventListener('hashchange', () => {
-  const hash = location.hash.replace('#','');
-  showRoute(hash || 'home');
-});
-</script>
 </body>
 </html>
