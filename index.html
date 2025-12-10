@@ -98,7 +98,12 @@
             .email-form { flex-direction: column; }
             .email-input { min-width: 100%; }
             .hero h1 { letter-spacing: 4px; }
-        }
+            .selected-answer {
+  border: 2px solid #d4af37 !important;
+  font-weight: bold;
+  box-shadow: 0 0 12px rgba(212,175,55,0.4);
+}
+
     </style>
 </head>
 <body>
@@ -254,9 +259,9 @@
                 <div id="sectionHeader"></div>
                 <div id="quizContainer"></div>
                 <div class="nav-buttons">
-                    <button class="nav-btn" onclick="window.previousQuestion()" id="prevBtn">Previous</button>
-                    <button class="nav-btn" onclick="window.nextQuestion()" id="nextBtn">Next</button>
-                    <button class="nav-btn" onclick="window.submitQuiz()" id="resultsBtn" style="display: none;">View Results</button>
+                   <button onclick="selectAnswer('sweat_level','light', this)">Light</button>
+                   <button onclick="selectAnswer('sweat_level','moderate', this)">Moderate</button>
+                   <button onclick="selectAnswer('sweat_level','heavy', this)">Heavy</button>
                 </div>
             </div>
         </section>
