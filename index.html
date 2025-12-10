@@ -104,13 +104,13 @@
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo" onclick="showPage('home')">DEOS DIOS</div>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <div class="logo" onclick="window.showPage('home')">DEOS DIOS</div>
+            <button class="mobile-menu-btn" onclick="window.toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
-                <li><a href="javascript:void(0)" onclick="showPage('about')">About</a></li>
-                <li><a href="javascript:void(0)" onclick="showPage('protocol')">Protocol</a></li>
-                <li><a href="javascript:void(0)" onclick="showPage('faq')">FAQ</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showPage('home')">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showPage('about')">Manifesto</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showPage('protocol')">Protocol</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showPage('faq')">FAQ</a></li>
             </ul>
         </div>
     </nav>
@@ -123,8 +123,8 @@
             <div class="hero-content">
                 <h1>DEOS DIOS</h1>
                 <p class="hero-subtitle">Know Your Odor. Own Your Scent.</p>
-                <p class="hero-description">Stop guessing. Stop wasting money on deodorants that don't work for your unique body chemistry. Our proprietary profiling system matches you with products scientifically designed for your biology.</p>
-                <button class="cta-button" onclick="showPage('protocol')">Begin Protocol</button>
+                <p class="hero-description">Stop guessing. Stop wasting money on deodorants that don't work for your unique body chemistry. Our proprietary profiling system matches you with products designed for your biology.</p>
+                <button class="cta-button" onclick="window.showPage('protocol')">Begin Protocol</button>
             </div>
         </section>
 
@@ -236,7 +236,7 @@
                     </div>
 
                     <div style="text-align: center; margin-top: 4rem;">
-                        <button class="cta-button" onclick="showPage('protocol')">Begin Your Profile</button>
+                        <button class="cta-button" onclick="window.showPage('protocol')">Begin Your Profile</button>
                     </div>
                 </div>
             </div>
@@ -254,9 +254,9 @@
                 <div id="sectionHeader"></div>
                 <div id="quizContainer"></div>
                 <div class="nav-buttons">
-                    <button class="nav-btn" onclick="previousQuestion()" id="prevBtn">Previous</button>
-                    <button class="nav-btn" onclick="nextQuestion()" id="nextBtn">Next</button>
-                    <button class="nav-btn" onclick="submitQuiz()" id="resultsBtn" style="display: none;">View Results</button>
+                    <button class="nav-btn" onclick="window.previousQuestion()" id="prevBtn">Previous</button>
+                    <button class="nav-btn" onclick="window.nextQuestion()" id="nextBtn">Next</button>
+                    <button class="nav-btn" onclick="window.submitQuiz()" id="resultsBtn" style="display: none;">View Results</button>
                 </div>
             </div>
         </section>
@@ -271,7 +271,7 @@
                 <h3 class="section-title" style="font-size: 2rem; margin-top: 4rem;">Your Matches</h3>
                 <div id="recommendationsContainer"></div>
                 <div style="text-align: center; margin-top: 3rem;">
-                    <button class="cta-button" onclick="showPage('protocol'); resetQuiz();">Retake Protocol</button>
+                    <button class="cta-button" onclick="window.showPage('protocol'); window.resetQuiz();">Retake Protocol</button>
                 </div>
             </div>
         </section>
@@ -390,23 +390,78 @@
 
         let currentSection=0,currentQ=0,answers={};
 
-        function getCurrentQuestion(){
+        window.getCurrentQuestion = function(){
             let totalQ=0;
             for(let i=0;i<currentSection;i++)totalQ+=quizSections[i].questions.length;
             return quizSections[currentSection].questions[currentQ];
-        }
+        };
 
-        function getTotalQuestions(){
+        window.getTotalQuestions = function(){
             return quizSections.reduce((sum,section)=>sum+section.questions.length,0);
-        }
+        };
 
-        function getGlobalQuestionIndex(){
+        window.getGlobalQuestionIndex = function(){
             let idx=0;
             for(let i=0;i<currentSection;i++)idx+=quizSections[i].questions.length;
             return idx+currentQ;
-        }
+        };
 
-        function renderQ(){
+        window.renderQ = function(){
+            const section=quizSections[currentSection];
+            const q=section.questions[currentQ];
+            const globalIdx=window.getGlobalQuestionIndex();
+            const totalQ=window.getTotalQuestions();
+
+            document.getElementById('sectionHeader').innerHTML=`
+                <div class="section-header">
+                    <h3>${section.name}</h3>
+                    <div class="section-progress">Section ${currentSection+1} of ${quizSections.length} • Question ${globalIdx+1} of ${totalQ}</div>
+                </div>`;
+
+            document.getElementById('quizContainer').innerHTML=`
+                <div class="question-card">
+                    <div class="question-title">${q.q}</div>
+                    <div class="question-why">Why we ask: ${q.why}</div>
+                    ${q.opts.map(o=>`<button class="option-button ${answers[q.id]===o?'selected':''}" onclick="window.selectAnswer('${q.id}','${o.replace(/'/g,"&#39;")}')">${o}</button>`).join('')}
+                </div>`;
+
+            document.getElementById('progressBar').style.width=((globalIdx+1)/totalQ*100)+'%';
+            document.getElementById('prevBtn').disabled=currentSection===0&&currentQ===0;
+            
+            const isLastQ=currentSection===quizSections.length-1&&currentQ===section.questions.length-1;
+            document.getElementById('nextBtn').style.display=isLastQ?'none':'block';
+            document.getElementById('resultsBtn').style.display=isLastQ?'block':'none';
+        };
+
+        window.selectAnswer = function(id,val){answers[id]=val;window.renderQ();};
+
+        window.nextQuestion = function(){
+            const q=window.getCurrentQuestion();
+            if(!answers[q.id])return;
+
+            const section=quizSections[currentSection];
+            if(currentQ<section.questions.length-1){
+                currentQ++;
+            }else if(currentSection<quizSections.length-1){
+                currentSection++;
+                currentQ=0;
+            }
+            window.renderQ();
+        };
+
+        window.previousQuestion = function(){
+            if(currentQ>0){
+                currentQ--;
+            }else if(currentSection>0){
+                currentSection--;
+                currentQ=quizSections[currentSection].questions.length-1;
+            }
+            window.renderQ();
+        };
+
+        window.resetQuiz = function(){currentSection=0;currentQ=0;answers={};window.renderQ();};
+
+        window.submitQuiz = function(){
             const section=quizSections[currentSection];
             const q=section.questions[currentQ];
             const globalIdx=getGlobalQuestionIndex();
@@ -570,10 +625,10 @@
                 </div>
             `).join('');
 
-            showPage('results');
-        }
+            window.showPage('results');
+        };
 
-        renderQ();
+        window.renderQ();
     </script>
 </body>
 </html>
