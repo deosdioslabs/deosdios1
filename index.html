@@ -64,40 +64,6 @@
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
         }
 
-        /* Constellation Canvas */
-        #constellation-canvas {
-            width: 100%;
-            height: 100%;
-            border-radius: 1rem;
-            cursor: crosshair;
-        }
-
-        /* Seamless Marquee */
-        .marquee-wrapper {
-            display: flex;
-            overflow: hidden;
-            user-select: none;
-            gap: 3rem;
-        }
-        
-        .marquee-content {
-            flex-shrink: 0;
-            display: flex;
-            justify-content: space-around;
-            gap: 3rem;
-            min-width: 100%;
-            animation: scroll 40s linear infinite;
-        }
-        
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(calc(-100% - 3rem)); }
-        }
-
-        /* Quiz Transitions */
-        .fade-enter { opacity: 0; transform: translateY(10px); }
-        .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 300ms, transform 300ms; }
-        
         /* Custom Checkbox/Radio styling for options */
         .option-button.selected {
             background-color: rgba(255, 255, 255, 0.15); /* More visible background */
@@ -116,6 +82,27 @@
             padding: 2rem;
             border-radius: 0.75rem;
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* New Hero Visualization Styling */
+        .hero-visual {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .visual-element {
+            /* Simulating a layered, futuristic look */
+            position: absolute;
+            opacity: 0.8;
+            transition: all 0.5s ease;
+        }
+        .visual-element:nth-child(1) {
+            top: 10%; left: 10%; transform: translateZ(50px) rotateX(10deg);
+        }
+        .visual-element:nth-child(2) {
+            bottom: 20%; right: 10%; transform: translateZ(20px) rotateY(-10deg);
+        }
+        .visual-element:nth-child(3) {
+            top: 40%; right: 40%; transform: translateZ(70px) rotateZ(5deg);
         }
     </style>
 </head>
@@ -145,50 +132,73 @@
             <div class="container mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-16">
                 
                 <div class="flex-1 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-8">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        <span class="text-[10px] font-medium tracking-wide uppercase text-white/70">Odor Genome v1.0</span>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            </span>
+                            <span class="text-[10px] font-medium tracking-wide uppercase text-white/70">Odor Genome v1.0</span>
+                        </div>
+                        <div class="text-[10px] font-medium tracking-wide uppercase text-white/70">
+                            | 94% Success Rate (<a href="#faq" class="underline hover:text-white transition-colors">See FAQ</a>)
+                        </div>
                     </div>
 
                     <h1 class="text-5xl md:text-7xl font-serif font-light tracking-tight text-white mb-6 leading-[1.1]">
-                        Master your <br>
-                        <span class="italic text-white/50">biological signature.</span>
+                        End the Deodorant Guesswork. <br>
+                        <span class="italic text-white/50">Decode Your Odor Genome.</span>
                     </h1>
 
                     <p class="text-lg text-white/60 font-light max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed tracking-tight">
-                        Your microbiome is a galaxy. Stop guessing with drugstore formulations. Connect the dots of your unique biology to find the perfect chemical match.
+                        Stop buying products that fail your biology. We analyze 30 data points—from diet to dermis—to pair you with the one, perfect formula.
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
                         <a href="#protocol" class="shiny-cta px-8 py-3 rounded-full text-sm font-medium text-white flex items-center gap-2 w-full sm:w-auto justify-center hover:-translate-y-px transition-transform">
                             <span class="iconify" data-icon="lucide:scan-face" data-width="16"></span>
-                            Build Odor Profile
+                            Start Your 5-Minute Analysis
                         </a>
                         <a href="#journal" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all w-full sm:w-auto flex justify-center items-center">
-                            Explore Data
+                            Read Our Expert Journal
                         </a>
                     </div>
+
+                    <p class="mt-8 text-xs font-mono text-white/40 tracking-widest uppercase">
+                        Join 1,000+ individuals who found their perfect match.
+                    </p>
                 </div>
 
                 <div class="flex-1 w-full relative h-[500px] flex items-center justify-center">
                     <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent rounded-2xl blur-2xl -z-10"></div>
                     
-                    <div class="relative w-full h-full max-w-lg aspect-square bg-[#050505] border border-white/10 rounded-2xl shadow-2xl overflow-hidden group">
+                    <div class="relative w-full h-full max-w-lg aspect-square bg-[#050505] border border-white/10 rounded-2xl shadow-2xl overflow-hidden group flex items-center justify-center hero-visual">
+                        
+                        <div class="w-32 h-32 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-center">
+                            <span class="text-xs font-mono text-emerald-300">CORE BIOME</span>
+                        </div>
+
+                        <div class="visual-element w-24 h-24 bg-red-500/20 border border-red-500/50 rounded-lg p-2 text-center text-red-300">
+                            <span class="iconify" data-icon="lucide:bug" data-width="16"></span>
+                            <div class="text-[10px] font-mono mt-1">Corynebacterium</div>
+                        </div>
+
+                        <div class="visual-element w-20 h-20 bg-blue-500/20 border border-blue-500/50 rounded-full p-2 text-center text-blue-300" style="top: 60%; left: 20%; transform: translateZ(35px) rotateX(-5deg);">
+                            <span class="iconify" data-icon="lucide:flask-conical" data-width="14"></span>
+                            <div class="text-[10px] font-mono mt-1">AHA Shield</div>
+                        </div>
+
+                        <div class="visual-element w-16 h-16 bg-white/10 border border-white/30 rounded-md p-1 text-center text-white/70" style="top: 25%; right: 20%; transform: translateZ(5px) rotateY(15deg);">
+                             <span class="iconify" data-icon="lucide:droplet" data-width="12"></span>
+                            <div class="text-[10px] font-mono">Apocrine</div>
+                        </div>
+
                         <div class="absolute top-4 left-4 z-20 pointer-events-none">
                             <div class="flex items-center gap-2">
                                 <div class="w-2 h-2 rounded-full bg-emerald-500/50 animate-pulse"></div>
-                                <span class="text-[10px] font-mono text-white/40 uppercase tracking-widest">Microbiome Simulator</span>
+                                <span class="text-[10px] font-mono text-white/40 uppercase tracking-widest">Targeted Bio-Interaction</span>
                             </div>
                         </div>
-                        
-                        <div class="absolute bottom-4 right-4 z-20 pointer-events-none text-right">
-                            <span class="text-[10px] font-mono text-white/20 uppercase">Interaction: Active</span>
-                        </div>
-
-                        <canvas id="constellation-canvas"></canvas>
                     </div>
                 </div>
             </div>
@@ -339,12 +349,12 @@
                                     </span>
                                 </div>
                                 <div class="aspect-square bg-black/40 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-                                    <img class="product-image w-full h-full object-cover p-4" src="https://i.imgur.com/2s4J4Q7.png" alt="Salt & Stone Santal">
+                                    <img class="product-image w-full h-full object-cover p-4" src="https://i.imgur.com/2s4J4Q7.png" alt="Product 1">
                                 </div>
                                 <h4 class="font-medium text-white mb-1 product-name text-sm">Brand Name</h4>
                                 <p class="text-xs text-white/50 mb-3 product-scent font-serif italic">Scent Profile</p>
                                 <div class="flex flex-wrap gap-1 mb-4 product-tags"></div>
-                                <a target="_blank" href="https://www.saltandstone.com/santal" class="product-link w-full py-2 block text-center bg-white text-black rounded text-[10px] font-bold uppercase tracking-wide hover:bg-neutral-200 transition-colors">Acquire Now &rarr;</a>
+                                <a target="_blank" href="https://example.com/acquire-1" class="product-link w-full py-2 block text-center bg-white text-black rounded text-[10px] font-bold uppercase tracking-wide hover:bg-neutral-200 transition-colors">Acquire Now &rarr;</a>
                             </div>
 
                             <div id="result-2" class="group bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors cursor-pointer opacity-80 hover:opacity-100">
@@ -352,12 +362,12 @@
                                     <span class="text-[10px] font-mono text-white/40 uppercase">Secondary Match</span>
                                 </div>
                                 <div class="aspect-square bg-black/40 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-                                    <img class="product-image w-full h-full object-cover p-4" src="https://i.imgur.com/K5bZt9H.png" alt="Corpus Third Rose">
+                                    <img class="product-image w-full h-full object-cover p-4" src="https://i.imgur.com/K5bZt9H.png" alt="Product 2">
                                 </div>
                                 <h4 class="font-medium text-white mb-1 product-name text-sm">Brand Name</h4>
                                 <p class="text-xs text-white/50 mb-3 product-scent font-serif italic">Scent Profile</p>
                                 <div class="flex flex-wrap gap-1 mb-4 product-tags"></div>
-                                <a target="_blank" href="https://www.corpusnaturals.com/third-rose" class="product-link w-full py-2 block text-center border border-white/20 rounded text-[10px] text-white uppercase tracking-wide hover:bg-white hover:text-black transition-colors">Explore Alternative &rarr;</a>
+                                <a target="_blank" href="https://example.com/acquire-2" class="product-link w-full py-2 block text-center border border-white/20 rounded text-[10px] text-white uppercase tracking-wide hover:bg-white hover:text-black transition-colors">Explore Alternative &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -589,109 +599,12 @@
 
     <script>
         // ==========================================
-        // 1. CONSTELLATION TOY (Hero Section) - Retained
+        // 1. CONSTELLATION TOY LOGIC REMOVED 
         // ==========================================
-        const canvas = document.getElementById('constellation-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-        const particleCount = 60;
-        const connectionDistance = 100;
-        const mouseDistance = 150;
-
-        let mouse = { x: null, y: null };
-
-        function resize() {
-            width = canvas.parentElement.offsetWidth;
-            height = canvas.parentElement.offsetHeight;
-            canvas.width = width;
-            canvas.height = height;
-            initParticles();
-        }
-
-        window.addEventListener('resize', resize);
-        canvas.addEventListener('mousemove', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = e.clientX - rect.left;
-            mouse.y = e.clientY - rect.top;
-        });
-        canvas.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.baseColor = Math.random() > 0.9 ? '#10b981' : '#ffffff';  
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0) this.x = width;
-                if (this.x > width) this.x = 0;
-                if (this.y < 0) this.y = height;
-                if (this.y > height) this.y = 0;
-
-                if (mouse.x != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < mouseDistance) {
-                        const forceDirectionX = dx / distance;
-                        const forceDirectionY = dy / distance;
-                        const force = (mouseDistance - distance) / mouseDistance;
-                        this.x -= forceDirectionX * force * 2;
-                        this.y -= forceDirectionY * force * 2;
-                    }
-                }
-            }
-
-            draw() {
-                ctx.fillStyle = this.baseColor;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateConstellation() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-            ctx.lineWidth = 0.5;
-            
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i; j < particles.length; j++) {
-                    let dx = particles[i].x - particles[j].x;
-                    let dy = particles[i].y - particles[j].y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < connectionDistance) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animateConstellation);
-        }
-
-        resize();
-        animateConstellation();
+        // The interactive canvas logic was removed and replaced by static HTML/CSS visualization.
 
         // ==========================================
-        // 2. 30-POINT ANALYSIS ENGINE (Protocol Logic)
+        // 2. 30-POINT ANALYSIS ENGINE (Protocol Logic) - Retained and functional
         // ==========================================
         
         const rawQuestions = [
@@ -897,6 +810,7 @@
             const sorted = productDatabase.sort((a, b) => b.match - a.match).slice(0, 2);
             
             if (sorted.length < 2) {
+                // Failsafe, should always have two results
                 sorted.push(sorted[0]);
             }
             
@@ -918,7 +832,7 @@
         }
 
         // ==========================================
-        // 3. FULL ARTICLE CONTENT DATABASE
+        // 3. FULL ARTICLE CONTENT DATABASE (Retained, expanded)
         // ==========================================
         const fullArticles = [
             {
@@ -928,7 +842,7 @@
                 content: `
                     <p>The common misconception is that the unpleasant odor we associate with sweat originates from the sweat itself. This is fundamentally untrue. Eccrine sweat, the fluid produced for thermoregulation, is essentially a sterile saline solution. The actual issue arises from **apocrine sweat**, a lipid and protein-rich secretion, and the bacterial ecosystem that metabolizes it.</p>
                     
-                    <p>The primary culprits are members of the *Corynebacterium* family, alongside some *Staphylococcus* strains. These bacteria digest the odorless compounds in apocrine sweat through a process known as **bioconversion**. The byproducts of this digestion are highly volatile, short-chain fatty acids, most notably **isovaleric acid**, which is responsible for the sharp, pungent scent we recognize as body odor. </p>
+                    <p>The primary culprits are members of the *Corynebacterium* family, alongside some *Staphylococcus* strains. These bacteria digest the odorless compounds in apocrine sweat through a process known as **bioconversion**. The byproducts of this digestion are highly volatile, short-chain fatty acids, most notably **isovaleric acid**, which is responsible for the sharp, pungent scent we recognize as body odor. [Diagram: The bioconversion process of apocrine sweat by Corynebacterium, showing release of isovaleric acid]</p>
 
                     <p>Your internal environment—dictated by diet, stress, and hormonal activity—is the direct fuel source for this bacterial action. For example, a diet rich in sulfur compounds (such as that found in brassicas, garlic, and onions) results in sulfurous metabolites being excreted. These molecules act as potent microbial food, supercharging the odor-producing efficiency of the bacteria and resulting in a much stronger, more persistent smell.</p>
 
@@ -940,9 +854,9 @@
                 title: 'The Hidden Cost of Antiperspirants: Aluminum and Lymphatic Function',
                 category: 'Toxicology & Dermal Health',
                 content: `
-                    <p>Antiperspirants offer a seemingly simple solution to wetness: aluminum salts like aluminum chlorohydrate. These salts dissolve into the sweat and physically swell the keratin cells, creating a temporary plug that blocks the sweat duct. While effective at stopping perspiration, this intervention comes with a potential biological cost.</p>
+                    <p>Antiperspirants offer a seemingly simple solution to wetness: aluminum salts like aluminum chlorohydrate. These salts dissolve in sweat and swell the keratin cells, creating a temporary plug that blocks the sweat duct. While effective at stopping perspiration, this intervention comes with a potential biological cost.</p>
 
-                    <p>The armpit region is anatomically crucial due to its dense concentration of **lymph nodes**. The lymphatic system is the body’s essential fluid filtration and detoxification network, and the armpits are a major drainage point. By routinely and chronically blocking the sweat ducts in this area, you are mechanically disrupting a natural excretory function right near a critical lymphatic hub. </p>
+                    <p>The armpit region is anatomically crucial due to its dense concentration of **lymph nodes**. The lymphatic system is the body’s essential fluid filtration and detoxification network, and the armpits are a major drainage point. By routinely and chronically blocking the sweat ducts in this area, you are mechanically disrupting a natural excretory function right near a critical lymphatic hub. [Diagram: The lymphatic system and fluid flow, highlighting the axillary nodes]</p>
 
                     <p>We believe in managing the *cause* of the odor (bacteria) rather than suppressing the natural *function* (sweat). Heavy metal bio-accumulation from long-term aluminum use remains a topic of clinical research, but the philosophy of clean biology suggests that uninhibited function is optimal. Transitioning away from antiperspirants allows the body to restore natural lymphatic drainage and sweat excretion.</p>
 
@@ -954,7 +868,7 @@
                 title: 'Fiber Science: Why Your Workout Gear Smells So Much Worse',
                 category: 'Textiles and Bacterial Volatility',
                 content: `
-                    <p>The material of your clothing is not passive; it actively co-manages your body odor. Synthetic fabrics, derived from polymers (plastics), are inherently **hydrophobic**—they repel water. When you exercise, the watery eccrine sweat evaporates, but the lipid and protein-rich apocrine secretions are trapped and concentrated within the fabric's latticed structure. [Image comparing cotton fiber vs synthetic fiber under a microscope]</p>
+                    <p>The material of your clothing is not passive; it actively co-manages your body odor. Synthetic fabrics, derived from polymers (plastics), are inherently **hydrophobic**—they repel water. When you exercise, the watery eccrine sweat evaporates, but the lipid and protein-rich apocrine secretions are trapped and concentrated within the fabric's latticed structure. [Diagram comparing cotton fiber vs synthetic fiber under a microscope, showing bacterial proliferation]</p>
 
                     <p>This trapped, concentrated mixture creates an ideal, warm, moist, and oxygen-deprived micro-climate. This is a five-star hotel for odor-loving bacteria. Studies show that strains like *Micrococcus* proliferate exponentially on materials like polyester compared to natural fibers like cotton or wool. The result is a sharp, persistent, and notoriously difficult-to-remove odor—the classic 'gym bag smell'—because the bacterial waste products become chemically bonded to the plastic fibers.</p>
 
@@ -964,7 +878,7 @@
         ];
 
         // ==========================================
-        // 4. NAVIGATION & VIEW SWITCHING LOGIC
+        // 4. NAVIGATION & VIEW SWITCHING LOGIC (Retained)
         // ==========================================
 
         const mainContent = document.getElementById('main-content');
@@ -990,10 +904,8 @@
                 }
             } else {
                 // Show Main Sections (Home, Protocol, Manifesto/FAQ, Journal Overview)
-                // Default to home-hero if hash is missing or invalid
                 let targetSection = document.getElementById(targetId) || document.getElementById('home-hero');
 
-                // Special handling for hash fragment targeting inside a main section (e.g., #faq)
                 if (targetSection.id === 'faq') {
                     targetSection = document.getElementById('manifesto');
                 } else if (targetId === '') {
@@ -1003,11 +915,9 @@
                 targetSection.style.display = 'block';
             }
 
-            // Scroll to the top of the window
             window.scrollTo(0, 0);
         }
 
-        // Handle initial load and hash changes
         function handleHashChange() {
             let hash = window.location.hash || '#home-hero';
             showSection(hash);
@@ -1015,7 +925,6 @@
 
         window.addEventListener('hashchange', handleHashChange);
 
-        // Run once on page load
         handleHashChange();
     </script>
 </body>
