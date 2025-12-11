@@ -118,13 +118,13 @@
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
         }
         
-        /* Print Styles for Report */
+        /* Print Styles for Report (Removed PDF elements) */
         @media print {
             body { background-color: white !important; color: black !important; }
             #quiz-results, #article-detail { 
                 background-color: white !important;
                 color: black !important;
-                padding-top: 50px;
+                padding-top: 50px; /* Add space for printed report */
             }
             #quiz-results h3, #quiz-results h4 { color: black !important; }
             .no-print { display: none !important; }
@@ -178,13 +178,13 @@
                     </h1>
 
                     <p class="text-lg text-white/60 font-light max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed tracking-tight">
-                        Stop buying products that fail your biology. We analyze 30 data points—from diet to dermis—to pair you with the one, perfect formula.
+                        Stop buying products that fail your biology. We analyze 30 data points - from diet to dermis - to pair you with the one, perfect formula.
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
                         <a href="#protocol" class="shiny-cta px-8 py-3 rounded-full text-sm font-medium text-white flex items-center gap-2 w-full sm:w-auto justify-center hover:-translate-y-px transition-transform">
                             <span class="iconify" data-icon="lucide:scan-face" data-width="16"></span>
-                            Start Your 5-Minute Analysis
+                            Take The Protocol
                         </a>
                         <a href="#journal" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all w-full sm:w-auto flex justify-center items-center">
                             Read Our Expert Journal
@@ -192,7 +192,7 @@
                     </div>
 
                     <p class="mt-8 text-xs font-mono text-white/40 tracking-widest uppercase">
-                        Join 1,000+ individuals who found their perfect match.
+                        Join 1,000+ individuals who found their perfect deo.
                     </p>
                 </div>
 
@@ -431,7 +431,7 @@
                         
                         <div class="manifesto-block">
                             <h3 class="text-lg font-serif italic text-emerald-400 mb-3 tracking-wider">// I. THE REVOLUTION</h3>
-                            <p class="text-sm text-white/80 leading-relaxed">The modern search for a reliable deodorant is a journey of endless compromise. We end this. We declare your personal scent a **biological fingerprint**, not a flaw. We reject the generic chemical formulas that treat every human biome as identical. Our authority is data; our mission is personalization.</p>
+                            <p class="text-sm text-white/80 leading-relaxed">The modern search for a reliable deodorant is a journey of endless compromise. We end this. We declare your personal scent a biological fingerprint, not a flaw. We reject the generic chemical formulas that treat every human biome as identical. Our authority is data; our mission is personalization.</p>
                         </div>
                         
                         <div class="manifesto-block">
@@ -676,7 +676,7 @@
 
     <script>
         // ==========================================
-        // EMAIL CAPTURE LOGIC (NEW)
+        // EMAIL CAPTURE LOGIC (FIXED)
         // ==========================================
         function handleEmailCapture(event) {
             // 1. Prevent form from submitting and reloading the page
@@ -690,23 +690,21 @@
                 // 2. Build the personalized email content (mailto link)
                 const subject = encodeURIComponent("Welcome to the Deos Dios Tribe!");
                 const body = encodeURIComponent(
-                    `Hi ${email},\n\n` +
+                    `Hi there,\n\n` +
                     `Thank you for subscribing to Deos Dios. We're thrilled to welcome a new member to the Odor Genome community.\n\n` +
-                    `We value your privacy and promise not to bombard you with 'stinky' spam emails. You'll only hear from us with absolutely fantastic, stinkin' updates on microbiome research, new protocol features, and exclusive insights.\n\n` +
+                    `We value your privacy and promise not to bombard you with 'stinky' spam emails. You'll only hear from us with absolutely fantastic, stinkin' updates on microbial mastery, new protocol features, and exclusive insights.\n\n` +
                     `Master your biological signature.\n\n` +
                     `Best,\n` +
                     `The Deos Dios Lab\n`
                 );
                 
+                // Using info@deosdios.com as the sender/cc, as requested
                 const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}&cc=info@deosdios.com`;
                 
-                // 3. Simulate the subscription process (in a real app, this would be an API call)
-                console.log(`Submitting email: ${email}`);
+                // 3. Provide visual feedback 
+                alert(`Welcome aboard! We've prepared a special welcome email for you. Click OK to open your email client (this confirmation is from info@deosdios.com).`);
                 
-                // 4. Provide visual feedback (using a simple alert for this single HTML file)
-                alert(`Welcome aboard, ${email}! We've prepared a special welcome email for you. Click OK to open your email client (sends from info@deosdios.com).`);
-                
-                // 5. Open the user's mail client (optional, but requested implicitly by the "send email" prompt)
+                // 4. Open the user's mail client 
                 window.open(mailtoLink, '_self');
                 
                 // Clear the input field
@@ -715,7 +713,7 @@
             } else {
                 alert("Please enter a valid email address to subscribe.");
             }
-            return false; // Necessary for older browser compatibility
+            return false;
         }
 
 
@@ -834,6 +832,10 @@
             resize();
             animateConstellation();
         }
+        
+        // ==========================================
+        // 2. 30-POINT ANALYSIS ENGINE (Protocol Logic) - IMPROVED QUESTIONS (RESTORED)
+        // ==========================================
         
         const rawQuestions = [
             // CATEGORY: DERMAL BIOLOGY (1-5)
