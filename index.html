@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Deos Dios | Olfactory Optimization</title>
+  <title>DEOS DIOS — Odor Intelligence</title>
 
   <!-- Fonts + Tailwind CDN + Iconify -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -18,6 +19,9 @@
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
             serif: ['Newsreader', 'serif']
+          },
+          colors: {
+            ddgold: '#C5A467'
           }
         }
       }
@@ -25,61 +29,54 @@
   </script>
 
   <style>
-    /* Core visual styles (kept your aesthetic) */
-    body { background-color: #030303; color: #fff; -webkit-font-smoothing:antialiased; font-family: Inter, sans-serif; }
-    .grid-bg { background-size: 50px 50px; background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px); mask-image: radial-gradient(circle at center, black 40%, transparent 100%); }
-    .shiny-cta { --gradient-angle:0deg; position:relative; background: linear-gradient(#030303,#030303) padding-box, conic-gradient(from var(--gradient-angle), transparent 0%, #52525b 50%, transparent 100%) border-box; border:1px solid transparent; animation:border-spin 3s linear infinite; transition:transform .2s; }
-    @keyframes border-spin { from { --gradient-angle:0deg; } to { --gradient-angle:360deg; } }
-    .glass-card { background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); transition:all .4s ease; }
-    .glass-card:hover { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.04); box-shadow: 0 0 30px rgba(255,255,255,0.03); }
-
-    /* Page visibility */
-    .page-section { display: none; }
-    .page-section.active { display: block; }
-
-    /* Option button styles & selected state */
-    .option-btn { background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.10); transition: all .18s; }
-    .option-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.22); }
-    .option-btn.selected { border: 2px solid #C5A467 !important; font-weight: 600; box-shadow: 0 6px 24px rgba(197,164,103,0.06); background: rgba(197,164,103,0.04); transform: translateY(-2px); }
-
-    /* aesthetics for the progress bar */
-    .progress-track { height: 6px; background: rgba(255,255,255,0.06); border-radius:999px; overflow:hidden; }
-    .progress-fill { height:100%; background: linear-gradient(90deg,#C5A467,#d4b379); width:0%; transition: width .25s ease; }
-
-    /* small responsive fixes */
-    @media (max-width: 640px) {
-      .nav-desktop { display:none; }
-      .nav-mobile-cta { display:inline-flex; }
-    }
+    body { background-color:#030303; color:#fff; -webkit-font-smoothing:antialiased; font-family:Inter, sans-serif; }
+    .grid-bg { background-size: 50px 50px; background-image:
+      linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      mask-image: radial-gradient(circle at center, black 40%, transparent 100%); }
+    .shiny-cta { --gradient-angle:0deg; position:relative; background: linear-gradient(#030303,#030303) padding-box, conic-gradient(from var(--gradient-angle), transparent 0%, #52525b 50%, transparent 100%) border-box; border:1px solid transparent; animation:border-spin 3s linear infinite; transition:transform .18s }
+    @keyframes border-spin { from { --gradient-angle:0deg } to { --gradient-angle:360deg } }
+    .glass-card { background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); backdrop-filter: blur(8px); transition: all .25s ease; }
+    .glass-card:hover { border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.03); box-shadow: 0 8px 30px rgba(197,164,103,0.03); }
+    .page-section { display:none }
+    .page-section.active { display:block }
+    .option-btn { background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); transition: all .16s; }
+    .option-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.20); }
+    .option-btn.selected { border: 2px solid #C5A467 !important; font-weight:600; background: rgba(197,164,103,0.06); transform: translateY(-3px); box-shadow:0 10px 30px rgba(197,164,103,0.06); }
+    .progress-track { height:8px; background: rgba(255,255,255,0.06); border-radius:999px; overflow:hidden }
+    .progress-fill { height:100%; background: linear-gradient(90deg,#C5A467,#d4b379); width:0%; transition: width .22s ease; }
+    .marquee { display:flex; gap:2.5rem; align-items:center; white-space:nowrap; }
+    .marquee-track { display:inline-block; animation: scroll-left 30s linear infinite; }
+    @keyframes scroll-left { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
+    @media (max-width:640px) { .nav-desktop { display:none } .nav-mobile-cta { display:inline-flex } }
   </style>
 </head>
 
 <body class="relative min-h-screen w-full selection:bg-white selection:text-black">
-  <!-- Decorative background -->
   <div class="fixed inset-0 grid-bg pointer-events-none z-0"></div>
   <div class="fixed inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0 pointer-events-none"></div>
 
   <!-- NAV -->
-  <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[90vw] lg:w-fit flex items-center justify-between pl-6 pr-2 py-2 rounded-full border border-white/10 bg-black/50 backdrop-blur-xl shadow-2xl">
+  <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[90vw] flex items-center justify-between pl-6 pr-2 py-2 rounded-full border border-white/10 bg-black/50 backdrop-blur-xl shadow-2xl">
     <div class="flex items-center gap-2 mr-8 cursor-pointer" onclick="showPage('home')">
       <span class="iconify text-white" data-icon="lucide:sparkles" data-width="18"></span>
       <span class="text-sm font-medium tracking-tight text-white font-serif italic">Deos Dios</span>
     </div>
 
     <div class="hidden md:flex items-center gap-8 mr-8 nav-desktop">
-      <a href="javascript:void(0)" onclick="showPage('protocol')" class="text-xs font-normal text-white/60 hover:text-white transition-colors">Protocol</a>
-      <a href="javascript:void(0)" onclick="showPage('manifesto')" class="text-xs font-normal text-white/60 hover:text-white transition-colors">Manifesto</a>
-      <a href="javascript:void(0)" onclick="showPage('faq')" class="text-xs font-normal text-white/60 hover:text-white transition-colors">FAQ</a>
+      <a class="text-xs text-white/60 hover:text-white" href="javascript:void(0)" onclick="showPage('protocol')">Protocol</a>
+      <a class="text-xs text-white/60 hover:text-white" href="javascript:void(0)" onclick="showPage('manifesto')">Manifesto</a>
+      <a class="text-xs text-white/60 hover:text-white" href="javascript:void(0)" onclick="showPage('faq')">FAQ</a>
     </div>
 
-    <button onclick="showPage('protocol')" class="bg-white hover:bg-neutral-200 text-black px-5 py-2 rounded-full text-xs font-medium transition-colors nav-mobile-cta">
+    <button onclick="showPage('protocol')" class="bg-white hover:bg-neutral-200 text-black px-5 py-2 rounded-full text-xs font-medium nav-mobile-cta">
       Start Analysis <span class="iconify ml-2" data-icon="lucide:arrow-right" data-width="14"></span>
     </button>
   </nav>
 
-  <!-- HOME PAGE -->
+  <!-- HOME -->
   <div id="home-page" class="page-section active">
-    <main class="relative z-10 pt-40 pb-20 lg:pt-48 lg:pb-32 px-6">
+    <main class="relative z-10 pt-40 pb-20 px-6">
       <div class="container mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-16">
         <div class="flex-1 text-center lg:text-left">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-8">
@@ -87,34 +84,34 @@
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span class="text-[10px] font-medium tracking-wide uppercase text-white/70">Algorithm v2.4 Live</span>
+            <span class="text-[10px] tracking-wide uppercase text-white/70">DEOS DIOS — Odor Intelligence</span>
           </div>
 
-          <h1 class="text-5xl md:text-7xl font-serif font-light tracking-tight text-white mb-6 leading-[1.1]">
+          <h1 class="text-5xl md:text-7xl font-serif font-light tracking-tight text-white mb-6 leading-[1.05]">
             Master your<br><span class="italic text-white/50">biological signature.</span>
           </h1>
 
-          <p class="text-lg text-white/60 font-light max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed tracking-tight">
-            Stop guessing with drugstore formulations. Our 25-point microbiome analysis matches you with the world's most effective deodorants.
+          <p class="text-lg text-white/60 font-light max-w-xl mx-auto lg:mx-0 mb-10">
+            The DEOS DIOS 6-Axis Odor Profile™: a science-first diagnostic that matches your unique chemistry to the exact deodorants that work for you.
           </p>
 
           <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
             <button onclick="showPage('protocol')" class="shiny-cta px-8 py-3 rounded-full text-sm font-medium text-white flex items-center gap-2 w-full sm:w-auto justify-center">
-              <span class="iconify" data-icon="lucide:scan-face" data-width="16"></span> Build Odor Profile
+              <span class="iconify" data-icon="lucide:scan-face" data-width="16"></span> Start Profile
             </button>
-            <button onclick="showPage('manifesto')" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all w-full sm:w-auto">
-              View Manifesto
+            <button onclick="showPage('manifesto')" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 transition-all w-full sm:w-auto">
+              Manifesto
             </button>
           </div>
 
           <p class="mt-6 text-xs text-white/30 flex items-center justify-center lg:justify-start gap-2">
-            <span class="iconify" data-icon="lucide:check-circle" data-width="12"></span> Analyzing 1,200+ premium formulations
+            <span class="iconify" data-icon="lucide:check-circle" data-width="12"></span> Expert-curated product taxonomy • dynamic learning engine
           </p>
         </div>
 
+        <!-- ANALYSIS VISUAL -->
         <div class="flex-1 w-full relative">
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] -z-10"></div>
-
           <div class="relative w-full max-w-md mx-auto aspect-[4/5]">
             <div class="absolute inset-0 bg-[#0A0A0A] border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col justify-between overflow-hidden z-20">
               <div class="flex justify-between items-center mb-6">
@@ -128,11 +125,9 @@
 
               <div class="space-y-6">
                 <div>
-                  <h3 class="text-sm font-medium text-white/90 mb-2">Body Chemistry Analysis</h3>
-                  <p class="text-xs text-white/50 mb-4">25 precision questions</p>
-                  <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                    <div class="h-full w-[45%] bg-white rounded-full"></div>
-                  </div>
+                  <h3 class="text-sm font-medium text-white/90 mb-2">Biological Scan</h3>
+                  <p class="text-xs text-white/50 mb-4">DEOS DIOS 6-Axis™</p>
+                  <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden"><div class="h-full w-[45%] bg-white rounded-full"></div></div>
                 </div>
 
                 <div class="space-y-3">
@@ -141,32 +136,29 @@
                       <div class="w-4 h-4 rounded-sm border border-white/40 bg-white flex items-center justify-center">
                         <svg class="w-3 h-3 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                       </div>
-                      <span class="text-xs text-white/90">Genetic Markers</span>
+                      <span class="text-xs text-white/90">Microbiome</span>
                     </div>
                   </div>
                   <div class="p-3 rounded-lg border border-white/5 bg-white/[0.02]">
                     <div class="flex items-center gap-3">
                       <div class="w-4 h-4 rounded-sm border border-white/20"></div>
-                      <span class="text-xs text-white/70">Diet & Lifestyle</span>
+                      <span class="text-xs text-white/70">Lifestyle</span>
                     </div>
                   </div>
                 </div>
 
                 <div class="pt-4 border-t border-white/5">
                   <div class="flex justify-between items-center text-xs text-white/50 mb-2">
-                    <span>Skin Sensitivity</span>
-                    <span>High</span>
+                    <span>Skin Sensitivity</span><span>Moderate</span>
                   </div>
-                  <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                    <div class="h-full w-[80%] bg-white rounded-full"></div>
-                  </div>
+                  <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden"><div class="h-full w-[60%] bg-white rounded-full"></div></div>
                 </div>
               </div>
 
               <div class="mt-4 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg flex items-center gap-3">
                 <span class="iconify text-emerald-400" data-icon="lucide:flask-conical" data-width="16"></span>
                 <div>
-                  <div class="text-[10px] text-emerald-400 font-medium">Potential Match Found</div>
+                  <div class="text-[10px] text-emerald-400 font-medium">Potential Match</div>
                   <div class="text-[10px] text-emerald-400/60">Salt & Stone — Santal & Vetiver</div>
                 </div>
               </div>
@@ -179,92 +171,43 @@
       </div>
     </main>
 
-    <div class="w-full border-y border-white/10 bg-black/50 backdrop-blur-sm overflow-hidden py-4 relative z-10">
-      <div class="flex animate-marquee w-max gap-12 text-white/30 text-xs font-mono uppercase tracking-widest items-center">
-        <span>Saccharomyces Ferment</span> <span class="w-1 h-1 bg-white/30 rounded-full"></span>
-        <span>Maranta Arundinacea</span> <span class="w-1 h-1 bg-white/30 rounded-full"></span>
-        <span>Activated Charcoal</span> <span class="w-1 h-1 bg-white/30 rounded-full"></span>
-        <span>Lactobacillus</span> <span class="w-1 h-1 bg-white/30 rounded-full"></span>
-        <span>Magnesium Hydroxide</span> <span class="w-1 h-1 bg-white/30 rounded-full"></span>
-        <span>Shea Butter</span>
+    <!-- HERO MARQUEE (fixed moving) -->
+    <div class="w-full border-y border-white/10 bg-black/50 py-4 relative z-10 overflow-hidden">
+      <div style="width:200%;" class="marquee-track">
+        <div class="marquee text-white/30 text-xs font-mono uppercase tracking-widest px-6">
+          <span>Saccharomyces Ferment</span><span class="w-1 h-1 inline-block bg-white/30 rounded-full mx-4"></span>
+          <span>Maranta Arundinacea</span><span class="w-1 h-1 inline-block bg-white/30 rounded-full mx-4"></span>
+          <span>Activated Charcoal</span><span class="w-1 h-1 inline-block bg-white/30 rounded-full mx-4"></span>
+          <span>Lactobacillus</span><span class="w-1 h-1 inline-block bg-white/30 rounded-full mx-4"></span>
+          <span>Magnesium Hydroxide</span><span class="w-1 h-1 inline-block bg-white/30 rounded-full mx-4"></span>
+          <span>Shea Butter</span><span class="w-1 h-1 inline-block bg-white/30 rounded-full mx-4"></span>
+          <!-- repeated to ensure seamless scroll -->
+          <span>Saccharomyces Ferment</span><span class="w-1 h-1 inline-block bg-white/30 rounded-full mx-4"></span>
+          <span>Maranta Arundinacea</span><span class="w-1 h-1 inline-block bg-white/30 rounded-full mx-4"></span>
+        </div>
       </div>
     </div>
-
-    <section class="py-24 px-6 relative z-10">
-      <div class="container mx-auto max-w-7xl">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-5xl font-serif text-white mb-4 tracking-tight">The Deos Dios Protocol</h2>
-          <p class="text-white/50 max-w-lg mx-auto font-light">We don't make the deodorant. We ensure you find the one that actually works for your biology.</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="glass-card p-8 rounded-2xl group">
-            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center border border-white/10 mb-6 text-white group-hover:scale-110 transition-transform">
-              <span class="iconify" data-icon="lucide:dna" data-width="20"></span>
-            </div>
-            <h3 class="text-lg font-medium text-white mb-3">1. Analyze</h3>
-            <p class="text-sm text-white/50 leading-relaxed">Answer 25 targeted questions about your diet, activity level, skin sensitivity, and odor patterns. We map your unique biological profile.</p>
-          </div>
-
-          <div class="glass-card p-8 rounded-2xl group">
-            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center border border-white/10 mb-6 text-white group-hover:scale-110 transition-transform">
-              <span class="iconify" data-icon="lucide:database" data-width="20"></span>
-            </div>
-            <h3 class="text-lg font-medium text-white mb-3">2. Match</h3>
-            <p class="text-sm text-white/50 leading-relaxed">Our algorithm cross-references against 250+ premium formulations with specific scent recommendations.</p>
-          </div>
-
-          <div class="glass-card p-8 rounded-2xl group">
-            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center border border-white/10 mb-6 text-white group-hover:scale-110 transition-transform">
-              <span class="iconify" data-icon="lucide:star" data-width="20"></span>
-            </div>
-            <h3 class="text-lg font-medium text-white mb-3">3. Optimize</h3>
-            <p class="text-sm text-white/50 leading-relaxed">Receive curated recommendations with exact product names and scent profiles. No more rashes, no more wasted money.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-24 px-6 border-t border-white/5">
-      <div class="container mx-auto max-w-2xl text-center">
-        <span class="iconify mx-auto mb-6 text-white/30" data-icon="lucide:mail" data-width="24"></span>
-        <h2 class="text-2xl font-serif text-white mb-4 tracking-tight">Join the Inner Circle</h2>
-        <p class="text-sm text-white/50 mb-8 font-light">We are developing our own proprietary formulation. Join the waitlist for early access.</p>
-        <form class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Thank you! We will notify you.'); this.reset();">
-          <input type="email" placeholder="enter@email.com" class="flex-1 bg-white/5 border border-white/10 rounded-full px-5 py-3 text-sm text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-white/20" required>
-          <button type="submit" class="bg-white text-black px-6 py-3 rounded-full text-sm font-medium hover:bg-neutral-200 transition-colors"> Join Waitlist </button>
-        </form>
-        <p class="mt-4 text-[10px] text-white/20">No spam. Only science.</p>
-      </div>
-    </section>
   </div>
 
-  <!-- MANIFESTO PAGE -->
+  <!-- MANIFESTO -->
   <div id="manifesto-page" class="page-section">
     <div class="relative z-10 pt-40 pb-20 px-6">
       <div class="container mx-auto max-w-4xl">
         <h1 class="text-4xl md:text-6xl font-serif text-white mb-12 tracking-tight text-center">Manifesto</h1>
         <div class="prose prose-invert prose-lg max-w-none">
           <h3 class="text-2xl font-serif text-white/90 mb-6">The deodorant industry has failed you.</h3>
-          <p class="text-white/70 leading-relaxed mb-6">Not because the products don't work—but because <strong class="text-white">no product works for everyone</strong>. Your body chemistry is as unique as your fingerprint. What works for your friend may fail on you.</p>
-
+          <p class="text-white/70 leading-relaxed mb-6">
+            Not because the products don't work — but because no product works for everyone.
+            Your body chemistry is as unique as a fingerprint.
+          </p>
           <div class="border-l-4 border-white/30 pl-6 my-12">
-            <p class="text-xl text-white/90 italic leading-relaxed">"We believe you deserve better than trial and error. Better than bathroom drawers full of abandoned deodorants."</p>
+            <p class="text-xl text-white/90 italic leading-relaxed">"We believe you deserve better than trial and error." </p>
           </div>
-
-          <h3 class="text-2xl font-serif text-white/90 mb-6 mt-12">The science they ignore.</h3>
-          <p class="text-white/70 leading-relaxed mb-6">Body odor isn't random. It's influenced by genetics, diet, hormones, and the bacteria on your skin. These factors create a <strong class="text-white">biological signature</strong>.</p>
-
-          <h3 class="text-2xl font-serif text-white/90 mb-6 mt-12">Our approach is different.</h3>
-          <p class="text-white/70 leading-relaxed mb-6"><strong class="text-white">DEOS DIOS</strong> doesn't sell you products. We sell you <em>precision</em>. We match you with formulations designed for your specific chemistry.</p>
-
-          <div class="border-l-4 border-white/30 pl-6 my-12">
-            <p class="text-xl text-white/90 italic leading-relaxed">"Your body is unique. Your solution should be too."</p>
-          </div>
+          <p class="text-white/70 leading-relaxed mb-6">DEOS DIOS is built on data, microbiome science, scent architecture, and the belief that personalization is the future of hygiene.</p>
 
           <div class="text-center mt-16">
             <button onclick="showPage('protocol')" class="shiny-cta px-8 py-3 rounded-full text-sm font-medium text-white inline-flex items-center gap-2">
-              <span class="iconify" data-icon="lucide:scan-face" data-width="16"></span> Begin Your Profile
+              <span class="iconify" data-icon="lucide:scan-face" data-width="16"></span> Begin Profile
             </button>
           </div>
         </div>
@@ -272,166 +215,102 @@
     </div>
   </div>
 
-  <!-- PROTOCOL/QUIZ PAGE -->
+  <!-- PROTOCOL / QUIZ -->
   <div id="protocol-page" class="page-section">
-    <div class="relative z-10 pt-40 pb-20 px-6">
+    <div class="relative z-10 pt-32 pb-20 px-6">
       <div class="container mx-auto max-w-3xl">
-        <div class="text-center mb-16">
-          <h1 class="text-4xl md:text-6xl font-serif text-white mb-4 tracking-tight">The Protocol</h1>
-          <p class="text-white/50">25 questions. 8-10 minutes. Answer honestly for the best match.</p>
+        <div class="text-center mb-8">
+          <h1 class="text-4xl md:text-5xl font-serif text-white mb-2 tracking-tight">The Protocol</h1>
+          <p class="text-white/50">DEOS DIOS 6-Axis Odor Profile™ — 25–30 questions. Answers are anonymous and used to refine recommendations.</p>
         </div>
 
-        <div class="mb-8">
-          <div class="progress-track w-full rounded-full">
-            <div id="progressBar" class="progress-fill"></div>
-          </div>
-          <div id="progressText" class="text-xs text-white/40 mt-2 text-center">Question 1 of 25</div>
+        <div class="mb-6">
+          <div class="progress-track w-full rounded-full"><div id="progressBar" class="progress-fill"></div></div>
+          <div id="progressText" class="text-xs text-white/40 mt-2 text-center">Question 1 of 28</div>
         </div>
 
         <div id="quizContainer"></div>
 
         <div class="flex justify-between mt-8 gap-4">
-          <button id="prevBtn" onclick="prevQ()" class="px-6 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all disabled:opacity-30" disabled>
-            Previous
-          </button>
+          <button id="prevBtn" onclick="prevQ()" class="px-6 py-3 rounded-full text-sm font-medium text-white/70 border border-white/10" disabled>Previous</button>
 
           <div class="flex-1 flex justify-center">
-            <button id="nextBtn" onclick="nextQ()" class="px-6 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all disabled:opacity-30">
-              Next
-            </button>
-            <button id="finishBtn" onclick="finishQuiz()" class="px-8 py-3 rounded-full text-sm font-medium bg-white text-black hover:bg-neutral-200 transition-all ml-4" style="display:none;">
-              View Results
-            </button>
+            <button id="nextBtn" onclick="nextQ()" class="px-6 py-3 rounded-full text-sm font-medium text-white/70 border border-white/10">Next</button>
+            <button id="finishBtn" onclick="finishQuiz()" class="px-8 py-3 rounded-full text-sm font-medium bg-ddgold text-black ml-4" style="display:none;">View Results</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- RESULTS PAGE -->
+  <!-- RESULTS -->
   <div id="results-page" class="page-section">
     <div class="relative z-10 pt-40 pb-20 px-6">
       <div class="container mx-auto max-w-5xl">
-        <div class="text-center mb-16">
-          <h1 class="text-4xl md:text-6xl font-serif text-white mb-4 tracking-tight">Your Profile</h1>
-          <p class="text-white/50">Personalized recommendations based on your unique chemistry</p>
+        <div class="text-center mb-8">
+          <h1 class="text-4xl md:text-6xl font-serif text-white mb-2 tracking-tight">Your Odor Profile</h1>
+          <p class="text-white/50">Science-backed analysis and three curated matches — luxury, high-performance, and budget-friendly.</p>
         </div>
 
         <div id="resultsContent"></div>
 
-        <div class="text-center mt-16">
-          <button onclick="showPage('protocol'); startQuiz();" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all">
-            Retake Protocol
-          </button>
+        <div class="text-center mt-12">
+          <button onclick="showPage('protocol'); startQuiz();" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 border border-white/10">Retake Protocol</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- FAQ PAGE -->
+  <!-- FAQ -->
   <div id="faq-page" class="page-section">
     <div class="relative z-10 pt-40 pb-20 px-6">
       <div class="container mx-auto max-w-4xl">
-        <h1 class="text-4xl md:text-6xl font-serif text-white mb-12 tracking-tight text-center">Common Inquiries</h1>
+        <h1 class="text-4xl md:text-6xl font-serif text-white mb-12 tracking-tight text-center">FAQ</h1>
 
         <div class="space-y-4">
           <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-            <summary class="flex justify-between items-center cursor-pointer p-6 text-base font-medium text-white/90">
-              How accurate is the profiling system?
-              <span class="iconify transform group-open:rotate-180 transition-transform" data-icon="lucide:chevron-down"></span>
-            </summary>
-            <div class="px-6 pb-6 text-sm text-white/60 leading-relaxed">
-              Our algorithm starts at 65-70% accuracy and improves continuously as we collect feedback. Genetics, diet, hormones, and lifestyle all play documented roles in body odor.
-            </div>
+            <summary class="flex justify-between items-center p-6 text-base text-white/90">How accurate is the profiling system?<span class="iconify" data-icon="lucide:chevron-down"></span></summary>
+            <div class="px-6 pb-6 text-sm text-white/60">Our model starts with literature-backed signals and improves as users provide feedback. We pair microbiome, genetics proxies, and lifestyle markers to create a meaningful match.</div>
           </details>
 
           <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-            <summary class="flex justify-between items-center cursor-pointer p-6 text-base font-medium text-white/90">
-              Is this service free?
-              <span class="iconify transform group-open:rotate-180 transition-transform" data-icon="lucide:chevron-down"></span>
-            </summary>
-            <div class="px-6 pb-6 text-sm text-white/60 leading-relaxed">
-              Yes. The profiling and recommendations are completely free. We earn through affiliate partnerships when you purchase recommended products. Future premium options will include custom formulations.
-            </div>
-          </details>
-
-          <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-            <summary class="flex justify-between items-center cursor-pointer p-6 text-base font-medium text-white/90">
-              What if the recommendations don't work?
-              <span class="iconify transform group-open:rotate-180 transition-transform" data-icon="lucide:chevron-down"></span>
-            </summary>
-            <div class="px-6 pb-6 text-sm text-white/60 leading-relaxed">
-              Your feedback helps us improve. If a recommendation doesn't work, return to your profile and we'll provide alternative matches. Every data point makes our algorithm smarter.
-            </div>
-          </details>
-
-          <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-            <summary class="flex justify-between items-center cursor-pointer p-6 text-base font-medium text-white/90">
-              Do you sell deodorants?
-              <span class="iconify transform group-open:rotate-180 transition-transform" data-icon="lucide:chevron-down"></span>
-            </summary>
-            <div class="px-6 pb-6 text-sm text-white/60 leading-relaxed">
-              Not yet. Currently, we match you with the best existing products on the market. Our long-term vision includes creating premium, custom-formulated deodorants based on profile data.
-            </div>
-          </details>
-
-          <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-            <summary class="flex justify-between items-center cursor-pointer p-6 text-base font-medium text-white/90">
-              Is my data private?
-              <span class="iconify transform group-open:rotate-180 transition-transform" data-icon="lucide:chevron-down"></span>
-            </summary>
-            <div class="px-6 pb-6 text-sm text-white/60 leading-relaxed">
-              We collect anonymous data to improve our algorithm. Individual profiles are never sold or shared. We use aggregated, anonymized data to identify patterns.
-            </div>
-          </details>
-
-          <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-            <summary class="flex justify-between items-center cursor-pointer p-6 text-base font-medium text-white/90">
-              How long does it take to see results?
-              <span class="iconify transform group-open:rotate-180 transition-transform" data-icon="lucide:chevron-down"></span>
-            </summary>
-            <div class="px-6 pb-6 text-sm text-white/60 leading-relaxed">
-              The questionnaire takes 8-10 minutes. Results are instant. However, give any new deodorant 1-2 weeks to work with your body chemistry. Natural deodorants may require a 2-4 week adjustment period.
-            </div>
+            <summary class="flex justify-between items-center p-6 text-base text-white/90">Is this free?<span class="iconify" data-icon="lucide:chevron-down"></span></summary>
+            <div class="px-6 pb-6 text-sm text-white/60">Yes — profiling and recommendations are free. We earn via affiliate partnerships and will offer premium custom formulations in the future.</div>
           </details>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="bg-black pt-12 pb-8 border-t border-white/10 text-center md:text-left relative z-10">
+  <!-- Footer -->
+  <footer class="bg-black pt-12 pb-8 border-t border-white/10 text-center relative z-10">
     <div class="container mx-auto max-w-7xl px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         <div>
           <div class="flex items-center gap-2 mb-4 justify-center md:justify-start">
-            <span class="iconify text-white" data-icon="lucide:sparkles" data-width="16"></span>
-            <span class="text-sm font-serif italic text-white">Deos Dios</span>
+            <span class="iconify text-white" data-icon="lucide:sparkles"></span>
+            <span class="text-sm font-serif italic">Deos Dios</span>
           </div>
-          <p class="text-xs text-white/40 leading-relaxed max-w-[200px] mx-auto md:mx-0">Optimizing human hygiene through data-driven discovery and premium curation.</p>
+          <p class="text-xs text-white/40 max-w-[200px] mx-auto md:mx-0">Optimizing human hygiene through data-driven discovery and premium curation.</p>
         </div>
-
         <div>
           <h4 class="text-xs font-medium text-white mb-4 uppercase tracking-wider">Discover</h4>
           <ul class="space-y-2">
-            <li><a href="javascript:void(0)" onclick="showPage('protocol')" class="text-xs text-white/40 hover:text-white transition-colors">Quiz</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('manifesto')" class="text-xs text-white/40 hover:text-white transition-colors">Manifesto</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('protocol')" class="text-xs text-white/40 hover:text-white">Quiz</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('manifesto')" class="text-xs text-white/40 hover:text-white">Manifesto</a></li>
           </ul>
         </div>
-
         <div>
           <h4 class="text-xs font-medium text-white mb-4 uppercase tracking-wider">Company</h4>
           <ul class="space-y-2">
-            <li><a href="javascript:void(0)" onclick="showPage('faq')" class="text-xs text-white/40 hover:text-white transition-colors">FAQ</a></li>
-            <li><a href="#" class="text-xs text-white/40 hover:text-white transition-colors">Contact</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('faq')" class="text-xs text-white/40 hover:text-white">FAQ</a></li>
           </ul>
         </div>
-
         <div>
           <h4 class="text-xs font-medium text-white mb-4 uppercase tracking-wider">Social</h4>
           <div class="flex gap-4 justify-center md:justify-start">
-            <a href="#" class="text-white/40 hover:text-white transition-colors"><span class="iconify" data-icon="lucide:instagram"></span></a>
-            <a href="#" class="text-white/40 hover:text-white transition-colors"><span class="iconify" data-icon="lucide:twitter"></span></a>
+            <a href="#" class="text-white/40 hover:text-white"><span class="iconify" data-icon="lucide:instagram"></span></a>
+            <a href="#" class="text-white/40 hover:text-white"><span class="iconify" data-icon="lucide:twitter"></span></a>
           </div>
         </div>
       </div>
@@ -442,270 +321,505 @@
     </div>
   </footer>
 
-  <!-- ====== SCRIPTS: routing + quiz engine ====== -->
+  <!-- ================= SCRIPTS - routing + quiz + product engine ================= -->
   <script>
-    /* ---------- routing + hash handling ---------- */
-    function showPage(pageName, skipHashUpdate = false) {
-      // valid pages -> must map to element IDs as pageName + "-page"
-      const valid = ['home','protocol','manifesto','results','faq'];
-      if (!valid.includes(pageName)) pageName = 'home';
+  /*********************
+   * Routing & hash
+   *********************/
+  function showPage(name, skipHash) {
+    const valid = ['home','protocol','manifesto','results','faq'];
+    if (!valid.includes(name)) name = 'home';
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById(name + '-page');
+    if (el) el.classList.add('active');
+    if (!skipHash) history.replaceState(null,'','#'+name);
+    window.scrollTo({top:0, behavior:'smooth'});
+    if (name === 'protocol') startQuiz();
+  }
 
-      // hide all sections
-      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  window.addEventListener('load', () => {
+    const h = location.hash.replace('#','') || 'home';
+    showPage(h, true);
+  });
+  window.addEventListener('hashchange', () => {
+    const h = location.hash.replace('#','') || 'home';
+    showPage(h, true);
+  });
 
-      // show target
-      const el = document.getElementById(pageName + '-page');
-      if (el) el.classList.add('active');
+  /*********************
+   * Product database (editable JSON)
+   * Attributes used for scoring:
+   *  - antimicrobial, aluminum, baking_soda, sensitive, sport,
+   *  - fragrance (prefers scent), natural, woods, citrus, floral, earthy, sulfur_fighting, long_wear
+   *********************/
+  const products = [
+    // Luxury tier
+    { id:'saltstone_santal', name:'Salt & Stone — Santal & Vetiver', tier:'luxury', attrs:['natural','woods','long_wear','sulfur_fighting'], blurb:'Warm, resinous woods mask sulfur notes while supporting pH balance. Elegant scent, premium packaging.' },
+    { id:'aesop_herbal', name:'Aesop — Herbal Roll-On', tier:'luxury', attrs:['natural','fragrance','earthy'], blurb:'Botanical blend with zinc-based odor control and low irritation risk for many users.' },
+    { id:'corpus_ensemble', name:'Corpus — Signature', tier:'luxury', attrs:['natural','fragrance','long_wear'], blurb:'Complex fragrance layers with enzymes to reduce odor-causing molecules.' },
 
-      // optionally update hash so links are shareable
-      if (!skipHashUpdate) {
-        history.replaceState(null, '', '#' + pageName);
+    // Mid tier
+    { id:'lume_unscented', name:'Lume — Unscented (Mandelic)', tier:'mid', attrs:['natural','sensitive','sulfur_fighting'], blurb:'Antimicrobial acid-based approach rather than baking soda; great for sensitive skin.' },
+    { id:'native_coconut', name:'Native — Coconut & Vanilla', tier:'mid', attrs:['natural','fragrance'], blurb:'Popular natural formula; works well for light-to-moderate sweaters.' },
+    { id:'schmidts_charcoal', name:'Schmidt\'s — Charcoal Sensitive', tier:'mid', attrs:['natural','sensitive','earthy'], blurb:'Baking-soda-light formulas with charcoal; gentle on many skin types.' },
+
+    // Budget tier
+    { id:'dove_advanced', name:'Dove Advanced Care — Unscented', tier:'budget', attrs:['aluminum','long_wear','sensitive'], blurb:'Reliable antiperspirant, gentle moisturizing base; broad compatibility.' },
+    { id:'mitchum_advanced', name:'Mitchum Advanced Control', tier:'budget', attrs:['aluminum','long_wear'], blurb:'Drugstore, clinical-level wetness control at an accessible price.' },
+    { id:'armhammer_basic', name:'Arm & Hammer — Essentials', tier:'budget', attrs:['natural','baking_soda','citrus'], blurb:'Baking-soda formulations that are effective for many; cost-efficient.' },
+
+    // Clinical / specialized (can be recommended in any tier if appropriate)
+    { id:'certain_dri', name:'Certain Dri — Clinical Strength', tier:'clinical', attrs:['aluminum','long_wear','antimicrobial'], blurb:'Topical aluminum chloride for severe sweating. Use per instructions.' },
+    { id:'vanicream', name:'Vanicream Clinical — Fragrance Free', tier:'clinical', attrs:['aluminum','sensitive'], blurb:'Dermatologist-grade, minimal irritants; good for reactive skin.' },
+    { id:'degree_sport', name:'Degree — Clinical Sport', tier:'mid', attrs:['aluminum','sport','long_wear'], blurb:'Motion-activated protection for high-activity days.' }
+  ];
+
+  /*********************
+   * Questions (28 items)
+   * Each question: {id,q,why,opts:[], multi:boolean}
+   * If multi:true -> user may select multiple options
+   *********************/
+  const questions = [
+    { id:'age', q:'What is your age range?', why:'Hormones and skin change with age', opts:['Under 18','18-25','26-35','36-45','46-55','56+'], multi:false },
+    { id:'sex', q:'Biological sex assigned at birth?', why:'Hormonal differences affect sweat composition', opts:['Male','Female','Prefer not to say'], multi:false },
+    { id:'ethnicity', q:'Ancestry/ethnicity (optional)', why:'Genetic markers like ABCC11 vary by ancestry', opts:['East Asian','South Asian','African','European','Latino/Hispanic','Middle Eastern','Mixed','Other'], multi:false },
+    { id:'earwax', q:'What type of earwax do you have?', why:'Dry earwax correlates with lower odor production (ABCC11 proxy)', opts:['Dry and flaky','Wet and sticky','Not sure'], multi:false },
+
+    // Sweat profile
+    { id:'sweat_amount', q:'How much do you sweat on an average day?', why:'Sweat volume affects wetness and bacterial activity', opts:['Barely at all','Light sweating','Moderate sweating','Heavy sweating','Excessive sweating'], multi:false },
+    { id:'sweat_triggers', q:'What triggers your sweat? (select all that apply)', why:'Different triggers produce different sweat chemistry', opts:['Exercise','Heat/humidity','Stress/anxiety','Spicy food','After eating certain foods','No specific trigger'], multi:true },
+    { id:'odor_timing', q:'When do you usually notice odor?', why:'Timing indicates how fast bacteria metabolize sweat', opts:['Within 2-3 hours','By midday (4-6 hours)','Late afternoon','Only after exercise','Rarely/never'], multi:false },
+    { id:'shirt_evidence', q:'What do your shirts show?', why:'Stains / residue reveal product interactions', opts:['Yellow pit stains','White crusty residue','Stiff fabric','Only discoloration','Shirts stay pristine'], multi:true },
+
+    // Smell quality
+    { id:'odor_type', q:'How would you describe your smell?', why:'Tone of odor hints bacterial enzymes', opts:['Sharp/acidic (vinegar-like)','Oniony/garlicky','Musty/stale','Sweet/fruity','Ammonia-like','Barely noticeable','Changes day-to-day'], multi:true },
+    { id:'odor_intensity', q:'How strong is your worst-case odor?', why:'Intensity guides strength needed', opts:['1 - hardly noticeable','2 - I notice','3 - close contacts notice','4 - obvious in a room','5 - interferes with life'], multi:false },
+    { id:'stress_smell', q:'Does your odor change under stress?', why:'Stress sweat originates from apocrine glands', opts:['Yes, much stronger/different','Slightly different','No change','Not sure'], multi:false },
+
+    // Lifestyle & diet
+    { id:'diet_type', q:'How would you describe your typical diet?', why:'Certain diets produce more sulfur compounds', opts:['Heavy meat eater','Balanced','Pescatarian','Vegetarian','Vegan','Low carb/Keto','Mixed'], multi:false },
+    { id:'diet_specifics', q:'Which of these do you regularly consume? (select all)', why:'Foods with sulfur or strong volatiles exit through sweat', opts:['Lots of garlic/onions','Cruciferous veggies (broccoli, kale)','Red meat','Alcohol 3+ times/week','Coffee 2+ cups/day','None of the above'], multi:true },
+    { id:'activity_level', q:'How active are you?', why:'Activity affects sweat volume & product wear', opts:['Sedentary (desk)','Lightly active','Moderately active (2-3x/wk)','Very active (4-5x/wk)','Athlete/daily intense'], multi:false },
+
+    // Products history
+    { id:'current_type', q:'What type of deodorant do you currently use?', why:'Past product experience helps us avoid repeats', opts:['Antiperspirant (aluminum)','Natural (no aluminum)','Clinical strength','None currently','Everything fails'], multi:false },
+    { id:'natural_experience', q:'If you tried natural deodorants, outcome?', why:'Transition and baking soda sensitivity matter', opts:['They worked well','They caused irritation','Mixed results','Never tried'], multi:false },
+    { id:'past_failures', q:'Which problems have you had? (select all)', why:'Helps route to sensitive or clinical options', opts:['Skin irritation/rashes','Itching/burning','Didn\'t stop odor','Didn\'t stop wetness','Stained clothes','Stopped working over time','No major issues'], multi:true },
+    { id:'reapplication', q:'How often will you reapply if needed?', why:'Willingness to reapply affects product choice', opts:['Once a day','Twice a day','Whenever needed','Every few hours if effective'], multi:false },
+
+    // Skin & grooming
+    { id:'skin_sensitivity', q:'How sensitive is your underarm skin?', why:'Sensitive skin needs gentler actives', opts:['Very sensitive','Somewhat sensitive','Not sensitive','Unknown'], multi:false },
+    { id:'shaving_habits', q:'Do you shave your underarms?', why:'Shaving can cause micro-cuts & irritation', opts:['Daily','A few times/week','Occasionally','Never'], multi:false },
+
+    // Scent preferences & values
+    { id:'scent_preference', q:'Scent preference?', why:'Scent personality narrows fragrance matches', opts:['Unscented only','Light/barely-there','Fresh/clean','Warm/woody','Complex/perfume-like','Don\'t care as long as it works'], multi:false },
+    { id:'values', q:'What matters to you? (select all)', why:'Brand values determine acceptable product types', opts:['Aluminum-free','Cruelty-free/vegan','Sustainable packaging','Dermatologist tested','Luxury/premium','Just want it to work'], multi:true },
+
+    // Environment & concern
+    { id:'climate', q:'Your climate?', why:'Humidity and temp change product performance', opts:['Hot & humid','Hot & dry','Temperate','Cold most of year','Seasonal variation'], multi:false },
+    { id:'primary_concern', q:'Your #1 concern?', why:'Prioritize recommendations', opts:['Stop odor completely','Stop wetness','Both equally','Gentle on skin','Long-lasting protection','Natural ingredients'], multi:false },
+    { id:'budget', q:'Budget per deodorant?', why:'Helps recommend within price comfort', opts:['Under $8 - drugstore','$8-15 - mid-range','$15-25 - premium','$25-40 - luxury','$40+ - I\'ll pay anything'], multi:false }
+  ];
+
+  /*********************
+   * Mapping: which answers increase which product attributes
+   * This is simplified but intentionally explicit so you can tweak weights
+   *********************/
+  const mapping = {
+    // diet -> sulfur fighting
+    diet_specifics: {
+      'Lots of garlic/onions': { sulfur_fighting: 2, antimicrobial:1 },
+      'Cruciferous veggies (broccoli, kale)': { sulfur_fighting: 1 },
+      'Red meat': { sulfur_fighting: 1 },
+      'Alcohol 3+ times/week': { sulfur_fighting: 1 }
+    },
+
+    // triggers
+    sweat_triggers: {
+      'Exercise': { sport:2, long_wear:1 },
+      'Heat/humidity': { long_wear:1 },
+      'Stress/anxiety': { antimicrobial:2, fragrance:1 },
+      'Spicy food': { sulfur_fighting:1 }
+    },
+
+    odor_type: {
+      'Sharp/acidic (vinegar-like)': { antimicrobial:2, long_wear:1 },
+      'Oniony/garlicky': { sulfur_fighting:2, long_wear:1 },
+      'Musty/stale': { antimicrobial:2, natural:1 },
+      'Sweet/fruity': { fragrance:1 },
+      'Ammonia-like': { antimicrobial:2, aluminum:1 }
+    },
+
+    odor_timing: {
+      'Within 2-3 hours': { antimicrobial:2, long_wear:1 },
+      'By midday (4-6 hours)': { long_wear:1 },
+      'Only after exercise': { sport:2 }
+    },
+
+    shirt_evidence: {
+      'Yellow pit stains': { aluminum:1 },
+      'White crusty residue': { baking_soda:1, natural:1 },
+      'Stiff fabric': { long_wear:1 }
+    },
+
+    sweat_amount: {
+      'Heavy sweating': { long_wear:2, aluminum:1 },
+      'Excessive sweating': { aluminum:2, long_wear:2 },
+      'Barely at all': { natural:1 }
+    },
+
+    past_failures: {
+      'Skin irritation/rashes': { sensitive:2, baking_soda:-2 },
+      'Itching/burning': { sensitive:2, baking_soda:-2 }
+    },
+
+    current_type: {
+      'Antiperspirant (aluminum)': { aluminum:1 },
+      'Natural (no aluminum)': { natural:1 },
+      'Clinical strength': { aluminum:2 }
+    },
+
+    activity_level: {
+      'Very active (4-5x/wk)': { sport:2, long_wear:1 },
+      'Athlete/daily intense': { sport:2, long_wear:2 }
+    },
+
+    scent_preference: {
+      'Unscented only': { fragrance:-2 },
+      'Light/barely-there': { fragrance:-1 },
+      'Warm/woody': { woods:2 },
+      'Fresh/clean': { citrus:1, fragrance:1 },
+      'Complex/perfume-like': { fragrance:2 }
+    },
+
+    values: {
+      'Aluminum-free': { aluminum:-2, natural:2 },
+      'Luxury/premium': { natural:1 }
+    },
+
+    skin_sensitivity: {
+      'Very sensitive': { sensitive:2, baking_soda:-2 }
+    },
+
+    primary_concern: {
+      'Stop wetness': { aluminum:2 },
+      'Stop odor completely': { antimicrobial:2, sulfur_fighting:2 },
+      'Natural ingredients': { natural:2 }
+    },
+
+    climate: {
+      'Hot & humid': { long_wear:2 },
+      'Hot & dry': { long_wear:1 }
+    }
+  };
+
+  /*********************
+   * Quiz engine
+   *********************/
+  let currentQ = 0;
+  let answers = {}; // store answers; if multi -> array
+
+  function startQuiz(){
+    currentQ = 0;
+    answers = {};
+    // ensure keys exist for multi answers
+    questions.forEach(q => { if (q.multi) answers[q.id] = []; });
+    renderQuestion();
+    document.getElementById('prevBtn').disabled = true;
+    document.getElementById('finishBtn').style.display = 'none';
+    document.getElementById('nextBtn').style.display = 'inline-block';
+  }
+
+  function renderQuestion(){
+    const q = questions[currentQ];
+    const total = questions.length;
+    const progress = ((currentQ + 1) / total) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+    document.getElementById('progressText').textContent = `Question ${currentQ + 1} of ${total}`;
+
+    const opts = q.opts.map(opt => {
+      // mark selected
+      let selectedClass = '';
+      if (q.multi) {
+        if (Array.isArray(answers[q.id]) && answers[q.id].includes(opt)) selectedClass = 'selected';
+      } else {
+        if (answers[q.id] === opt) selectedClass = 'selected';
       }
+      const safe = opt.replace(/'/g,"\\'");
+      if (q.multi) {
+        return `<button onclick="toggleMulti('${q.id}','${safe}', this)" class="option-btn w-full p-4 rounded-lg text-left text-white/80 ${selectedClass}">${opt}</button>`;
+      } else {
+        return `<button onclick="selectSingle('${q.id}','${safe}', this)" class="option-btn w-full p-4 rounded-lg text-left text-white/80 ${selectedClass}">${opt}</button>`;
+      }
+    }).join('');
 
-      // scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('quizContainer').innerHTML = `
+      <div class="glass-card p-8 rounded-2xl">
+        <h3 class="text-xl font-medium text-white mb-2">${q.q}</h3>
+        <p class="text-sm italic text-white/50 mb-6">Why we ask: ${q.why}</p>
+        <div class="space-y-3">${opts}</div>
+      </div>
+    `;
 
-      // if entering protocol page, start quiz
-      if (pageName === 'protocol') {
-        startQuiz();
+    document.getElementById('prevBtn').disabled = currentQ === 0;
+    document.getElementById('nextBtn').style.display = currentQ < questions.length - 1 ? 'inline-block' : 'none';
+    document.getElementById('finishBtn').style.display = currentQ === questions.length - 1 ? 'inline-block' : 'none';
+  }
+
+  // single-select -> auto advance
+  function selectSingle(id, val, btn){
+    answers[id] = val;
+    // mark visually
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    // small delay so user sees selection
+    setTimeout(()=> {
+      if (currentQ < questions.length - 1) { currentQ++; renderQuestion(); }
+      else { document.getElementById('finishBtn').style.display='inline-block'; }
+    }, 220);
+  }
+
+  // multi-select toggles
+  function toggleMulti(id, val, btn){
+    if (!Array.isArray(answers[id])) answers[id] = [];
+    const idx = answers[id].indexOf(val);
+    if (idx === -1) answers[id].push(val); else answers[id].splice(idx,1);
+    // visual
+    // restrict visual removal to options of current question only
+    const parent = btn.closest('.space-y-3') || document;
+    parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    // reapply selected classes
+    answers[id].forEach(v => {
+      parent.querySelectorAll('.option-btn').forEach(b => {
+        if (b.textContent.trim() === v) b.classList.add('selected');
+      });
+    });
+  }
+
+  function nextQ(){
+    const q = questions[currentQ];
+    // if single-select and not answered, block
+    if (!q.multi && !answers[q.id]) {
+      // nudge: flash the first option
+      const btn = document.querySelector('.option-btn');
+      if (btn) { btn.animate([{opacity:1},{opacity:.3},{opacity:1}],{duration:350}); }
+      return;
+    }
+    // if multi and none selected, block
+    if (q.multi && Array.isArray(answers[q.id]) && answers[q.id].length === 0){
+      const btn = document.querySelector('.option-btn');
+      if (btn) { btn.animate([{transform:'translateY(0)'},{transform:'translateY(-3px)'},{transform:'translateY(0)'}],{duration:260}); }
+      return;
+    }
+    if (currentQ < questions.length - 1) currentQ++;
+    renderQuestion();
+  }
+
+  function prevQ(){ if (currentQ>0) { currentQ--; renderQuestion(); } }
+
+  /*********************
+   * Scoring & recommendation engine
+   *********************/
+  function scoreProfile() {
+    // attribute scores
+    const attrScores = {};
+    // init with zero
+    const allAttrs = ['antimicrobial','aluminum','baking_soda','sensitive','sport','fragrance','natural','woods','citrus','floral','earthy','sulfur_fighting','long_wear','long_wear'];
+    allAttrs.forEach(a => attrScores[a]=0);
+
+    // iterate answers and add weights
+    for (const [qid, val] of Object.entries(answers)) {
+      // handle multi arrays
+      if (Array.isArray(val)) {
+        val.forEach(v => {
+          if (mapping[qid] && mapping[qid][v]) {
+            const entry = mapping[qid][v];
+            Object.entries(entry).forEach(([k,w]) => attrScores[k] = (attrScores[k]||0) + w);
+          }
+        });
+      } else if (typeof val === 'string') {
+        const v = val;
+        if (mapping[qid] && mapping[qid][v]) {
+          const entry = mapping[qid][v];
+          Object.entries(entry).forEach(([k,w]) => attrScores[k] = (attrScores[k]||0) + w);
+        }
       }
     }
 
-    // respect back/forward and initial hash
-    window.addEventListener('hashchange', () => {
-      const h = location.hash.replace('#','') || 'home';
-      showPage(h, true);
+    // extra heuristics: if user indicated very heavy sweat -> boost aluminum & long_wear
+    if (answers.sweat_amount && answers.sweat_amount.includes('Heavy')) { attrScores.long_wear += 1; attrScores.aluminum += 1; }
+
+    // If user wants natural -> boost natural
+    if (Array.isArray(answers.values) && answers.values.includes('Aluminum-free')) { attrScores.natural += 2; attrScores.aluminum -= 2; }
+
+    return attrScores;
+  }
+
+  function matchProducts(attrScores) {
+    // score each product by summing attr weights where product has attribute
+    const scored = products.map(p => {
+      let s = 0;
+      p.attrs.forEach(attr => { s += (attrScores[attr] || 0); });
+      // small tie-breakers: prefer long_wear if indicated
+      s += p.tier === 'luxury' ? 0.2 : p.tier === 'mid' ? 0.1 : 0;
+      return { product:p, score: s };
     });
 
-    // on initial load, show page based on hash
-    window.addEventListener('load', () => {
-      const h = location.hash.replace('#','') || 'home';
-      showPage(h, true);
+    // group by tier
+    const byTier = { luxury:[], mid:[], budget:[], clinical:[] };
+    scored.forEach(s => {
+      if (s.product.tier === 'luxury') byTier.luxury.push(s);
+      else if (s.product.tier === 'mid') byTier.mid.push(s);
+      else if (s.product.tier === 'budget') byTier.budget.push(s);
+      else if (s.product.tier === 'clinical') byTier.clinical.push(s);
     });
 
-    /* ---------- QUIZ DATA & ENGINE (25 questions) ---------- */
-    const questions = [
-      {id:'age', q:'What is your age range?', why:'Hormones shift with age', opts:['Under 18','18-25','26-35','36-45','46-55','56+']},
-      {id:'sex', q:'Biological sex assigned at birth?', why:'Hormonal differences affect sweat', opts:['Male','Female','Prefer not to say']},
-      {id:'ethnicity', q:'Ancestry/ethnicity? (optional)', why:'ABCC11 gene varies by ancestry', opts:['East Asian','South Asian','African','European','Latino/Hispanic','Middle Eastern','Mixed','Other']},
-      {id:'earwax', q:'What type of earwax do you have?', why:'Dry earwax = less odor production', opts:['Dry and flaky','Wet and sticky','Not sure']},
-      {id:'sweat_amount', q:'How much do you sweat daily?', why:'More sweat = more odor potential', opts:['Barely at all','Light sweating','Moderate sweating','Heavy sweating','Excessive sweating']},
-      {id:'sweat_triggers', q:'What triggers your sweat most?', why:'Different triggers = different sweat', opts:['Exercise','Heat/humidity','Stress/anxiety','Spicy food','Just existing','Not much']},
-      {id:'odor_timing', q:'When do you notice body odor?', why:'Shows bacterial colonization speed', opts:['Within 2-3 hours','By midday (4-6 hours)','Late afternoon','Only after exercise','Rarely or never']},
-      {id:'shirt_evidence', q:'What do your shirts tell you?', why:'Stains reveal pH and interactions', opts:['Yellow pit stains','White crusty residue','Stiff fabric','Discoloration only','Shirts stay pristine']},
-      {id:'odor_type', q:'How would you describe your odor?', why:'Reveals bacterial ecosystem', opts:['Sharp/acidic','Onion-y or garlicky','Musty or stale','Sweet or fruity','Ammonia-like','Barely noticeable','Changes day to day']},
-      {id:'odor_intensity', q:'How strong is your odor at worst?', why:'Guides product strength', opts:['1 - Others probably don\'t notice','2 - I notice, others might not','3 - Close contacts notice','4 - Obvious in a room','5 - Interfering with my life']},
-      {id:'stress_smell', q:'Does odor change when stressed?', why:'Stress sweat = different glands', opts:['Yes, much stronger/different','Slightly more noticeable','No real difference','Not sure']},
-      {id:'diet_type', q:'How would you describe your diet?', why:'Red meat and keto increase odor', opts:['Heavy meat eater','Moderate/balanced','Pescatarian','Vegetarian','Vegan','Low carb/Keto','All over the place']},
-      {id:'diet_specifics', q:'Do you regularly consume these?', why:'Sulfur compounds exit through sweat', opts:['Lots of garlic/onions','Spicy foods','Cruciferous veggies','Alcohol 3+ times/week','Coffee 2+ cups/day','None regularly']},
-      {id:'activity_level', q:'How physically active are you?', why:'Affects sweat volume and durability', opts:['Sedentary - desk job','Lightly active','Moderately active - 2-3x/week','Very active - 4-5x/week','Extremely active - daily']},
-      {id:'current_type', q:'What deodorant do you use now?', why:'Helps avoid past failures', opts:['Antiperspirant (aluminum)','Natural (no aluminum)','Clinical strength','Nothing currently','Everything fails']},
-      {id:'natural_experience', q:'Have you tried natural deodorants?', why:'Natural works for some, not others', opts:['Yes, they work great','Yes, they failed','Yes, mixed results','No, never tried','Currently using and struggling']},
-      {id:'past_failures', q:'Problems you\'ve experienced?', why:'Guides toward gentle options', opts:['Skin irritation/rashes','Itching or burning','Didn\'t prevent odor','Didn\'t prevent wetness','Stained clothes','Stopped working over time','No major issues']},
-      {id:'reapplication', q:'How often will you reapply?', why:'Some products last 24-48 hours', opts:['Once a day max','Twice a day is fine','I\'ll reapply whenever','Every few hours if it works']},
-      {id:'skin_sensitivity', q:'How sensitive is your underarm skin?', why:'Sensitive skin needs gentler formulations', opts:['Very sensitive - reacts to many','Somewhat sensitive','Not particularly sensitive','Tough as nails']},
-      {id:'shaving_habits', q:'Do you shave your underarms?', why:'Shaving creates micro-cuts', opts:['Yes, daily or almost daily','Yes, a few times a week','Occasionally','Never']},
-      {id:'scent_preference', q:'What\'s your scent preference?', why:'We\'ll match accordingly', opts:['Unscented/fragrance-free only','Light, barely-there','Fresh/clean scents','Strong fragrance','Don\'t care as long as it works']},
-      {id:'values', q:'What matters to you?', why:'Values help narrow brands', opts:['Aluminum-free','Cruelty-free/vegan','Sustainable packaging','Clinical/dermatologist tested','Luxury/premium brands','Just want it to work']},
-      {id:'climate', q:'What\'s your climate like?', why:'Climate affects sweat rate', opts:['Hot and humid','Hot and dry','Moderate/temperate','Cold most of year','Varies by season']},
-      {id:'primary_concern', q:'What\'s your #1 concern?', why:'Helps prioritize your top match', opts:['Stopping odor completely','Reducing wetness/sweat','Both equally','Gentle on sensitive skin','Long-lasting protection','Natural ingredients']},
-      {id:'budget', q:'What\'s your budget per deodorant?', why:'We\'ll find options in your range', opts:['Under $8 - drugstore','$8-15 - mid-range','$15-25 - premium','$25-40 - luxury','$40+ - I\'ll pay anything that works']}
-    ];
+    // sort each
+    Object.keys(byTier).forEach(t => byTier[t].sort((a,b)=>b.score-a.score));
 
-    let currentQ = 0;
-    let answers = {};
+    // pick top from each desired bucket; ensure sensible fallbacks
+    const pickTop = (arr, fallbackIds) => {
+      if (arr && arr.length) return arr[0].product;
+      // fallback: pick first matching product from fallbacks list
+      for (const fid of fallbackIds) {
+        const found = products.find(p => p.id === fid);
+        if (found) return found;
+      }
+      return products[0];
+    };
 
-    function startQuiz() {
-      currentQ = 0;
-      answers = {};
-      renderQuestion();
-      // ensure UI buttons state
-      document.getElementById('prevBtn').disabled = true;
-      document.getElementById('nextBtn').style.display = 'inline-block';
-      document.getElementById('finishBtn').style.display = 'none';
+    const luxuryPick = pickTop(byTier.luxury, ['saltstone_santal','aesop_herbal','corpus_ensemble']);
+    const midPick = pickTop(byTier.mid, ['lume_unscented','native_coconut','schmidts_charcoal','degree_sport']);
+    const budgetPick = pickTop(byTier.budget, ['dove_advanced','mitchum_advanced','armhammer_basic']);
+
+    // if clinical seems necessary (heavy sweat + very high odor) push clinical into mid slot as well
+    const needsClinical = (attrScores.aluminum >= 2 || (answers.odor_intensity && answers.odor_intensity.includes('5')));
+    const clinicalPick = byTier.clinical.length ? byTier.clinical[0].product : null;
+
+    // If they need clinical and clinicalPick exists, replace budgetPick with clinical? Better: include clinical as optional extra
+    return { luxury:luxuryPick, mid:midPick, budget:budgetPick, clinical: clinicalPick, scores: byTier };
+  }
+
+  /*********************
+   * Build rationales to explain WHY each product was chosen
+   *********************/
+  function buildRationale(product, attrScores) {
+    // examine strongest attributes
+    const ranked = Object.entries(attrScores).sort((a,b)=>b[1]-a[1]).slice(0,5).filter(x=>x[1]>0).map(x=>x[0]);
+    const reasons = [];
+
+    if (ranked.includes('sulfur_fighting')) reasons.push('Your diet or metabolic profile suggests sulfur compounds — products that neutralize thiols and lower pH work best.');
+    if (ranked.includes('antimicrobial')) reasons.push('Fast-developing odor points to active bacteria — antimicrobial or enzyme-based formulations are preferred.');
+    if (ranked.includes('long_wear')) reasons.push('You need durability — long-wear or clinically-backed formulas will keep you protected through the day.');
+    if (ranked.includes('sensitive')) reasons.push('You reported skin sensitivity — low-irritant or baking-soda-free options reduce rashes.');
+    if (ranked.includes('sport')) reasons.push('High activity levels recommend motion-activated or sport-focused formulas.');
+    if (ranked.includes('natural')) reasons.push('You prefer cleaner ingredient profiles — plant-derived actives and acid-based systems are better.');
+
+    // tailor product-specific reasons
+    const productReasons = `${product.blurb} ${reasons.length ? 'Why this works: ' + reasons.join(' ') : ''}`;
+    return productReasons;
+  }
+
+  /*********************
+   * finishQuiz -> assemble results & render
+   *********************/
+  function finishQuiz() {
+    // ensure last question required answered
+    const lastQ = questions[currentQ];
+    if (!lastQ.multi && !answers[lastQ.id]) {
+      alert('Please select an answer for the last question.');
+      return;
+    }
+    if (lastQ.multi && Array.isArray(answers[lastQ.id]) && answers[lastQ.id].length === 0) {
+      alert('Please choose at least one option for the last question.');
+      return;
     }
 
-    function renderQuestion() {
-      const q = questions[currentQ];
-      const progress = ((currentQ + 1) / questions.length) * 100;
+    const attrScores = scoreProfile();
+    const matches = matchProducts(attrScores);
 
-      // progress UI
-      document.getElementById('progressBar').style.width = progress + '%';
-      document.getElementById('progressText').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+    // build insights
+    const insights = [];
+    if (answers.earwax && answers.earwax.includes('Dry')) insights.push('Earwax indicates an ABCC11 variant associated with lower odor production.');
+    if (Array.isArray(answers.diet_specifics) && answers.diet_specifics.includes('Lots of garlic/onions')) insights.push('Your diet contains sulfur-rich foods — these can intensify odor and change scent character.');
+    if (answers.odor_timing && answers.odor_timing.includes('Within 2-3 hours')) insights.push('Rapid onset suggests highly active odor-causing bacteria; antimicrobial approaches or enzyme-based controls often help.');
+    if (answers.past_failures && Array.isArray(answers.past_failures) && answers.past_failures.includes('Skin irritation/rashes')) insights.push('You noted irritation in the past — avoid baking-soda heavy formulas and favor sensitive/lower-irritant products.');
 
-      // build options
-      const optionsHTML = q.opts.map(opt => {
-        const safeOpt = opt.replace(/'/g, "\\'");
-        const isSelected = answers[q.id] === opt ? 'selected' : '';
-        return `<button onclick="selectAnswer('${q.id}','${safeOpt}', this)" class="option-btn w-full p-4 rounded-lg text-left text-white/80 hover:text-white transition-all ${isSelected}">${opt}</button>`;
-      }).join('');
-
-      document.getElementById('quizContainer').innerHTML = `
-        <div class="glass-card p-8 rounded-2xl">
-          <h3 class="text-xl font-medium text-white mb-2">${q.q}</h3>
-          <p class="text-sm text-white/50 mb-6 italic">Why we ask: ${q.why}</p>
-          <div class="space-y-3">${optionsHTML}</div>
+    // render
+    const resultsEl = document.getElementById('resultsContent');
+    resultsEl.innerHTML = `
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-2xl font-light text-white mb-2">${answers.sweat_amount || 'Moderate'}</div>
+          <div class="text-xs text-white/50 uppercase tracking-wider">Sweat Level</div>
         </div>
-      `;
-
-      // buttons state
-      document.getElementById('prevBtn').disabled = currentQ === 0;
-      document.getElementById('nextBtn').style.display = currentQ < questions.length - 1 ? 'inline-block' : 'none';
-      document.getElementById('finishBtn').style.display = currentQ === questions.length - 1 ? 'inline-block' : 'none';
-    }
-
-    function selectAnswer(id, val, btn) {
-      // Save answer
-      answers[id] = val;
-
-      // Visual feedback: mark selected only within current question
-      const parent = btn.closest('.space-y-3') || btn.parentElement;
-      parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-
-      // Auto-advance after a small delay to show the selection
-      setTimeout(() => {
-        if (currentQ < questions.length - 1) {
-          currentQ++;
-          renderQuestion();
-        } else {
-          // last question selected -> show finish button
-          document.getElementById('finishBtn').style.display = 'inline-block';
-        }
-      }, 250);
-    }
-
-    function nextQ() {
-      // Only move forward if current question has an answer
-      const currentId = questions[currentQ].id;
-      if (!answers[currentId]) {
-        // simple nudge (could be replaced with nicer UI)
-        const btn = document.querySelector('.option-btn');
-        if (btn) btn.focus();
-        return;
-      }
-      if (currentQ < questions.length - 1) currentQ++;
-      renderQuestion();
-    }
-
-    function prevQ() {
-      if (currentQ > 0) currentQ--;
-      renderQuestion();
-    }
-
-    function finishQuiz() {
-      // Build a simple profile summary
-      const profile = {
-        sweat: (answers.sweat_amount && (answers.sweat_amount.includes('Heavy') || answers.sweat_amount.includes('Excessive'))) ? 'heavy' :
-               (answers.sweat_amount && (answers.sweat_amount.includes('Barely') || answers.sweat_amount.includes('Light'))) ? 'light' : 'moderate',
-        intensity: (answers.odor_intensity && (answers.odor_intensity.includes('4') || answers.odor_intensity.includes('5'))) ? 'high' :
-                   (answers.odor_intensity && (answers.odor_intensity.includes('1') || answers.odor_intensity.includes('2'))) ? 'low' : 'moderate',
-        sensitivity: (answers.skin_sensitivity && answers.skin_sensitivity.includes('Very sensitive')) ? 'sensitive' : 'normal'
-      };
-
-      // Recommendations (cleaned and syntactically valid)
-      const recs = [];
-
-      // Luxury/premium suggestions
-      if ((answers.values && answers.values.includes('Luxury')) || (answers.budget && (answers.budget.includes('$25') || answers.budget.includes('$40')))) {
-        if (answers.scent_preference && answers.scent_preference.includes('Unscented')) {
-          recs.push({ name: 'Salt & Stone - Unscented Formula', why: 'Safest Salt & Stone option for sensitive skin. No fragrance oils = minimal irritation.', type: 'Premium Natural', price: '$' });
-        } else if (answers.scent_preference && answers.scent_preference.toLowerCase().includes('fresh')) {
-          recs.push({ name: 'Salt & Stone - Bergamot & Hinoki', why: 'Citrus-fresh with woody depth. Great for moderate sweaters.', type: 'Premium Natural', price: '$$' });
-        } else {
-          recs.push({ name: 'Salt & Stone - Santal & Vetiver', why: 'Warm, earthy, and sophisticated. Woods mask odor well.', type: 'Premium Natural', price: '$$' });
-        }
-      }
-
-      // Sensitive skin
-      if (profile.sensitivity === 'sensitive' || (answers.past_failures && answers.past_failures.includes('irritation'))) {
-        recs.push({ name: 'Lume - Unscented (Sensitive)', why: 'No baking soda; uses mandelic acid instead. Designed for reactive skin.', type: 'Natural Deodorant', price: '$' });
-        recs.push({ name: 'Vanicream Clinical Strength - Fragrance Free', why: 'Dermatologist standard. Fragrance and dye free.', type: 'Gentle Clinical', price: '$' });
-      }
-
-      // Natural seekers
-      if ((answers.values && answers.values.includes('Aluminum-free')) || (answers.current_type && answers.current_type.includes('Natural'))) {
-        recs.push({ name: 'Native - Coconut & Vanilla', why: 'Bestseller; good starting option for light-moderate sweat.', type: 'Natural Deodorant', price: '$' });
-      }
-
-      // Heavy sweat -> clinical
-      if (profile.sweat === 'heavy' && profile.intensity === 'high') {
-        recs.push({ name: 'Certain Dri Clinical Strength', why: 'Maximum-strength aluminum chloride. Effective for hyperhidrosis.', type: 'Clinical Antiperspirant', price: '$' });
-      }
-
-      // Athletic
-      if (answers.activity_level && (answers.activity_level.includes('Very active') || answers.activity_level.includes('Extremely'))) {
-        recs.push({ name: 'Degree Men Clinical - Sport Defense', why: 'Motion-activated microcapsules for active lifestyles.', type: 'Clinical Sport', price: '$' });
-      }
-
-      // Catch-all defaults
-      if (recs.length === 0) {
-        recs.push({ name: 'Dove Advanced Care - Unscented', why: 'Gentle, reliable aluminum-based protection.', type: 'Standard Antiperspirant', price: '$' });
-        recs.push({ name: 'Native - Coconut & Vanilla', why: 'Popular natural option for testing if naturals work for you.', type: 'Natural Deodorant', price: '$' });
-      }
-
-      // Insights
-      const insights = [];
-      if (answers.earwax && answers.earwax.includes('Dry')) insights.push('Dry earwax suggests the ABCC11 variant—lower natural odor production.');
-      if (answers.diet_type && answers.diet_type.includes('Heavy')) insights.push('Diet high in meat/sulfur-rich foods can intensify body odor.');
-      if (answers.past_failures && answers.past_failures.includes('irritation')) insights.push('Many rashes are caused by baking soda in naturals; consider baking-soda-free options.');
-      if (answers.odor_timing && answers.odor_timing.includes('2-3 hours')) insights.push('Rapid odor onset indicates active bacteria—antimicrobial ingredients typically work better.');
-
-      // Render results
-      const resultsHTML = `
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
-          <div class="glass-card p-6 rounded-2xl text-center">
-            <div class="text-3xl font-light text-white mb-2 capitalize">${profile.sweat}</div>
-            <div class="text-xs text-white/50 uppercase tracking-wider">Sweat Level</div>
-          </div>
-          <div class="glass-card p-6 rounded-2xl text-center">
-            <div class="text-3xl font-light text-white mb-2 capitalize">${profile.intensity}</div>
-            <div class="text-xs text-white/50 uppercase tracking-wider">Odor Intensity</div>
-          </div>
-          <div class="glass-card p-6 rounded-2xl text-center">
-            <div class="text-3xl font-light text-white mb-2 capitalize">${profile.sensitivity}</div>
-            <div class="text-xs text-white/50 uppercase tracking-wider">Skin Type</div>
-          </div>
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-2xl font-light text-white mb-2">${answers.odor_intensity || 'Moderate'}</div>
+          <div class="text-xs text-white/50 uppercase tracking-wider">Odor Intensity</div>
         </div>
-
-        ${insights.length ? `
-          <div class="mb-12">
-            <h3 class="text-xl font-medium text-white mb-6">Key Insights</h3>
-            <div class="space-y-4">
-              ${insights.map(i => `<div class="border-l-2 border-white/30 pl-6 py-2 text-white/70 leading-relaxed">${i}</div>`).join('')}
-            </div>
-          </div>
-        ` : ''}
-
-        <h3 class="text-2xl font-serif text-white mb-6">Your Matches</h3>
-        <div class="space-y-6">
-          ${recs.slice(0,4).map((r,i) => `
-            <div class="glass-card p-8 rounded-2xl">
-              <div class="flex justify-between items-start mb-4">
-                <h4 class="text-xl font-medium text-white">${r.name}</h4>
-                <span class="text-3xl font-light text-white/30">#${i+1}</span>
-              </div>
-              <div class="flex gap-3 mb-4">
-                <span class="text-xs px-3 py-1 rounded-full bg-white/10 text-white/70">${r.type}</span>
-                <span class="text-xs px-3 py-1 rounded-full bg-white/10 text-white/70">${r.price}</span>
-              </div>
-              <p class="text-white/70 leading-relaxed mb-6">${r.why}</p>
-              <a href="#" class="inline-block px-6 py-3 bg-white text-black rounded-full text-sm font-medium hover:bg-neutral-200 transition-colors">View Product</a>
-            </div>
-          `).join('')}
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-2xl font-light text-white mb-2">${answers.skin_sensitivity || 'Normal'}</div>
+          <div class="text-xs text-white/50 uppercase tracking-wider">Skin Sensitivity</div>
         </div>
-      `;
+      </div>
 
-      document.getElementById('resultsContent').innerHTML = resultsHTML;
+      ${insights.length ? `<div class="mb-8">
+        <h3 class="text-xl font-medium text-white mb-4">Key Insights</h3>
+        <div class="space-y-3">${insights.map(i=>`<div class="border-l-2 border-white/30 pl-6 py-2 text-white/70">${i}</div>`).join('')}</div>
+      </div>` : ''}
 
-      // show results page and update hash
-      showPage('results');
-    }
+      <h3 class="text-2xl font-serif text-white mb-6">Top Matches</h3>
+      <div class="space-y-6 mb-10">
+        ${renderProductCard(matches.luxury, attrScores, 'Luxury — Our Top Pick')}
+        ${renderProductCard(matches.mid, attrScores, 'High Performance')}
+        ${renderProductCard(matches.budget, attrScores, 'Budget-Friendly')}
+      </div>
 
-    // If the user navigates directly to #protocol via URL, start quiz
-    if (location.hash.replace('#','') === 'protocol') {
-      // handled by load handler above which calls showPage('protocol')
-    }
+      ${matches.clinical ? `<div class="mb-8">
+        <h4 class="text-lg font-medium text-white mb-2">If you need clinical strength</h4>
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="flex justify-between items-start mb-3">
+            <div><strong class="text-white">${matches.clinical.name}</strong><div class="text-white/70 text-sm mt-1">${matches.clinical.blurb}</div></div>
+            <div class="text-xs text-white/30">Clinical</div>
+          </div>
+          <div class="text-white/70 mt-3">${buildRationale(matches.clinical, attrScores)}</div>
+        </div>
+      </div>` : ''}
+    `;
+
+    showPage('results');
+  }
+
+  function renderProductCard(product, attrScores, header) {
+    const rationale = buildRationale(product, attrScores);
+    return `
+      <div class="glass-card p-6 rounded-2xl">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <div class="text-xs text-white/40 uppercase">${header}</div>
+            <strong class="text-xl text-white block mt-2">${product.name}</strong>
+            <div class="text-white/70 text-sm mt-1">${product.blurb}</div>
+          </div>
+          <div class="text-xs text-white/30">${product.tier === 'luxury' ? 'Luxury' : product.tier === 'mid' ? 'Premium' : 'Budget'}</div>
+        </div>
+        <div class="mt-4 text-white/70">${rationale}</div>
+        <div class="mt-6 flex gap-3">
+          <a href="#" class="inline-block px-4 py-2 rounded-full bg-ddgold text-black text-sm font-medium">Shop</a>
+          <button onclick="saveProfile('${product.id}')" class="px-4 py-2 rounded-full border border-white/10 text-sm">Save</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function saveProfile(productId) {
+    // for now, a simple placeholder: in future tie to user account / email
+    alert('Saved recommendation: ' + productId + '. In future we can email this to you or add to your cart.');
+  }
+
+  // For dev: auto-start quiz if hash contains protocol
+  if (location.hash.replace('#','') === 'protocol') {
+    // handled in load handler
+  }
   </script>
 </body>
 </html>
