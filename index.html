@@ -118,13 +118,13 @@
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
         }
         
-        /* Print Styles for Report (Removed PDF elements) */
+        /* Print Styles for Report */
         @media print {
             body { background-color: white !important; color: black !important; }
             #quiz-results, #article-detail { 
                 background-color: white !important;
                 color: black !important;
-                padding-top: 50px; /* Add space for printed report */
+                padding-top: 50px;
             }
             #quiz-results h3, #quiz-results h4 { color: black !important; }
             .no-print { display: none !important; }
@@ -168,6 +168,7 @@
                             <span class="text-[10px] font-medium tracking-wide uppercase text-white/70">Odor Genome v1.0</span>
                         </div>
                         <div class="text-[10px] font-medium tracking-wide uppercase text-white/70">
+                            | Success Rate Growing with Data (<a href="#faq" class="underline hover:text-white transition-colors">See FAQ</a>)
                         </div>
                     </div>
 
@@ -177,13 +178,13 @@
                     </h1>
 
                     <p class="text-lg text-white/60 font-light max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed tracking-tight">
-                        Stop buying products that fail your biology. We analyze 30 data points - from diet to dermis - to pair you with the one, perfect formula.
+                        Stop buying products that fail your biology. We analyze 30 data points—from diet to dermis—to pair you with the one, perfect formula.
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
                         <a href="#protocol" class="shiny-cta px-8 py-3 rounded-full text-sm font-medium text-white flex items-center gap-2 w-full sm:w-auto justify-center hover:-translate-y-px transition-transform">
                             <span class="iconify" data-icon="lucide:scan-face" data-width="16"></span>
-                            Take The Protocol
+                            Start Your 5-Minute Analysis
                         </a>
                         <a href="#journal" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all w-full sm:w-auto flex justify-center items-center">
                             Read Our Expert Journal
@@ -191,7 +192,7 @@
                     </div>
 
                     <p class="mt-8 text-xs font-mono text-white/40 tracking-widest uppercase">
-                        Join 1,000+ individuals who found their perfect deo.
+                        Join 1,000+ individuals who found their perfect match.
                     </p>
                 </div>
 
@@ -248,7 +249,7 @@
                             <h3 class="text-lg font-medium text-white mb-1">Access The Database</h3>
                             <p class="text-xs text-white/50">Get early access to Odor Genome v2.0 and monthly chemical analysis reports.</p>
                         </div>
-                        <form class="flex w-full md:w-auto gap-2">
+                        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing! We will be in touch with updates.');" class="flex w-full md:w-auto gap-2">
                             <div class="relative group">
                                 <input type="email" placeholder="enter_email_address" class="bg-black/40 border border-white/10 rounded-lg px-4 py-2 text-sm text-white font-mono placeholder:text-white/20 focus:outline-none focus:border-white/40 w-full md:w-64 transition-colors">
                                 <div class="absolute inset-0 rounded-lg bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
@@ -430,7 +431,7 @@
                         
                         <div class="manifesto-block">
                             <h3 class="text-lg font-serif italic text-emerald-400 mb-3 tracking-wider">// I. THE REVOLUTION</h3>
-                            <p class="text-sm text-white/80 leading-relaxed">The modern search for a reliable deodorant is a journey of endless compromise. We end this. We declare your personal scent a biological fingerprint, not a flaw. We reject the generic chemical formulas that treat every human biome as identical. Our authority is data; our mission is personalization.</p>
+                            <p class="text-sm text-white/80 leading-relaxed">The modern search for a reliable deodorant is a journey of endless compromise. We end this. We declare your personal scent a **biological fingerprint**, not a flaw. We reject the generic chemical formulas that treat every human biome as identical. Our authority is data; our mission is personalization.</p>
                         </div>
                         
                         <div class="manifesto-block">
@@ -451,7 +452,7 @@
                     <div class="space-y-3">
                         <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
                             <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                                What exactly is the Odor Genome Protocol?
+                                What exactly is the **Odor Genome Protocol**?
                                 <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
                             </summary>
                             <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
@@ -473,7 +474,7 @@
                                 <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
                             </summary>
                             <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                                We are an objective analysis tool, not a retailer. Our recommendations come from high-quality, biochemically-sound lines. Brands we frequently match include Salt & Stone (for high-performance), Corpus (for luxury/sensitivity), Malin+Goetz (for a clean feel), and Necessaire (for acid-based control).
+                                We are an objective analysis tool, not a retailer. Our recommendations come from high-quality, biochemically-sound lines. Brands we frequently match include **Salt & Stone** (for high-performance), **Corpus** (for luxury/sensitivity), **Malin+Goetz** (for a clean feel), and **Necessaire** (for acid-based control).
                             </div>
                         </details>
                         <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
@@ -675,7 +676,7 @@
 
     <script>
         // ==========================================
-        // 1. CONSTELLATION TOY (Hero Section) - RESTORED
+        // 1. CONSTELLATION TOY (Hero Section) - RESTORED & Stabilized
         // ==========================================
         const canvas = document.getElementById('constellation-canvas');
         const ctx = canvas.getContext('2d');
@@ -688,7 +689,7 @@
         let mouse = { x: null, y: null };
 
         function resize() {
-            if (canvas.parentElement) {
+            if (canvas && canvas.parentElement) {
                 width = canvas.parentElement.offsetWidth;
                 height = canvas.parentElement.offsetHeight;
                 canvas.width = width;
@@ -758,7 +759,7 @@
         }
 
         function animateConstellation() {
-            if (ctx && width && height) {
+            if (canvas && ctx && width && height) {
                 ctx.clearRect(0, 0, width, height);
                 ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
                 ctx.lineWidth = 0.5;
@@ -779,9 +780,13 @@
                 }
                 particles.forEach(p => { p.update(); p.draw(); });
             }
-            requestAnimationFrame(animateConstellation);
+            // Use requestAnimationFrame only if the canvas element exists to avoid continuous running on detail pages
+            if (document.getElementById('home-hero') && document.getElementById('home-hero').style.display !== 'none') {
+                requestAnimationFrame(animateConstellation);
+            }
         }
 
+        // Initial check and run
         if (canvas && ctx) {
             resize();
             animateConstellation();
@@ -796,7 +801,7 @@
         
         const rawQuestions = [
             // CATEGORY: DERMAL BIOLOGY (1-5)
-            { id: 0, t: "How does your underarm skin typically react to Baking Soda (Sodium Bicarbonate)?", c: "Dermal Integrity", multi: false, o: ["Severe rash/burn", "Mild irritation/redness", "No noticeable reaction", "I have never used a baking soda deodorant", "Not Sure"] },
+            { id: 0, t: "How does your underarm skin typically react to Baking Soda (Sodium Bicarbonate)?", c: "Dermal Integrity", multi: false, o: ["Severe rash/burn", "Mild irritation/redness", "No noticeable reaction", "I have never used a baking soda deodorant"] },
             { id: 1, t: "Which best describes your skin's general sensitivity?", c: "Dermal Integrity", multi: false, o: ["Highly Reactive (Visible rash/burn to many ingredients)", "Moderately Sensitive (Occasional itch/redness)", "Tolerant (Rarely sensitive)"] },
             { id: 2, t: "Do you experience ingrown hairs, bumps, or irritation after shaving/waxing the area?", c: "Dermal Integrity", multi: false, o: ["Frequently (Multiple times a month)", "Occasionally (Once a month)", "Rarely/Never", "I do not remove hair"] },
             { id: 3, t: "Which of the following describes your skin's hydration and oil production?", c: "Dermal Integrity", multi: false, o: ["Very Dry, prone to flaking", "Balanced/Normal", "Visibly Oily/Moist"] },
@@ -829,7 +834,7 @@
             { id: 24, t: "How often do you need to reapply your current deodorant?", c: "Potency Requirement", multi: false, o: ["Multiple times a day", "Once a day", "Every other day"] },
             { id: 25, t: "What was your previous deodorant type (before seeking a new solution)?", c: "Biological History", multi: false, o: ["Conventional Antiperspirant (Aluminum)", "Natural Deodorant (Baking Soda)", "Natural Deodorant (No Baking Soda)", "None/Minimal"] },
             { id: 26, t: "Do you prefer a product that leaves a visible residue/film or one that is totally invisible?", c: "Application Preference", multi: false, o: ["Residue is acceptable for high-potency", "Must be invisible/no transfer"] },
-            { id: 27, t: "Which powerful odor-fighting ingredient are you willing to try?", c: "Active Preference", multi: true, o: ["Probiotics / Ferments (Microbial rebalancing)", "Magnesium Hydroxide (pH control)", "AHA / BHA (Targeted Acids)", "Activated Charcoal (Absorption)," "None"] },
+            { id: 27, t: "Which powerful odor-fighting ingredient are you willing to try?", c: "Active Preference", multi: true, o: ["Probiotics / Ferments (Microbial rebalancing)", "Magnesium Hydroxide (pH control)", "AHA / BHA (Targeted Acids)", "Activated Charcoal (Absorption)"] },
             { id: 28, t: "How often do you cleanse the underarm area with soap/body wash?", c: "Hygiene Protocol", multi: false, o: ["Once per day", "Twice per day (Morning/Night)", "Less than daily"] },
             { id: 29, t: "Final Confirmation: Ready to lock in your 30 variables and see your match?", c: "System Check", multi: false, o: ["Yes, show my optimized formula", "Not quite, I want to review my answers"] }
         ];
@@ -1064,9 +1069,9 @@
                     
                     <p>The primary culprits are members of the *Corynebacterium* family, alongside some *Staphylococcus* strains. These bacteria digest the odorless compounds in apocrine sweat through a process known as bioconversion. The byproducts of this digestion are highly volatile, short-chain fatty acids, most notably isovaleric acid, which is responsible for the sharp, pungent scent we recognize as body odor. [Diagram: The bioconversion process of apocrine sweat by Corynebacterium, showing release of isovaleric acid]</p>
 
-                    <p>Your internal environment - dictated by diet, stress, and hormonal activity - is the direct fuel source for this bacterial action. For example, a diet rich in sulfur compounds (such as that found in brassicas, garlic, and onions) results in sulfurous metabolites being excreted. These molecules act as potent microbial food, supercharging the odor-producing efficiency of the bacteria and resulting in a much stronger, more persistent smell.</p>
+                    <p>Your internal environment—dictated by diet, stress, and hormonal activity—is the direct fuel source for this bacterial action. For example, a diet rich in sulfur compounds (such as that found in brassicas, garlic, and onions) results in sulfurous metabolites being excreted. These molecules act as potent microbial food, supercharging the odor-producing efficiency of the bacteria and resulting in a much stronger, more persistent smell.</p>
 
-                    <p>Understanding this microbial signature is the core of the Deos Dios Protocol. For individuals presenting a high *Corynebacterium* load (often signaled by a 'sour' or 'cheesy' smell), a simple absorbent product will fail. The correct strategy involves applying advanced counter-agents - such as Alpha Hydroxy Acids (AHAs) to lower the underarm pH, making it hostile to bacteria, or targeted probiotics to introduce beneficial strains that competitively inhibit the odor producers. This is not about masking; it is about scientifically re-engineering the ecology of your skin.</p>
+                    <p>Understanding this microbial signature is the core of the Deos Dios Protocol. For individuals presenting a high *Corynebacterium* load (often signaled by a 'sour' or 'cheesy' smell), a simple absorbent product will fail. The correct strategy involves applying advanced counter-agents—such as Alpha Hydroxy Acids (AHAs) to lower the underarm pH, making it hostile to bacteria, or targeted probiotics to introduce beneficial strains that competitively inhibit the odor producers. This is not about masking; it is about scientifically re-engineering the ecology of your skin.</p>
                 `
             },
             {
@@ -1133,6 +1138,12 @@
                 }
                 
                 targetSection.style.display = 'block';
+                
+                // Re-initialize the constellation if returning to home
+                if (targetSection.id === 'home-hero' && canvas && ctx) {
+                     resize();
+                     animateConstellation();
+                }
             }
 
             window.scrollTo(0, 0);
@@ -1149,8 +1160,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
