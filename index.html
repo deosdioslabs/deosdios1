@@ -249,9 +249,9 @@
                             <h3 class="text-lg font-medium text-white mb-1">Access The Database</h3>
                             <p class="text-xs text-white/50">Get early access to Odor Genome v2.0 and monthly chemical analysis reports.</p>
                         </div>
-                        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing! We will be in touch with updates.');" class="flex w-full md:w-auto gap-2">
+                        <form onsubmit="handleEmailCapture(event)" class="flex w-full md:w-auto gap-2">
                             <div class="relative group">
-                                <input type="email" placeholder="enter_email_address" class="bg-black/40 border border-white/10 rounded-lg px-4 py-2 text-sm text-white font-mono placeholder:text-white/20 focus:outline-none focus:border-white/40 w-full md:w-64 transition-colors">
+                                <input id="email-input" type="email" placeholder="enter_email_address" class="bg-black/40 border border-white/10 rounded-lg px-4 py-2 text-sm text-white font-mono placeholder:text-white/20 focus:outline-none focus:border-white/40 w-full md:w-64 transition-colors">
                                 <div class="absolute inset-0 rounded-lg bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                             </div>
                             <button type="submit" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white p-2 rounded-lg transition-colors">
@@ -676,10 +676,54 @@
 
     <script>
         // ==========================================
+        // EMAIL CAPTURE LOGIC (NEW)
+        // ==========================================
+        function handleEmailCapture(event) {
+            // 1. Prevent form from submitting and reloading the page
+            event.preventDefault();
+            
+            const emailInput = document.getElementById('email-input');
+            const email = emailInput.value;
+
+            if (email && email.includes('@') && email.includes('.')) {
+                
+                // 2. Build the personalized email content (mailto link)
+                const subject = encodeURIComponent("Welcome to the Deos Dios Tribe!");
+                const body = encodeURIComponent(
+                    `Hi ${email},\n\n` +
+                    `Thank you for subscribing to Deos Dios. We're thrilled to welcome a new member to the Odor Genome community.\n\n` +
+                    `We value your privacy and promise not to bombard you with 'stinky' spam emails. You'll only hear from us with absolutely fantastic, stinkin' updates on microbiome research, new protocol features, and exclusive insights.\n\n` +
+                    `Master your biological signature.\n\n` +
+                    `Best,\n` +
+                    `The Deos Dios Lab\n`
+                );
+                
+                const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}&cc=info@deosdios.com`;
+                
+                // 3. Simulate the subscription process (in a real app, this would be an API call)
+                console.log(`Submitting email: ${email}`);
+                
+                // 4. Provide visual feedback (using a simple alert for this single HTML file)
+                alert(`Welcome aboard, ${email}! We've prepared a special welcome email for you. Click OK to open your email client (sends from info@deosdios.com).`);
+                
+                // 5. Open the user's mail client (optional, but requested implicitly by the "send email" prompt)
+                window.open(mailtoLink, '_self');
+                
+                // Clear the input field
+                emailInput.value = '';
+
+            } else {
+                alert("Please enter a valid email address to subscribe.");
+            }
+            return false; // Necessary for older browser compatibility
+        }
+
+
+        // ==========================================
         // 1. CONSTELLATION TOY (Hero Section) - RESTORED & Stabilized
         // ==========================================
         const canvas = document.getElementById('constellation-canvas');
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas ? canvas.getContext('2d') : null;
         let width, height;
         let particles = [];
         const particleCount = 60;
@@ -780,24 +824,16 @@
                 }
                 particles.forEach(p => { p.update(); p.draw(); });
             }
-            // Use requestAnimationFrame only if the canvas element exists to avoid continuous running on detail pages
+            // Use requestAnimationFrame only if the canvas element exists on the visible page
             if (document.getElementById('home-hero') && document.getElementById('home-hero').style.display !== 'none') {
                 requestAnimationFrame(animateConstellation);
             }
         }
 
-        // Initial check and run
         if (canvas && ctx) {
             resize();
             animateConstellation();
         }
-        // ==========================================
-        // END CONSTELLATION
-        // ==========================================
-        
-        // ==========================================
-        // 2. 30-POINT ANALYSIS ENGINE (Protocol Logic) - IMPROVED QUESTIONS
-        // ==========================================
         
         const rawQuestions = [
             // CATEGORY: DERMAL BIOLOGY (1-5)
@@ -1067,7 +1103,7 @@
                 content: `
                     <p>The common misconception is that the unpleasant odor we associate with sweat originates from the sweat itself. This is fundamentally untrue. Eccrine sweat, the fluid produced for thermoregulation, is essentially a sterile saline solution. The actual issue arises from apocrine sweat, a lipid and protein-rich secretion, and the bacterial ecosystem that metabolizes it.</p>
                     
-                    <p>The primary culprits are members of the *Corynebacterium* family, alongside some *Staphylococcus* strains. These bacteria digest the odorless compounds in apocrine sweat through a process known as bioconversion. The byproducts of this digestion are highly volatile, short-chain fatty acids, most notably isovaleric acid, which is responsible for the sharp, pungent scent we recognize as body odor. [Diagram: The bioconversion process of apocrine sweat by Corynebacterium, showing release of isovaleric acid]</p>
+                    <p>The primary culprits are members of the *Corynebacterium* family, alongside some *Staphylococcus* strains. These bacteria digest the odorless compounds in apocrine sweat through a process known as **bioconversion**. The byproducts of this digestion are highly volatile, short-chain fatty acids, most notably isovaleric acid, which is responsible for the sharp, pungent scent we recognize as body odor. [Diagram: The bioconversion process of apocrine sweat by Corynebacterium, showing release of isovaleric acid]</p>
 
                     <p>Your internal environment—dictated by diet, stress, and hormonal activity—is the direct fuel source for this bacterial action. For example, a diet rich in sulfur compounds (such as that found in brassicas, garlic, and onions) results in sulfurous metabolites being excreted. These molecules act as potent microbial food, supercharging the odor-producing efficiency of the bacteria and resulting in a much stronger, more persistent smell.</p>
 
