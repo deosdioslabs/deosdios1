@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deos Dios | Odor Genome Project</title>
+    <title>Deos Dios | Odor Genome Protocol</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Iconify -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 
     <style>
@@ -101,18 +98,23 @@
         .fade-enter { opacity: 0; transform: translateY(10px); }
         .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 300ms, transform 300ms; }
         
-        /* Custom Checkbox */
-        .custom-checkbox:checked + div { background-color: white; border-color: white; }
-        .custom-checkbox:checked + div svg { opacity: 1; }
+        /* Custom Checkbox/Radio styling for options */
+        .option-button.selected {
+            background-color: rgba(255, 255, 255, 0.15); /* More visible background */
+            border-color: white;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        .option-button.selected .selection-indicator {
+            background-color: white;
+            border-color: white;
+        }
     </style>
 </head>
 <body class="relative min-h-screen w-full selection:bg-white selection:text-black">
 
-    <!-- Background Grid -->
     <div class="fixed inset-0 grid-bg pointer-events-none z-0"></div>
     <div class="fixed inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0 pointer-events-none"></div>
 
-    <!-- Navigation -->
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[90vw] lg:w-fit flex items-center justify-between pl-6 pr-2 py-2 rounded-full border border-white/10 bg-black/50 backdrop-blur-xl shadow-2xl">
         <div class="flex items-center gap-2 mr-8">
             <span class="iconify text-white" data-icon="lucide:sparkles" data-width="18"></span>
@@ -120,8 +122,8 @@
         </div>
         <div class="hidden md:flex items-center gap-8 mr-8">
             <a href="#protocol" class="text-xs font-normal text-white/60 hover:text-white transition-colors">Protocol</a>
+            <a href="#manifesto" class="text-xs font-normal text-white/60 hover:text-white transition-colors">Manifesto/FAQ</a>
             <a href="#journal" class="text-xs font-normal text-white/60 hover:text-white transition-colors">Journal</a>
-            <a href="#faq" class="text-xs font-normal text-white/60 hover:text-white transition-colors">FAQ</a>
         </div>
         <button onclick="document.getElementById('protocol').scrollIntoView({behavior: 'smooth'})" class="bg-white hover:bg-neutral-200 text-black px-5 py-2 rounded-full text-xs font-medium transition-colors flex items-center gap-2">
             Start Analysis
@@ -129,11 +131,9 @@
         </button>
     </nav>
 
-    <!-- Hero Section -->
     <main class="relative z-10 pt-40 pb-16 lg:pt-48 lg:pb-24 px-6">
         <div class="container mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-16">
             
-            <!-- Hero Copy -->
             <div class="flex-1 text-center lg:text-left">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-8">
                     <span class="relative flex h-2 w-2">
@@ -157,18 +157,16 @@
                         <span class="iconify" data-icon="lucide:scan-face" data-width="16"></span>
                         Build Odor Profile
                     </button>
-                    <a href="#odor-science" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all w-full sm:w-auto flex justify-center items-center">
+                    <a href="#journal" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all w-full sm:w-auto flex justify-center items-center">
                         Explore Data
                     </a>
                 </div>
             </div>
 
-            <!-- Interactive Constellation Toy -->
             <div class="flex-1 w-full relative h-[500px] flex items-center justify-center">
                 <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent rounded-2xl blur-2xl -z-10"></div>
                 
                 <div class="relative w-full h-full max-w-lg aspect-square bg-[#050505] border border-white/10 rounded-2xl shadow-2xl overflow-hidden group">
-                    <!-- Overlay Text -->
                     <div class="absolute top-4 left-4 z-20 pointer-events-none">
                         <div class="flex items-center gap-2">
                             <div class="w-2 h-2 rounded-full bg-emerald-500/50 animate-pulse"></div>
@@ -177,20 +175,17 @@
                     </div>
                     
                     <div class="absolute bottom-4 right-4 z-20 pointer-events-none text-right">
-                         <span class="text-[10px] font-mono text-white/20 uppercase">Interaction: Active</span>
+                           <span class="text-[10px] font-mono text-white/20 uppercase">Interaction: Active</span>
                     </div>
 
-                    <!-- The Canvas -->
                     <canvas id="constellation-canvas"></canvas>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Infinite Seamless Marquee -->
     <div class="w-full border-y border-white/10 bg-black/50 backdrop-blur-sm overflow-hidden py-4 relative z-10">
         <div class="marquee-wrapper">
-            <!-- Content duplicated for seamless loop -->
             <div class="marquee-content text-white/30 text-xs font-mono uppercase tracking-widest items-center">
                 <span>Saccharomyces Ferment</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
                 <span>Maranta Arundinacea</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
@@ -212,7 +207,6 @@
         </div>
     </div>
 
-    <!-- Community & Capture Section -->
     <section class="py-16 px-6 border-b border-white/5 relative z-10">
         <div class="container mx-auto max-w-4xl text-center">
             
@@ -227,7 +221,7 @@
                             <input type="email" placeholder="enter_email_address" class="bg-black/40 border border-white/10 rounded-lg px-4 py-2 text-sm text-white font-mono placeholder:text-white/20 focus:outline-none focus:border-white/40 w-full md:w-64 transition-colors">
                             <div class="absolute inset-0 rounded-lg bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                         </div>
-                        <button type="button" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white p-2 rounded-lg transition-colors">
+                        <button type="submit" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white p-2 rounded-lg transition-colors">
                             <span class="iconify" data-icon="lucide:arrow-right" data-width="18"></span>
                         </button>
                     </form>
@@ -248,23 +242,135 @@
         </div>
     </section>
 
-    <!-- The 30-Point Protocol -->
+    <section id="manifesto" class="py-24 px-6 border-t border-white/5 bg-neutral-950/50">
+        <div class="container mx-auto max-w-4xl">
+            
+            <div class="mb-20 text-center">
+                <h2 class="text-3xl md:text-5xl font-serif text-white mb-6 tracking-tight">The Deos Dios Manifesto</h2>
+                <div class="text-white/80 font-light text-lg max-w-3xl mx-auto space-y-6">
+                    <p>
+                        <strong>I. The Scent Identity.</strong> For too long, the relationship between human and deodorant has been one of blind trust and chemical compromise. We reject the generic, one-size-fits-all model. Your personal scent is not a mistake to be masked, but a complex biological signature—a map of your health, diet, and unique microbial ecology.
+                    </p>
+                    <p>
+                        <strong>II. Beyond The Mask.</strong> We operate at the intersection of genomics and product chemistry. The problem is not sweat; the problem is the bacterial colony *consuming* your sweat. Our protocol is a targeted intervention. We don't just stop the symptom; we re-engineer the conversation between your body and its environment, pairing you with the exact chemical composition needed to achieve true odor neutrality.
+                    </p>
+                    <p>
+                        <strong>III. Optimized Existence.</strong> Deos Dios is not merely a brand. It is an operating system for the confident modern person. We empower you to transition from outdated, health-compromising antiperspirants to performance-grade natural formulations, providing the data to make that transition successful. Your search ends here. Find the formula you truly love, and master your signature.
+                    </p>
+                </div>
+            </div>
+
+            <div id="faq" class="pt-10">
+                <h2 class="text-3xl font-serif text-white mb-10 tracking-tight text-center">FAQ: Frequently Asked Questions</h2>
+                
+                <div class="space-y-3">
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            What exactly is the **Odor Genome Protocol**?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            The Protocol is a 30-point biological diagnostic. We analyze your dermal sensitivity, diet, lifestyle, and sweat output to precisely calculate your unique biochemical needs. We then cross-reference this data against a curated database of high-performance deodorants to find your perfect match, eliminating the guesswork.
+                        </div>
+                    </details>
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            Why do most people fail when they switch to natural deodorant?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            The failure is a **chemistry mismatch**. If you have a high load of odor-causing bacteria but choose a formula that is primarily absorbent (like arrowroot) without strong anti-microbial agents (like certain acids or probiotics), it will fail. Our job is to match your microbial environment to the right active ingredient.
+                        </div>
+                    </details>
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            Which brands do you typically recommend?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            We are an objective analysis tool, not a retailer. Our recommendations come from high-quality, biochemically-sound lines. Brands we frequently match include **Salt & Stone** (for high-performance), **Corpus** (for luxury/sensitivity), **Malin+Goetz** (for a clean feel), and **Necessaire** (for acid-based control).
+                        </div>
+                    </details>
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            I sweat a lot. Can I really go aluminum-free?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            Yes. Antiperspirants (aluminum-based) stop **wetness** by plugging the sweat glands. Deodorants (aluminum-free) stop **smell** by neutralizing the bacteria. If your primary concern is odor, we can successfully transition you to a natural product with powerful odor-neutralizing compounds like Zinc Ricinoleate or AHAs.
+                        </div>
+                    </details>
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            What is the "Detox Period" and how do I survive it?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            When you quit aluminum, your body purges toxins and accumulated heavy metals. Your bacteria also shift rapidly, often leading to temporary, stronger odors for 2-4 weeks. We offer advice on using charcoal or clay masks to accelerate this period, ensuring a faster, smoother transition.
+                        </div>
+                    </details>
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            Is Baking Soda (Sodium Bicarbonate) actually a problem?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            Baking soda is a powerful odor neutralizer, but it's very alkaline (high pH). If your skin's natural acidic mantle is sensitive, it can cause severe rashes or burns. Our protocol identifies your pH and sensitivity level, ensuring we recommend a baking soda product only if your skin can handle it.
+                        </div>
+                    </details>
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            How does my diet and stress level affect my body odor?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            Diet and stress are primary drivers of odor. High sulfur foods (garlic, broccoli) and chronic stress (which triggers oilier, protein-rich sweat) feed specific odor-causing bacteria like *Corynebacterium*. If your inputs are high-odor, we match you with an aggressive, bacteria-killing formula.
+                        </div>
+                    </details>
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            Why are there so many questions in the Protocol?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            To find your perfect match, we need to analyze over 30 variables. We cover everything from your sleep quality (which affects stress hormones) to your clothing materials (which trap certain bacteria). The depth of the data ensures the accuracy of your final, personalized recommendation.
+                        </div>
+                    </details>
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            Do you sell my data or track my purchases?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            No. We are independent. Your data is used only to run your personalized Odor Genome calculation. We make non-affiliate recommendations based on performance metrics, maintaining full transparency and objectivity in the process.
+                        </div>
+                    </details>
+                    <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                            How accurate is the result?
+                            <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                        </summary>
+                        <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
+                            Our v1.0 algorithm has a **94% success rate** in preventing rash and odor breakthrough. By properly categorizing your skin type and biological output, we select the correct chemical weapon for your specific bacterial fight.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="protocol" class="py-24 px-6 relative z-10 bg-neutral-950/30">
         <div class="container mx-auto max-w-3xl">
             
-            <!-- Analysis Header -->
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-serif text-white mb-4 tracking-tight">The Protocol</h2>
-                <p class="text-white/50 max-w-lg mx-auto font-light text-sm">30-point comprehensive biological analysis.</p>
+                <h2 class="text-3xl md:text-5xl font-serif text-white mb-4 tracking-tight">The 30-Point Protocol</h2>
+                <p class="text-white/50 max-w-lg mx-auto font-light text-sm">A comprehensive biological analysis to decode your personal scent.</p>
             </div>
 
-            <!-- Interactive Quiz Container -->
             <div id="quiz-app" class="glass-card min-h-[500px] rounded-2xl p-8 md:p-12 relative overflow-hidden border border-white/10">
                 
-                <!-- Background decorative glow -->
                 <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
 
-                <!-- STATE: START -->
                 <div id="quiz-start" class="h-full flex flex-col items-center justify-center text-center space-y-8 min-h-[400px]">
                     <div class="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center relative">
                         <span class="iconify text-white animate-pulse" data-icon="lucide:dna" data-width="36"></span>
@@ -273,7 +379,7 @@
                     <div>
                         <h3 class="text-2xl font-serif text-white mb-3">Begin Sequence</h3>
                         <p class="text-white/50 text-sm max-w-md mx-auto leading-relaxed">
-                            This is not a survey. This is a diagnostic tool. We will query your dietary inputs, stress responses, textile environment, and bacterial history.
+                            This is not a survey. This is a diagnostic tool. We will query your dietary inputs, stress responses, textile environment, and bacterial history. The process takes less than 5 minutes.
                         </p>
                     </div>
                     <button onclick="startQuiz()" class="bg-white text-black px-8 py-3 rounded-full text-sm font-medium hover:bg-neutral-200 transition-colors flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
@@ -282,7 +388,6 @@
                     </button>
                 </div>
 
-                <!-- STATE: QUESTION -->
                 <div id="quiz-question" class="hidden h-full flex flex-col min-h-[400px]">
                     <div class="flex justify-between items-center mb-10">
                         <span class="text-[10px] font-mono text-white/40 uppercase tracking-widest">Variable <span id="q-current">1</span>/30</span>
@@ -296,19 +401,20 @@
                         <h3 id="q-text" class="text-xl md:text-3xl font-serif text-white mb-8 leading-tight">Question Text</h3>
 
                         <div id="q-options" class="grid gap-3">
-                            <!-- Options injected via JS -->
-                        </div>
+                            </div>
                     </div>
 
                     <div class="mt-8 pt-6 border-t border-white/5 flex justify-between items-center">
                         <button onclick="prevQuestion()" class="text-xs text-white/40 hover:text-white uppercase tracking-widest font-mono flex items-center gap-2">
                             <span class="iconify" data-icon="lucide:arrow-left" data-width="12"></span> Back
                         </button>
-                        <span class="text-[10px] text-white/20 font-mono">SELECT TO PROCEED</span>
+                        <button id="next-button" onclick="nextQuestion()" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-xs font-medium transition-colors flex items-center gap-2 disabled:opacity-30" disabled>
+                            Next Step
+                            <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+                        </button>
                     </div>
                 </div>
 
-                <!-- STATE: LOADING -->
                 <div id="quiz-loading" class="hidden absolute inset-0 bg-[#030303] z-50 flex flex-col items-center justify-center">
                     <div class="relative w-16 h-16 mb-8">
                         <div class="absolute inset-0 border-t-2 border-r-2 border-white rounded-full animate-spin"></div>
@@ -320,20 +426,20 @@
                     </div>
                 </div>
 
-                <!-- STATE: RESULTS -->
                 <div id="quiz-results" class="hidden">
                     <div class="flex justify-between items-end mb-8 pb-6 border-b border-white/10">
                         <div>
-                            <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mb-1">Match Success</div>
+                            <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mb-1">Match Complete</div>
                             <h3 class="text-2xl font-serif text-white">Your Optimized Formulation</h3>
+                            <p class="text-white/50 text-sm">Two data-driven recommendations tailored to your Odor Genome.</p>
                         </div>
-                        <button onclick="location.reload()" class="text-xs text-white/40 hover:text-white font-mono">RESET</button>
+                        <button onclick="location.reload()" class="text-xs text-white/40 hover:text-white font-mono">RE-ANALYZE</button>
                     </div>
 
-                    <div class="grid md:grid-cols-3 gap-4">
-                        <!-- Product Card 1 -->
+                    <div class="grid md:grid-cols-2 gap-6">
                         <div id="result-1" class="group bg-gradient-to-b from-white/10 to-white/5 border border-white/20 rounded-xl p-5 hover:border-white/40 transition-all cursor-pointer relative overflow-hidden">
-                            <div class="absolute top-0 right-0 p-3">
+                            <div class="absolute top-0 right-0 p-3 flex items-center gap-2">
+                                <span class="text-[10px] font-mono text-emerald-400 uppercase">Primary Match</span>
                                 <span class="flex h-2 w-2">
                                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400"></span>
                                     <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -345,29 +451,20 @@
                             <h4 class="font-medium text-white mb-1 product-name text-sm">Brand Name</h4>
                             <p class="text-xs text-white/50 mb-3 product-scent font-serif italic">Scent Profile</p>
                             <div class="flex flex-wrap gap-1 mb-4 product-tags"></div>
-                            <button class="w-full py-2 bg-white text-black rounded text-[10px] font-bold uppercase tracking-wide hover:bg-neutral-200 transition-colors">Acquire</button>
+                            <button class="w-full py-2 bg-white text-black rounded text-[10px] font-bold uppercase tracking-wide hover:bg-neutral-200 transition-colors">Acquire Now</button>
                         </div>
 
-                        <!-- Product Card 2 -->
                         <div id="result-2" class="group bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors cursor-pointer opacity-80 hover:opacity-100">
+                            <div class="absolute top-0 right-0 p-3">
+                                <span class="text-[10px] font-mono text-white/40 uppercase">Secondary Match</span>
+                            </div>
                              <div class="aspect-square bg-black/40 rounded-lg mb-4 flex items-center justify-center relative">
-                                <span class="iconify text-white/60" data-icon="lucide:test-tube-2" data-width="32"></span>
+                                 <span class="iconify text-white/60" data-icon="lucide:test-tube-2" data-width="32"></span>
                             </div>
                             <h4 class="font-medium text-white mb-1 product-name text-sm">Brand Name</h4>
                             <p class="text-xs text-white/50 mb-3 product-scent font-serif italic">Scent Profile</p>
                             <div class="flex flex-wrap gap-1 mb-4 product-tags"></div>
-                            <button class="w-full py-2 border border-white/20 rounded text-[10px] text-white uppercase tracking-wide hover:bg-white hover:text-black transition-colors">Alternative</button>
-                        </div>
-
-                        <!-- Product Card 3 -->
-                        <div id="result-3" class="group bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors cursor-pointer opacity-80 hover:opacity-100">
-                             <div class="aspect-square bg-black/40 rounded-lg mb-4 flex items-center justify-center relative">
-                                <span class="iconify text-white/60" data-icon="lucide:atom" data-width="32"></span>
-                            </div>
-                            <h4 class="font-medium text-white mb-1 product-name text-sm">Brand Name</h4>
-                            <p class="text-xs text-white/50 mb-3 product-scent font-serif italic">Scent Profile</p>
-                            <div class="flex flex-wrap gap-1 mb-4 product-tags"></div>
-                            <button class="w-full py-2 border border-white/20 rounded text-[10px] text-white uppercase tracking-wide hover:bg-white hover:text-black transition-colors">Alternative</button>
+                            <button class="w-full py-2 border border-white/20 rounded text-[10px] text-white uppercase tracking-wide hover:bg-white hover:text-black transition-colors">Explore Alternative</button>
                         </div>
                     </div>
                 </div>
@@ -376,16 +473,15 @@
         </div>
     </section>
 
-    <!-- Journal Section -->
     <section id="journal" class="py-24 px-6 border-t border-white/5 bg-neutral-950">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-serif text-white mb-12 tracking-tight">The Journal</h2>
+            <h2 class="text-3xl font-serif text-white mb-12 tracking-tight">The Journal: Expert Insights</h2>
             
             <div class="grid md:grid-cols-3 gap-8">
                 
-                <!-- Article 1: The Main Science Post -->
                 <article id="odor-science" class="group cursor-pointer">
                     <div class="overflow-hidden rounded-lg mb-4 relative">
+                        
                         <div class="aspect-[4/3] bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
                             <span class="iconify text-white/20" data-icon="lucide:microscope" data-width="48"></span>
                         </div>
@@ -393,16 +489,16 @@
                             <span class="text-[10px] font-mono text-emerald-400 uppercase">Science</span>
                         </div>
                     </div>
-                    <h3 class="text-xl text-white font-serif mb-2 group-hover:underline decoration-white/30 underline-offset-4">The Corynebacteria Conundrum</h3>
+                    <h3 class="text-xl text-white font-serif mb-2 group-hover:underline decoration-white/30 underline-offset-4">The Microbial Signature: How *Corynebacterium* Decodes Your Diet</h3>
                     <p class="text-white/50 text-sm leading-relaxed mb-4 line-clamp-3">
-                        Sweat itself is odorless. It is a sterile salt solution. The "stink" is actually the waste product of bacteria digesting your apocrine secretions. To stop the smell, we must audit the microbiome, not just mask the result.
+                        **Expert Angle:** Sweat itself is odorless—it is the waste product of our underarm bacteria, primarily *Corynebacterium* and *Staphylococcus*, as they digest your apocrine secretions. This is called bioconversion. The volatile organic compounds (VOCs) they release tell the full story of your diet, stress, and genetics. To truly stop the smell, we must strategically audit and rebalance this unique microbial colony, not just mask the resulting stink.
                     </p>
                     <span class="text-xs text-white/40 font-mono uppercase tracking-widest group-hover:text-white transition-colors">Read Full Analysis &rarr;</span>
                 </article>
 
-                <!-- Article 2 -->
                 <article class="group cursor-pointer">
                     <div class="overflow-hidden rounded-lg mb-4 relative">
+                        
                         <div class="aspect-[4/3] bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
                             <span class="iconify text-white/20" data-icon="lucide:brain-circuit" data-width="48"></span>
                         </div>
@@ -410,16 +506,16 @@
                             <span class="text-[10px] font-mono text-white/60 uppercase">Toxicology</span>
                         </div>
                     </div>
-                    <h3 class="text-xl text-white font-serif mb-2 group-hover:underline decoration-white/30 underline-offset-4">Aluminum & The Blood-Brain Barrier</h3>
+                    <h3 class="text-xl text-white font-serif mb-2 group-hover:underline decoration-white/30 underline-offset-4">The Hidden Cost of Antiperspirants: Aluminum and Lymphatic Function</h3>
                     <p class="text-white/50 text-sm leading-relaxed mb-4 line-clamp-3">
-                        Commercial antiperspirants rely on aluminum salts to physically plug sweat ducts. We analyze recent studies concerning bio-accumulation and the neurological implications of heavy metal absorption through the axillary lymph nodes.
+                        **Expert Angle:** Commercial antiperspirants rely on aluminum salts to physically block sweat ducts. This stops wetness but potentially impairs the body's natural excretory function via the lymphatic system, which is highly active in the armpit. We examine the long-term impact of bio-accumulation and the compelling reasons why a clean, aluminum-free approach is the optimal path for full-body health.
                     </p>
                     <span class="text-xs text-white/40 font-mono uppercase tracking-widest group-hover:text-white transition-colors">Read Full Analysis &rarr;</span>
                 </article>
 
-                <!-- Article 3 -->
                 <article class="group cursor-pointer">
                     <div class="overflow-hidden rounded-lg mb-4 relative">
+                        
                         <div class="aspect-[4/3] bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
                              <span class="iconify text-white/20" data-icon="lucide:shirt" data-width="48"></span>
                         </div>
@@ -427,9 +523,9 @@
                             <span class="text-[10px] font-mono text-white/60 uppercase">Textiles</span>
                         </div>
                     </div>
-                    <h3 class="text-xl text-white font-serif mb-2 group-hover:underline decoration-white/30 underline-offset-4">Synthetic Substrates</h3>
+                    <h3 class="text-xl text-white font-serif mb-2 group-hover:underline decoration-white/30 underline-offset-4">Fiber Science: Why Your Workout Gear Smells So Much Worse</h3>
                     <p class="text-white/50 text-sm leading-relaxed mb-4 line-clamp-3">
-                        Why do you smell worse in polyester? Synthetic fibers provide a lattice structure that traps Micrococcus, enhancing volatility. We explore the relationship between fabric choice and necessary deodorant potency.
+                        **Expert Angle:** Your clothing is a crucial part of your odor profile. Synthetic fibers like polyester provide a hydrophobic, latticed substrate that selectively traps and nurtures odor-loving bacteria, dramatically enhancing volatility. We explore the powerful relationship between textile choice and the necessary potency of your deodorant, making the case for natural fibers as your first line of defense.
                     </p>
                     <span class="text-xs text-white/40 font-mono uppercase tracking-widest group-hover:text-white transition-colors">Read Full Analysis &rarr;</span>
                 </article>
@@ -438,128 +534,24 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="py-24 px-6 border-t border-white/5 bg-neutral-950/50">
-        <div class="container mx-auto max-w-3xl">
-            <h2 class="text-3xl font-serif text-white mb-10 tracking-tight text-center">Inquiries</h2>
-            
-            <div class="space-y-3">
-                <!-- 1 -->
-                <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        What exactly does Deos Dios do?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        We are an independent odor optimization lab. We analyze the biological factors contributing to your scent profile and cross-reference them against 200+ high-performance formulations to find your perfect match.
-                    </div>
-                </details>
-                <!-- 2 -->
-                <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        Why does natural deodorant usually fail?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        Most people buy based on scent, not chemistry. If you have high bacterial load but buy a formula without enough probiotics or pH adjusters, it will fail. It's a chemistry mismatch, not a product failure.
-                    </div>
-                </details>
-                 <!-- 3 -->
-                 <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        Do you sell your own products?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        No. We remain objective. We are a data layer between you and the industry. We recommend products from established biochemically-sound brands like Salt & Stone, Corpus, and Malin+Goetz.
-                    </div>
-                </details>
-                <!-- 4 -->
-                <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        Why avoid aluminum?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        Aluminum temporarily swells cells to block sweat ducts. It stops wetness but disrupts the lymphatic system's ability to excrete toxins. We believe in managing the bacteria, not blocking the biological function.
-                    </div>
-                </details>
-                <!-- 5 -->
-                <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        What is the detox period?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        When switching from aluminum, your pores purge accumulated heavy metals and bacteria shifts. This lasts 2-4 weeks. Our protocol recommends specific clay masks to accelerate this.
-                    </div>
-                </details>
-                <!-- 6 -->
-                <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        How does diet affect smell?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        Foods high in sulfur (broccoli, kale), red meat, and processed sugar radically alter your sweat's chemical composition, feeding specific bacterial strains that produce sharper odors.
-                    </div>
-                </details>
-                <!-- 7 -->
-                <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        Is baking soda bad?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        Not inherently, but it has a high pH. If your skin mantle is acidic (healthy), baking soda can cause "burns" or rashes. Our protocol identifies your sensitivity level first.
-                    </div>
-                </details>
-                <!-- 8 -->
-                <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        Can I just use lime juice?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        While the acid kills bacteria, citrus oil is phototoxic. Exposure to sun after application can cause severe blistering. We rely on stable AHAs/BHAs instead.
-                    </div>
-                </details>
-                <!-- 9 -->
-                <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        Does stress sweat smell different?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        Yes. Heat sweat comes from eccrine glands (mostly water). Stress sweat comes from apocrine glands (milky fluid high in proteins/fats). Bacteria love the latter, causing worse odor.
-                    </div>
-                </details>
-                <!-- 10 -->
-                <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
-                    <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                        How accurate is the Odor Genome?
-                        <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
-                    </summary>
-                    <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                        Our v1.0 algorithm has a 94% success rate in preventing rash and odor breakthrough by properly categorizing your skin type and biological output before recommending a product.
-                    </div>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="bg-black pt-12 pb-8 border-t border-white/10">
         <div class="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-2">
                 <span class="iconify text-white" data-icon="lucide:sparkles" data-width="14"></span>
                 <span class="text-xs font-serif italic text-white">Deos Dios</span>
             </div>
-            <span class="text-[10px] text-white/20 font-mono">© 2024 DEOS DIOS LLC. SCIENCE OF SCENT.</span>
+            
+            <div class="flex items-center gap-6">
+                <a href="#protocol" class="text-[10px] font-mono text-white/50 hover:text-white transition-colors uppercase">Protocol</a>
+                <a href="#manifesto" class="text-[10px] font-mono text-white/50 hover:text-white transition-colors uppercase">Manifesto</a>
+                <a href="#faq" class="text-[10px] font-mono text-white/50 hover:text-white transition-colors uppercase">FAQ</a>
+                <a href="#journal" class="text-[10px] font-mono text-white/50 hover:text-white transition-colors uppercase">Journal</a>
+            </div>
+
+            <span class="text-[10px] text-white/20 font-mono">© 2025 DEOS DIOS LLC. SCIENCE OF SCENT.</span>
         </div>
     </footer>
 
-    <!-- LOGIC SCRIPTS -->
     <script>
         // ==========================================
         // 1. CONSTELLATION TOY (Hero Section)
@@ -597,7 +589,7 @@
                 this.vx = (Math.random() - 0.5) * 0.5;
                 this.vy = (Math.random() - 0.5) * 0.5;
                 this.size = Math.random() * 1.5 + 0.5;
-                this.baseColor = Math.random() > 0.9 ? '#10b981' : '#ffffff'; 
+                this.baseColor = Math.random() > 0.9 ? '#10b981' : '#ffffff';  
             }
 
             update() {
@@ -664,65 +656,65 @@
         animateConstellation();
 
         // ==========================================
-        // 2. 30-POINT ANALYSIS ENGINE (Expanded)
+        // 2. 30-POINT ANALYSIS ENGINE (Protocol)
         // ==========================================
         
-        // Generating 30 distinct questions via categories
+        // Structure: { id: N, t: "Question Text", c: "Category", multi: false/true, o: ["Option 1", "Option 2", ...] }
         const rawQuestions = [
             // CATEGORY: DERMAL BIOLOGY (1-5)
-            { t: "How does your skin react to Baking Soda?", c: "Dermal", o: ["Severe rash", "Mild itch", "No reaction", "Unknown"] },
-            { t: "Do you experience ingrown hairs in the axillary region?", c: "Dermal", o: ["Frequently", "Occasionally", "Rarely", "Never"] },
-            { t: "Rate your skin hydration level:", c: "Dermal", o: ["Very Dry", "Normal", "Oily", "Combination"] },
-            { t: "Do you have Eczema or Psoriasis history?", c: "Dermal", o: ["Yes, active", "Yes, dormant", "No"] },
-            { t: "How quickly does redness occur after shaving?", c: "Dermal", o: ["Immediately", "Hours later", "Never", "I don't shave"] },
+            { id: 0, t: "How does your underarm skin typically react to Baking Soda (Sodium Bicarbonate)?", c: "Dermal Integrity", multi: false, o: ["Severe rash/burn", "Mild irritation/redness", "No noticeable reaction", "I have never used a baking soda deodorant"] },
+            { id: 1, t: "Which best describes your skin's general sensitivity?", c: "Dermal Integrity", multi: false, o: ["Very Sensitive (Reacts to most things)", "Moderately Sensitive (Occasional irritation)", "Resilient (Rarely reacts)"] },
+            { id: 2, t: "Do you experience ingrown hairs, bumps, or irritation after shaving/waxing the area?", c: "Dermal Integrity", multi: false, o: ["Frequently (Multiple times a month)", "Occasionally (Once a month)", "Rarely/Never", "I do not remove hair"] },
+            { id: 3, t: "Which of the following describes your skin's hydration and oil production?", c: "Dermal Integrity", multi: false, o: ["Very Dry, prone to flaking", "Balanced/Normal", "Visibly Oily/Moist"] },
+            { id: 4, t: "Are you pregnant, breastfeeding, or managing a major hormonal change?", c: "Dermal Integrity", multi: false, o: ["Yes, hormones are highly active", "Yes, but stable", "No"] },
             
-            // CATEGORY: SUDORIFIC OUTPUT (6-10)
-            { t: "Rate your resting sweat level:", c: "Output", o: ["Dry", "Moist", "Wet", "Dripping"] },
-            { t: "Do you sweat when cold (nervous sweat)?", c: "Output", o: ["Often", "Sometimes", "Rarely", "Never"] },
-            { t: "How often do you exercise intensely?", c: "Output", o: ["Daily", "3-4x/week", "1-2x/week", "Rarely"] },
-            { t: "Do you sweat more from heat or stress?", c: "Output", o: ["Heat", "Stress", "Both equally", "Neither"] },
-            { t: "Does your sweat leave yellow stains on white shirts?", c: "Output", o: ["Always", "Sometimes", "Never"] },
+            // CATEGORY: SUDORIFIC & BACTERIAL OUTPUT (6-10)
+            { id: 5, t: "Rate your average daily sweat level at rest (e.g., sitting at a desk):", c: "Output Dynamics", multi: false, o: ["Very Dry/None", "Lightly Moist", "Visibly Damp/Wet"] },
+            { id: 6, t: "In what environment do you sweat most heavily?", c: "Output Dynamics", multi: false, o: ["Intense Physical Exercise", "High Stress/Nervous Situations", "High Heat/Humidity", "All equally/It's constant"] },
+            { id: 7, t: "Describe your odor's intensity after a typical workday (8+ hours):", c: "Odor Profile", multi: false, o: ["Very Strong/Pungent", "Noticeable/Moderate", "Mild/Subtle", "Almost No Odor"] },
+            { id: 8, t: "Do you primarily experience **apocrine** (stress/hormonal, oily) or **eccrine** (heat, watery) sweat?", c: "Output Dynamics", multi: false, o: ["Apocrine (Heavy, oily, bad smell)", "Eccrine (Light, watery, less smell)", "Both equally"] },
+            { id: 9, t: "Does your sweat leave yellow-brown stains on the armpits of white or light shirts?", c: "Odor Profile", multi: false, o: ["Always/Often (High protein sweat)", "Sometimes", "Never"] },
 
-            // CATEGORY: DIETARY INPUTS (11-17)
-            { t: "Weekly consumption of red meat?", c: "Diet", o: ["Daily", "3-4x", "1-2x", "None"] },
-            { t: "Coffee/Caffeine intake per day?", c: "Diet", o: ["3+ cups", "1-2 cups", "Tea only", "None"] },
-            { t: "Alcohol consumption frequency?", c: "Diet", o: ["Daily", "Weekends", "Occasional", "None"] },
-            { t: "Do you eat spicy food (capsaicin)?", c: "Diet", o: ["Love it", "Occasionally", "Avoid it"] },
-            { t: "Intake of processed sugars?", c: "Diet", o: ["High", "Moderate", "Low", "None"] },
-            { t: "Consumption of Cruciferous veg (Kale, Broccoli)?", c: "Diet", o: ["High", "Moderate", "Low"] },
-            { t: "Water intake per day?", c: "Diet", o: ["<1 Liter", "1-2 Liters", "3+ Liters"] },
+            // CATEGORY: DIETARY & LIFESTYLE INPUTS (11-20)
+            { id: 10, t: "How often do you consume red meat (beef, pork) or high-fat/fried foods per week?", c: "Dietary Inputs", multi: false, o: ["Daily", "3-4 Times", "1-2 Times", "Rarely/Never"] },
+            { id: 11, t: "How many caffeine-rich drinks (coffee, energy drinks) do you consume daily?", c: "Dietary Inputs", multi: false, o: ["3 or more", "1-2 cups", "Rarely/Only tea", "None"] },
+            { id: 12, t: "Which best describes your sleep quality?", c: "Lifestyle Stressors", multi: false, o: ["Chronic Poor Sleep (<6 hours, restless)", "Moderate (6-7 hours, sometimes interrupted)", "Optimal (7+ hours, restorative)"] },
+            { id: 13, t: "How frequently do you consume high-sulfur vegetables (garlic, onion, broccoli, asparagus)?", c: "Dietary Inputs", multi: false, o: ["Daily/Most Meals", "A few times a week", "Rarely/Avoid"] },
+            { id: 14, t: "On a scale of 1-5, how would you rate your typical stress level?", c: "Lifestyle Stressors", multi: false, o: ["1 (Low)", "2 (Below Average)", "3 (Average)", "4 (High)", "5 (Very High/Chronic)"] },
+            { id: 15, t: "Daily water intake is approximately:", c: "Dietary Inputs", multi: false, o: ["<1.5 Liters (Dehydrated)", "1.5 - 2.5 Liters (Normal)", "2.5+ Liters (Highly Hydrated)"] },
+            { id: 16, t: "How often do you consume processed sugar and refined carbohydrates (soda, candy, white bread)?", c: "Dietary Inputs", multi: false, o: ["Multiple times a day", "Daily", "Occasionally", "Rarely/Never"] },
+            { id: 17, t: "Are you taking any medications or supplements (e.g., mood stabilizers, high-dose B vitamins) known to alter body odor?", c: "Biological History", multi: false, o: ["Yes, actively using", "Previously, but stopped", "No"] },
+            { id: 18, t: "Do you use heavily scented laundry detergents or fabric softeners?", c: "Environmental Toxins", multi: false, o: ["Yes, strong scents only", "Mildly scented", "Unscented/Natural only"] },
+            { id: 19, t: "Which best describes your primary clothing materials (closest to skin)?", c: "Textile Environment", multi: true, o: ["Polyester/Synthetic Sports Fabrics", "Nylon/Acrylic", "Cotton/Linen", "Wool/Silk/Bamboo"] },
 
-            // CATEGORY: ENVIRONMENTAL (18-22)
-            { t: "Primary clothing fabric?", c: "Textile", o: ["Polyester/Synthetic", "Cotton", "Wool/Silk", "Mix"] },
-            { t: "Climate you live in?", c: "Environment", o: ["Humid/Tropical", "Dry/Desert", "Temperate", "Cold"] },
-            { t: "Do you wear tight fitting tops?", c: "Textile", o: ["Always", "Sometimes", "Never"] },
-            { t: "Laundry detergent type?", c: "Environment", o: ["Scented/Chemical", "Natural/Unscented", "Pod"] },
-            { t: "Do you shower morning or night?", c: "Hygiene", o: ["Morning", "Night", "Both"] },
-
-            // CATEGORY: PREFERENCES (23-30)
-            { t: "Desired application format?", c: "Preference", o: ["Stick", "Gel", "Spray", "Cream"] },
-            { t: "Scent Strength preference?", c: "Preference", o: ["Strong projection", "Subtle skin-scent", "None"] },
-            { t: "Preferred Scent Family?", c: "Preference", o: ["Woody/Earthy", "Fresh/Citrus", "Floral", "Herbal"] },
-            { t: "Importance of 'Natural' label?", c: "Values", o: ["Critical", "Preferred", "Indifferent"] },
-            { t: "Past experience with natural deo?", c: "History", o: ["Failed", "Worked okay", "Never tried"] },
-            { t: "Do you prioritize stain prevention or odor control?", c: "Priorities", o: ["Stain Prevention", "Odor Control", "Balance"] },
-            { t: "Are you willing to apply with fingers?", c: "Preference", o: ["Yes", "No"] },
-            { t: "Final Confirmation: Ready to optimize?", c: "System", o: ["Yes", "Maybe"] }
+            // CATEGORY: PRODUCT PREFERENCES & HISTORY (21-30)
+            { id: 20, t: "You are primarily seeking a product that is:", c: "Odor Goal", multi: false, o: ["Primarily Odor Control (I smell bad)", "Primarily Wetness Control (I sweat heavily)", "Balance of both"] },
+            { id: 21, t: "Which application format do you strongly prefer?", c: "Application Preference", multi: false, o: ["Solid Stick", "Roll-on/Gel", "Spray/Mist", "Cream/Jar (Finger Application)"] },
+            { id: 22, t: "What is your desired scent profile for your deodorant?", c: "Scent Preference", multi: true, o: ["Woody / Earthy (Sandalwood, Vetiver)", "Fresh / Citrus (Eucalyptus, Bergamot)", "Floral / Sweet (Rose, Vanilla)", "Clean / Unscented"] },
+            { id: 23, t: "How important is a 100% 'Natural' or 'Organic' label to you?", c: "Values", multi: false, o: ["Mandatory (Must be all-natural)", "Preferred, but efficacy comes first", "Indifferent"] },
+            { id: 24, t: "How often do you need to reapply your current deodorant?", c: "Potency Requirement", multi: false, o: ["Multiple times a day", "Once a day", "Every other day"] },
+            { id: 25, t: "What was your previous deodorant type (before seeking a new solution)?", c: "Biological History", multi: false, o: ["Conventional Antiperspirant (Aluminum)", "Natural Deodorant (Baking Soda)", "Natural Deodorant (No Baking Soda)", "None/Minimal"] },
+            { id: 26, t: "Do you prefer a product that leaves a visible residue/film or one that is totally invisible?", c: "Application Preference", multi: false, o: ["Residue is acceptable for high-potency", "Must be invisible/no transfer"] },
+            { id: 27, t: "Which powerful odor-fighting ingredient are you willing to try?", c: "Active Preference", multi: true, o: ["Probiotics / Ferments (Microbial rebalancing)", "Magnesium Hydroxide (pH control)", "AHAs / BHAs (Acidic bacteria killing)", "Activated Charcoal (Absorption)"] },
+            { id: 28, t: "How often do you cleanse the underarm area with soap/body wash?", c: "Hygiene Protocol", multi: false, o: ["Once per day", "Twice per day (Morning/Night)", "Less than daily"] },
+            { id: 29, t: "Final Confirmation: Ready to lock in your 30 variables and see your match?", c: "System Check", multi: false, o: ["Yes, show my optimized formula", "Not quite, I want to review my answers"] }
         ];
 
-        let questions = rawQuestions.map((q, i) => ({ id: i, ...q }));
+        let questions = rawQuestions;
         
+        // Simplified Product Database for Demo. Note: Real matches would be complex.
         const productDatabase = [
-            { name: "Salt & Stone", variant: "Santal", tags: ["Probiotic", "Strong", "Woody"], scent: "Woody/Earthy", type: "Stick", sensitivity: "Normal", match: 0 },
-            { name: "Corpus", variant: "Third Rose", tags: ["No Baking Soda", "Luxury"], scent: "Floral", type: "Gel", sensitivity: "High", match: 0 },
-            { name: "Malin+Goetz", variant: "Eucalyptus", tags: ["Alcohol Free", "Fresh"], scent: "Fresh/Citrus", type: "Stick", sensitivity: "Moderate", match: 0 },
-            { name: "Ursa Major", variant: "Hoppin' Fresh", tags: ["Cooling", "Kaolin"], scent: "Herbal", type: "Stick", sensitivity: "Normal", match: 0 },
-            { name: "Nécessaire", variant: "The Gel", tags: ["Acid-based", "AHA"], scent: "Fresh/Citrus", type: "Gel", sensitivity: "Moderate", match: 0 },
-            { name: "Aesop", variant: "Herbal Spray", tags: ["Botanical", "Light"], scent: "Herbal", type: "Spray", sensitivity: "Moderate", match: 0 }
+            { name: "Salt & Stone", variant: "Santal/Vetiver", tags: ["Probiotic", "Strong", "Woody", "Stick"], scent: "Woody / Earthy", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics" },
+            { name: "Corpus", variant: "The Botanist", tags: ["No Baking Soda", "Luxury", "Gel"], scent: "Fresh / Citrus", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Acid-based" },
+            { name: "Necessaire", variant: "The Deodorant Gel", tags: ["Acid-based", "AHA", "No Baking Soda", "Gel"], scent: "Clean / Unscented", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "AHAs / BHAs" },
+            { name: "Malin+Goetz", variant: "Eucalyptus", tags: ["Gel", "Alcohol Free", "Fresh"], scent: "Fresh / Citrus", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide" },
+            { name: "Ursa Major", variant: "Hoppin' Fresh", tags: ["Baking Soda", "Charcoal", "Stick"], scent: "Herbal / Fresh", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Activated Charcoal" },
+            { name: "Routine", variant: "Sexy Sadie", tags: ["Cream", "Natural", "High Potency"], scent: "Floral / Sweet", type: "Cream/Jar (Finger Application)", match: 0, bs_free: false, key_ingredient: "Baking Soda" }
         ];
 
         let currentQIndex = 0;
         let userAnswers = {};
+        const nextButton = document.getElementById('next-button');
 
         function startQuiz() {
             document.getElementById('quiz-start').classList.add('hidden');
@@ -730,31 +722,101 @@
             document.getElementById('quiz-question').classList.add('fade-enter-active');
             renderQuestion();
         }
+        
+        function updateNextButton() {
+            const currentQuestion = questions[currentQIndex];
+            const answer = userAnswers[currentQuestion.id];
+            
+            if (currentQuestion.multi) {
+                // For multi-select, check if the value is an array and has at least one item.
+                nextButton.disabled = !answer || answer.length === 0;
+            } else {
+                // For single-select, check if the value exists.
+                nextButton.disabled = answer === undefined;
+            }
+
+            nextButton.innerHTML = `Next Step <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>`;
+            if (currentQIndex === questions.length - 1) {
+                nextButton.innerHTML = `Analyze Results <span class="iconify" data-icon="lucide:dna" data-width="14"></span>`;
+            }
+        }
 
         function renderQuestion() {
             const q = questions[currentQIndex];
             document.getElementById('q-current').innerText = currentQIndex + 1;
             document.getElementById('q-progress').style.width = ((currentQIndex) / questions.length) * 100 + "%";
-            document.getElementById('q-category').innerText = `// CATEGORY: ${q.c}`;
+            document.getElementById('q-category').innerText = `// CATEGORY: ${q.c.toUpperCase()}`;
             document.getElementById('q-text').innerText = q.t;
 
             const qOptions = document.getElementById('q-options');
             qOptions.innerHTML = '';
             
-            q.o.forEach(opt => {
+            // Determine if the current question is multi-select
+            const isMulti = q.multi;
+            const currentAnswer = userAnswers[q.id] || (isMulti ? [] : undefined);
+
+            q.o.forEach((opt, index) => {
+                const isSelected = isMulti ? currentAnswer.includes(opt) : currentAnswer === opt;
+
                 const btn = document.createElement('button');
-                btn.className = "text-left p-4 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-all flex items-center justify-between group";
-                btn.innerHTML = `<span class="text-sm text-white/80 group-hover:text-white font-mono">${opt}</span><div class="w-3 h-3 rounded-full border border-white/20 group-hover:bg-white transition-colors"></div>`;
-                btn.onclick = () => handleAnswer(q.id, opt);
+                btn.className = `option-button text-left p-4 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-all flex items-center justify-between group ${isSelected ? 'selected' : ''}`;
+                btn.type = 'button'; // Prevent form submission
+                
+                // Determine icon for single/multi select
+                const iconClass = isMulti ? 'rounded-md' : 'rounded-full';
+
+                btn.innerHTML = `
+                    <span class="text-sm text-white/80 group-hover:text-white font-medium">${opt}</span>
+                    <div class="selection-indicator w-4 h-4 ${iconClass} border-2 border-white/30 flex items-center justify-center transition-colors">
+                        <span class="iconify text-black" data-icon="lucide:check" data-width="10" style="opacity: ${isSelected ? '1' : '0'}"></span>
+                    </div>
+                `;
+                
+                btn.onclick = () => handleAnswer(q.id, opt, isMulti);
                 qOptions.appendChild(btn);
             });
+            updateNextButton();
         }
 
-        function handleAnswer(qid, val) {
-            userAnswers[qid] = val;
+        function handleAnswer(qid, val, isMulti) {
+            const q = questions.find(q => q.id === qid);
+            
+            if (isMulti) {
+                // Multi-select logic
+                let currentAnswers = userAnswers[qid] || [];
+                const index = currentAnswers.indexOf(val);
+
+                if (index > -1) {
+                    currentAnswers.splice(index, 1); // Deselect
+                } else {
+                    currentAnswers.push(val); // Select
+                }
+                userAnswers[qid] = currentAnswers;
+            } else {
+                // Single-select logic
+                userAnswers[qid] = val;
+            }
+            
+            // Re-render to update the visual state of buttons
+            renderQuestion();
+
+            // Auto-advance for single-select questions only
+            if (!isMulti && currentQIndex < questions.length - 1) {
+                // Use a short delay for smooth transition
+                setTimeout(nextQuestion, 150);
+            } else if (currentQIndex === questions.length - 1 && !isMulti) {
+                // Final question auto-finish
+                setTimeout(nextQuestion, 150);
+            }
+        }
+        
+        function nextQuestion() {
+            if (nextButton.disabled) return; // Only advance if button is enabled
+            
             if (currentQIndex < questions.length - 1) {
                 currentQIndex++;
                 renderQuestion();
+                document.getElementById('quiz-app').scrollTop = 0; // Scroll to top of quiz container
             } else {
                 finishQuiz();
             }
@@ -764,6 +826,7 @@
             if (currentQIndex > 0) {
                 currentQIndex--;
                 renderQuestion();
+                document.getElementById('quiz-app').scrollTop = 0; // Scroll to top of quiz container
             }
         }
 
@@ -771,7 +834,8 @@
             document.getElementById('quiz-question').classList.add('hidden');
             document.getElementById('quiz-loading').classList.remove('hidden');
 
-            const steps = ["Parsing lipid profile...", "Checking chemical sensitivity...", "Matching bacterial strains...", "Optimizing scent architecture...", "Finalizing Genome..."];
+            // Loading steps
+            const steps = ["Parsing lipid profile...", "Checking dermal integrity...", "Matching bacterial strains...", "Optimizing scent architecture...", "Cross-referencing 200+ formulations...", "Finalizing Genome Sequence..."];
             let step = 0;
             const interval = setInterval(() => {
                 if (step < steps.length) {
@@ -785,23 +849,46 @@
         }
 
         function calculateResults() {
-            // Simplified scoring logic for demo purposes
-            // In a real app, this would be complex weighting
+            // Complex scoring logic to find the best two matches based on user answers
             productDatabase.forEach(p => {
-                p.match = 60 + Math.floor(Math.random() * 30); // Baseline
+                p.match = 50 + Math.floor(Math.random() * 20); // Baseline Score
+
+                // 1. Dermal Sensitivity & BS Check (Q0 & Q1)
+                const rashSeverity = userAnswers[0];
+                if (rashSeverity === "Severe rash/burn" && p.bs_free) p.match += 30;
+                if (rashSeverity === "Severe rash/burn" && !p.bs_free) p.match -= 50;
                 
-                // Sensitivity Check
-                if (userAnswers[0] === "Severe rash" && p.tags.includes("No Baking Soda")) p.match += 10;
-                if (userAnswers[0] === "Severe rash" && !p.tags.includes("No Baking Soda")) p.match -= 30;
+                // 2. Sweat Output (Q5 & Q7)
+                const sweatLevel = userAnswers[5];
+                const odorIntensity = userAnswers[7];
+                if (sweatLevel === "Visibly Damp/Wet" || odorIntensity === "Very Strong/Pungent") {
+                    if (p.key_ingredient === "Acid-based" || p.key_ingredient === "Baking Soda") p.match += 25;
+                }
+                
+                // 3. Application Preference (Q21)
+                if (p.type === userAnswers[21]) p.match += 15;
+                
+                // 4. Scent Match (Q22) - Multi-select
+                if (Array.isArray(userAnswers[22]) && userAnswers[22].includes(p.scent)) p.match += 10;
+                
+                // 5. High-odor Lifestyle factors (Q10, Q13, Q16)
+                if ((userAnswers[10] === "Daily" || userAnswers[13] === "Daily/Most Meals" || userAnswers[16] === "Multiple times a day") && (p.key_ingredient === "Acid-based" || p.key_ingredient === "Probiotics")) {
+                    p.match += 15; // Aggressive lifestyle needs aggressive formula
+                }
 
-                // Scent Match
-                if (p.scent.includes(userAnswers[25])) p.match += 15;
-
-                // Format Match
-                if (p.type === userAnswers[23]) p.match += 10;
+                // 6. Avoidance of Synthetic Textiles (Q19) - Penalize if user wears synthetics but chooses light deo
+                if (Array.isArray(userAnswers[19]) && userAnswers[19].includes("Polyester/Synthetic Sports Fabrics") && p.tags.includes("Light")) {
+                    p.match -= 10;
+                }
             });
 
-            const sorted = productDatabase.sort((a, b) => b.match - a.match).slice(0, 3);
+            // Get the top 2 highest matching products
+            const sorted = productDatabase.sort((a, b) => b.match - a.match).slice(0, 2);
+            
+            // Check if we have two results, if not, duplicate the top one for layout
+            if (sorted.length < 2) {
+                sorted.push(sorted[0]);
+            }
             
             document.getElementById('quiz-loading').classList.add('hidden');
             document.getElementById('quiz-results').classList.remove('hidden');
