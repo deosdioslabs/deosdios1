@@ -844,7 +844,96 @@
         if(window.location.hash === '#protocol') {
             showPage('protocol');
         }
-    </script>
+        <script>
+/* ===================== ROUTING ===================== */
+
+function setRoute(route) {
+  location.hash = route;
+}
+
+function showRoute(route) {
+  const sections = document.querySelectorAll('.page-section');
+  sections.forEach(s => s.classList.remove('active'));
+
+  const idMap = {
+    home: 'home-page',
+    about: 'about-page',
+    manifesto: 'about-page',
+    protocol: 'protocol-page',
+    faq: 'faq-page'
+  };
+
+  const targetId = idMap[route] || 'home-page';
+  const target = document.getElementById(targetId);
+  if (target) target.classList.add('active');
+
+  const navLinks = document.getElementById('navLinks');
+  if (navLinks) navLinks.classList.remove('active');
+
+  window.scrollTo(0, 0);
+}
+
+window.showPage = function(page) {
+  setRoute(page);
+  showRoute(page);
+};
+
+/* ===================== MOBILE MENU ===================== */
+
+window.toggleMobileMenu = function() {
+  const navLinks = document.getElementById('navLinks');
+  if (navLinks) navLinks.classList.toggle('active');
+};
+
+/* ===================== PROTOCOL ENGINE ===================== */
+
+let currentQuestion = 0;
+const answers = {};
+
+function highlightAnswer(button) {
+  const siblings = button.parentElement.querySelectorAll('button');
+  siblings.forEach(b => b.classList.remove('selected-answer'));
+  button.classList.add('selected-answer');
+}
+
+function nextQuestion() {
+  const questions = document.querySelectorAll('.protocol-question');
+
+  if (currentQuestion < questions.length - 1) {
+    questions[currentQuestion].classList.remove('active');
+    currentQuestion++;
+    questions[currentQuestion].classList.add('active');
+  }
+}
+
+window.selectAnswer = function(questionId, value, btn) {
+  answers[questionId] = value;
+  highlightAnswer(btn);
+  setTimeout(nextQuestion, 300);
+};
+
+/* ===================== PAGE LOAD ===================== */
+
+window.addEventListener('load', () => {
+  const hash = location.hash.replace('#','');
+  showRoute(hash || 'home');
+
+  // activate first protocol step
+  const questions = document.querySelectorAll('.protocol-question');
+  if (questions.length) {
+    questions.forEach(q => q.classList.remove('active'));
+    currentQuestion = 0;
+    questions[0].classList.add('active');
+  }
+});
+
+/* ===================== URL CHANGE ===================== */
+
+window.addEventListener('hashchange', () => {
+  const hash = location.hash.replace('#','');
+  showRoute(hash || 'home');
+});
+</script>
 
 </body>
 </html>
