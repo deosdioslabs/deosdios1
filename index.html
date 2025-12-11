@@ -118,17 +118,18 @@
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
         }
         
-        /* Print Styles for PDF */
+        /* Print Styles for Report (Removed PDF elements) */
         @media print {
             body { background-color: white !important; color: black !important; }
             #quiz-results, #article-detail { 
-                /* Ensures results page prints cleanly */
                 background-color: white !important;
                 color: black !important;
+                padding-top: 50px; /* Add space for printed report */
             }
             #quiz-results h3, #quiz-results h4 { color: black !important; }
             .no-print { display: none !important; }
-            .product-image { filter: grayscale(100%); } /* For better monochrome printing */
+            .product-image { filter: grayscale(100%); }
+            .report-summary-title { color: black !important; border-color: black !important; }
         }
     </style>
 </head>
@@ -167,7 +168,7 @@
                             <span class="text-[10px] font-medium tracking-wide uppercase text-white/70">Odor Genome v1.0</span>
                         </div>
                         <div class="text-[10px] font-medium tracking-wide uppercase text-white/70">
-                            | 94% Success Rate (<a href="#faq" class="underline hover:text-white transition-colors">See FAQ</a>)
+                            | Success Rate Growing with Data (<a href="#faq" class="underline hover:text-white transition-colors">See FAQ</a>)
                         </div>
                     </div>
 
@@ -294,7 +295,7 @@
                         <div>
                             <h3 class="text-2xl font-serif text-white mb-3">Begin Sequence</h3>
                             <p class="text-white/50 text-sm max-w-md mx-auto leading-relaxed mb-4">
-                                This is a diagnostic tool, not a survey. Your personalized Odor Genome report will be generated after completing the 30 questions.
+                                This is a diagnostic tool, not a survey. Your personalized Odor Genome Report will be generated after completing the 30 questions.
                             </p>
                             <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-emerald-500/50 bg-emerald-900/30">
                                 <span class="text-xl font-bold font-mono text-emerald-300">$11.00</span>
@@ -350,11 +351,11 @@
                             <div>
                                 <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mb-1">Match Complete</div>
                                 <h3 class="text-2xl font-serif text-white">Your Optimized Formulation</h3>
-                                <p class="text-white/50 text-sm">Two data-driven recommendations tailored to your Odor Genome.</p>
+                                <p class="text-white/50 text-sm">A personalized report based on your 30 variables. Save this page for future reference.</p>
                             </div>
                             <div class="flex gap-4 mt-4 md:mt-0 text-right">
                                 <button onclick="window.print()" class="text-xs text-white/40 hover:text-white font-mono uppercase flex items-center gap-1">
-                                    <span class="iconify" data-icon="lucide:download" data-width="12"></span> DOWNLOAD PDF
+                                    <span class="iconify" data-icon="lucide:printer" data-width="12"></span> PRINT/SAVE REPORT
                                 </button>
                                 <button onclick="location.reload()" class="text-xs text-white/40 hover:text-white font-mono uppercase">
                                     RE-ANALYZE
@@ -536,11 +537,44 @@
                                 <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
                             </summary>
                             <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                                Our v1.0 algorithm has a **94% success rate** in preventing rash and odor breakthrough. By properly categorizing your skin type and biological output, we select the correct chemical weapon for your specific bacterial fight.
+                                Our predictive algorithm is continuously refined by user data, ensuring a **growing rate of success** in optimizing individual odor profiles.
                             </div>
                         </details>
                     </div>
                 </div>
+
+                <div id="lexicon" class="pt-20">
+                    <h2 class="text-3xl font-serif text-white mb-10 tracking-tight text-center">The Odor Lexicon</h2>
+                    <p class="text-white/50 text-sm mb-8 text-center max-w-xl mx-auto">Master the vocabulary of your biological signature. Essential terms from the Deos Dios Protocol.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-4 text-left">
+                        <div class="py-2 border-b border-white/10">
+                            <h4 class="font-mono text-xs text-emerald-400 mb-1">Apocrine Sweat</h4>
+                            <p class="text-xs text-white/70">The oily, protein-rich sweat produced by stress and hormones. This is the **primary fuel source** for odor-causing bacteria.</p>
+                        </div>
+                        <div class="py-2 border-b border-white/10">
+                            <h4 class="font-mono text-xs text-emerald-400 mb-1">Bioconversion</h4>
+                            <p class="text-xs text-white/70">The chemical process where bacteria (like *Corynebacterium*) digest odorless sweat compounds and convert them into pungent, volatile acids.</p>
+                        </div>
+                        <div class="py-2 border-b border-white/10">
+                            <h4 class="font-mono text-xs text-emerald-400 mb-1">AHA/BHA (Targeted Acids)</h4>
+                            <p class="text-xs text-white/70">Alpha/Beta Hydroxy Acids (e.g., Mandelic Acid). Used to lower the armpit's pH, creating an **acidic barrier** that inhibits bacterial growth.</p>
+                        </div>
+                        <div class="py-2 border-b border-white/10">
+                            <h4 class="font-mono text-xs text-emerald-400 mb-1">Corynebacterium</h4>
+                            <p class="text-xs text-white/70">The dominant bacterial genus responsible for producing the sharp, sour-smelling volatile fatty acids (BO). Your arch-nemesis.</p>
+                        </div>
+                         <div class="py-2 border-b border-white/10">
+                            <h4 class="font-mono text-xs text-emerald-400 mb-1">Zinc Ricinoleate</h4>
+                            <p class="text-xs text-white/70">A powerful chemical compound derived from castor oil. It **traps and neutralizes** odor molecules without interfering with the skin's natural flora or sweat function.</p>
+                        </div>
+                        <div class="py-2 border-b border-white/10">
+                            <h4 class="font-mono text-xs text-emerald-400 mb-1">Odor Volatility</h4>
+                            <p class="text-xs text-white/70">The speed and intensity with which odor-causing acids evaporate. High volatility is enhanced by synthetic fabrics and heat.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -749,7 +783,6 @@
             requestAnimationFrame(animateConstellation);
         }
 
-        // Only run resize/animate if canvas context exists (i.e., we are on the home view initially)
         if (canvas && ctx) {
             resize();
             animateConstellation();
@@ -758,32 +791,36 @@
         // END CONSTELLATION
         // ==========================================
         
+        // ==========================================
+        // 2. 30-POINT ANALYSIS ENGINE (Protocol Logic) - IMPROVED QUESTIONS
+        // ==========================================
+        
         const rawQuestions = [
             // CATEGORY: DERMAL BIOLOGY (1-5)
             { id: 0, t: "How does your underarm skin typically react to Baking Soda (Sodium Bicarbonate)?", c: "Dermal Integrity", multi: false, o: ["Severe rash/burn", "Mild irritation/redness", "No noticeable reaction", "I have never used a baking soda deodorant"] },
-            { id: 1, t: "Which best describes your skin's general sensitivity?", c: "Dermal Integrity", multi: false, o: ["Very Sensitive (Reacts to most things)", "Moderately Sensitive (Occasional irritation)", "Resilient (Rarely reacts)"] },
+            { id: 1, t: "Which best describes your skin's general sensitivity?", c: "Dermal Integrity", multi: false, o: ["Highly Reactive (Visible rash/burn to many ingredients)", "Moderately Sensitive (Occasional itch/redness)", "Tolerant (Rarely sensitive)"] },
             { id: 2, t: "Do you experience ingrown hairs, bumps, or irritation after shaving/waxing the area?", c: "Dermal Integrity", multi: false, o: ["Frequently (Multiple times a month)", "Occasionally (Once a month)", "Rarely/Never", "I do not remove hair"] },
             { id: 3, t: "Which of the following describes your skin's hydration and oil production?", c: "Dermal Integrity", multi: false, o: ["Very Dry, prone to flaking", "Balanced/Normal", "Visibly Oily/Moist"] },
-            { id: 4, t: "Are you pregnant, breastfeeding, or managing a major hormonal change?", c: "Dermal Integrity", multi: false, o: ["Yes, hormones are highly active", "Yes, but stable", "No"] },
+            { id: 4, t: "Are you undergoing significant hormonal status change (e.g., pregnancy, major medication shift)?", c: "Hormonal Status", multi: false, o: ["Yes, hormones are highly active", "Yes, but stable", "No"] },
             
             // CATEGORY: SUDORIFIC & BACTERIAL OUTPUT (6-10)
             { id: 5, t: "Rate your average daily sweat level at rest (e.g., sitting at a desk):", c: "Output Dynamics", multi: false, o: ["Very Dry/None", "Lightly Moist", "Visibly Damp/Wet"] },
             { id: 6, t: "In what environment do you sweat most heavily?", c: "Output Dynamics", multi: false, o: ["Intense Physical Exercise", "High Stress/Nervous Situations", "High Heat/Humidity", "All equally/It's constant"] },
             { id: 7, t: "Describe your odor's intensity after a typical workday (8+ hours):", c: "Odor Profile", multi: false, o: ["Very Strong/Pungent", "Noticeable/Moderate", "Mild/Subtle", "Almost No Odor"] },
-            { id: 8, t: "Do you primarily experience **apocrine** (stress/hormonal, oily) or **eccrine** (heat, watery) sweat?", c: "Output Dynamics", multi: false, o: ["Apocrine (Heavy, oily, bad smell)", "Eccrine (Light, watery, less smell)", "Both equally"] },
+            { id: 8, t: "Do you primarily experience stress-induced (apocrine) or heat-induced (eccrine) sweat?", c: "Output Dynamics", multi: false, o: ["Apocrine (Oily, strong smell)", "Eccrine (Watery, mild smell)", "Both equally"] },
             { id: 9, t: "Does your sweat leave yellow-brown stains on the armpits of white or light shirts?", c: "Odor Profile", multi: false, o: ["Always/Often (High protein sweat)", "Sometimes", "Never"] },
 
             // CATEGORY: DIETARY & LIFESTYLE INPUTS (11-20)
             { id: 10, t: "How often do you consume red meat (beef, pork) or high-fat/fried foods per week?", c: "Dietary Inputs", multi: false, o: ["Daily", "3-4 Times", "1-2 Times", "Rarely/Never"] },
             { id: 11, t: "How many caffeine-rich drinks (coffee, energy drinks) do you consume daily?", c: "Dietary Inputs", multi: false, o: ["3 or more", "1-2 cups", "Rarely/Only tea", "None"] },
             { id: 12, t: "Which best describes your sleep quality?", c: "Lifestyle Stressors", multi: false, o: ["Chronic Poor Sleep (<6 hours, restless)", "Moderate (6-7 hours, sometimes interrupted)", "Optimal (7+ hours, restorative)"] },
-            { id: 13, t: "How frequently do you consume high-sulfur vegetables (garlic, onion, broccoli, asparagus)?", c: "Dietary Inputs", multi: false, o: ["Daily/Most Meals", "A few times a week", "Rarely/Avoid"] },
-            { id: 14, t: "On a scale of 1-5, how would you rate your typical stress level?", c: "Lifestyle Stressors", multi: false, o: ["1 (Low)", "2 (Below Average)", "3 (Average)", "4 (High)", "5 (Very High/Chronic)"] },
+            { id: 13, t: "How frequently do you consume high-sulfur vegetables (garlic, onion, broccoli, asparagus)?", c: "Dietary Inputs", multi: false, o: ["Daily/Multiple Servings", "A few times a week", "Rarely/Avoid"] },
+            { id: 14, t: "Which word best describes your typical daily stress level?", c: "Lifestyle Stressors", multi: false, o: ["Relaxed/Calm", "Busy/Manageable", "High-pressure/Demanding", "Chronic/Overwhelming"] },
             { id: 15, t: "Daily water intake is approximately:", c: "Dietary Inputs", multi: false, o: ["<1.5 Liters (Dehydrated)", "1.5 - 2.5 Liters (Normal)", "2.5+ Liters (Highly Hydrated)"] },
             { id: 16, t: "How often do you consume processed sugar and refined carbohydrates (soda, candy, white bread)?", c: "Dietary Inputs", multi: false, o: ["Multiple times a day", "Daily", "Occasionally", "Rarely/Never"] },
             { id: 17, t: "Are you taking any medications or supplements (e.g., mood stabilizers, high-dose B vitamins) known to alter body odor?", c: "Biological History", multi: false, o: ["Yes, actively using", "Previously, but stopped", "No"] },
             { id: 18, t: "Do you use heavily scented laundry detergents or fabric softeners?", c: "Environmental Toxins", multi: false, o: ["Yes, strong scents only", "Mildly scented", "Unscented/Natural only"] },
-            { id: 19, t: "Which best describes your primary clothing materials (closest to skin)?", c: "Textile Environment", multi: true, o: ["Polyester/Synthetic Sports Fabrics", "Nylon/Acrylic", "Cotton/Linen", "Wool/Silk/Bamboo"] },
+            { id: 19, t: "Which best describes your primary clothing materials (closest to skin)?", c: "Textile Environment", multi: true, o: ["Synthetic Sports Fabrics (e.g., Nylon/Polyester)", "Other Synthetic/Acrylic", "Cotton/Linen/Hemp", "Wool/Silk/Bamboo"] },
 
             // CATEGORY: PRODUCT PREFERENCES & HISTORY (21-30)
             { id: 20, t: "You are primarily seeking a product that is:", c: "Odor Goal", multi: false, o: ["Primarily Odor Control (I smell bad)", "Primarily Wetness Control (I sweat heavily)", "Balance of both"] },
@@ -793,7 +830,7 @@
             { id: 24, t: "How often do you need to reapply your current deodorant?", c: "Potency Requirement", multi: false, o: ["Multiple times a day", "Once a day", "Every other day"] },
             { id: 25, t: "What was your previous deodorant type (before seeking a new solution)?", c: "Biological History", multi: false, o: ["Conventional Antiperspirant (Aluminum)", "Natural Deodorant (Baking Soda)", "Natural Deodorant (No Baking Soda)", "None/Minimal"] },
             { id: 26, t: "Do you prefer a product that leaves a visible residue/film or one that is totally invisible?", c: "Application Preference", multi: false, o: ["Residue is acceptable for high-potency", "Must be invisible/no transfer"] },
-            { id: 27, t: "Which powerful odor-fighting ingredient are you willing to try?", c: "Active Preference", multi: true, o: ["Probiotics / Ferments (Microbial rebalancing)", "Magnesium Hydroxide (pH control)", "AHAs / BHAs (Acidic bacteria killing)", "Activated Charcoal (Absorption)"] },
+            { id: 27, t: "Which powerful odor-fighting ingredient are you willing to try?", c: "Active Preference", multi: true, o: ["Probiotics / Ferments (Microbial rebalancing)", "Magnesium Hydroxide (pH control)", "AHA / BHA (Targeted Acids)", "Activated Charcoal (Absorption)"] },
             { id: 28, t: "How often do you cleanse the underarm area with soap/body wash?", c: "Hygiene Protocol", multi: false, o: ["Once per day", "Twice per day (Morning/Night)", "Less than daily"] },
             { id: 29, t: "Final Confirmation: Ready to lock in your 30 variables and see your match?", c: "System Check", multi: false, o: ["Yes, show my optimized formula", "Not quite, I want to review my answers"] }
         ];
@@ -949,7 +986,7 @@
                     if (p.bs_free) p.match += 30;
                     if (!p.bs_free) p.match -= 50;
                     coreChallenge = "Baking Soda Sensitive / Inflammation Risk";
-                } else if (userAnswers[1] === "Very Sensitive (Reacts to most things)") {
+                } else if (userAnswers[1] === "Highly Reactive (Visible rash/burn to many ingredients)") {
                     coreChallenge = "High Dermal Sensitivity";
                 } else {
                     coreChallenge = "Normal Dermal Resilience";
@@ -960,14 +997,14 @@
                 const odorIntensity = userAnswers[7];
                 if (sweatLevel === "Visibly Damp/Wet" || odorIntensity === "Very Strong/Pungent") {
                     if (p.key_ingredient.includes("Acid") || p.key_ingredient.includes("Baking Soda")) p.match += 25;
-                    if (coreChallenge === "Normal Dermal Resilience") coreChallenge = "High Odor/Microbial Load";
+                    if (coreChallenge.includes("Normal")) coreChallenge = "High Microbial Load";
                 }
                 
                 // Set Active Requirement based on key needs (simplified logic)
-                if (p.match > 80 && p.key_ingredient.includes("Acid")) activeRequirement = "AHAs, pH Modifiers, and Gentle Exfoliation";
+                if (p.match > 80 && p.key_ingredient.includes("Acid")) activeRequirement = "Targeted Acids (AHA/BHA) for pH Control";
                 else if (p.match > 80 && p.key_ingredient.includes("Probiotics")) activeRequirement = "Probiotics and Microbial Rebalancing";
-                else if (p.match > 80 && p.key_ingredient.includes("Magnesium Hydroxide")) activeRequirement = "Magnesium Hydroxide (Effective pH Control)";
-                else activeRequirement = "Highly Absorbent Base and Zinc Compound";
+                else if (p.match > 80 && p.key_ingredient.includes("Magnesium Hydroxide")) activeRequirement = "Magnesium Hydroxide (Effective pH Buffering)";
+                else activeRequirement = "High Absorption Base and Zinc Ricinoleate";
 
 
                 // 3. Application Preference (Q21)
@@ -977,9 +1014,9 @@
                 if (Array.isArray(userAnswers[22]) && userAnswers[22].some(scent => p.scent.includes(scent))) p.match += 10;
 
                 // 5. Lifestyle Co-factor
-                if (userAnswers[14] === "5 (Very High/Chronic)") {
+                if (userAnswers[14] === "Chronic/Overwhelming") {
                     lifestyleCofactor = "Chronic Stress (Apocrine Sweat Spike)";
-                } else if (Array.isArray(userAnswers[19]) && userAnswers[19].includes("Polyester/Synthetic Sports Fabrics")) {
+                } else if (Array.isArray(userAnswers[19]) && userAnswers[19].includes("Synthetic Sports Fabrics (e.g., Nylon/Polyester)")) {
                     lifestyleCofactor = "Synthetic Textiles (Odor Volatility Risk)";
                 } else {
                     lifestyleCofactor = "Balanced Lifestyle / Natural Textiles";
@@ -1090,7 +1127,7 @@
                 // Show Main Sections (Home, Protocol, Manifesto/FAQ, Journal Overview)
                 let targetSection = document.getElementById(targetId) || document.getElementById('home-hero');
 
-                if (targetSection.id === 'faq') {
+                if (targetSection.id === 'faq' || targetId === 'lexicon') {
                     targetSection = document.getElementById('manifesto');
                 } else if (targetId === '') {
                     targetSection = document.getElementById('home-hero');
