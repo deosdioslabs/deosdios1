@@ -169,7 +169,7 @@
                         </div>
                         
                         <div class="text-[10px] font-medium tracking-wide uppercase text-white/70">
-                            | Success Rate Growing with Data (<a href="#faq" class="underline hover:text-white transition-colors">See FAQ</a>)
+                            | 
                         </div>
                     </div>
 
@@ -680,6 +680,7 @@
         // EMAIL CAPTURE LOGIC (FIXED)
         // ==========================================
         function handleEmailCapture(event) {
+            // 1. Prevent form from submitting and reloading the page
             event.preventDefault();
             
             const emailInput = document.getElementById('email-input');
@@ -1192,8 +1193,6 @@
                     
                     // Filter out image tags for display (or integrate image rendering if supported)
                     let contentHTML = article.content.replace(/\/g, (match, p1) => {
-                        // In a production environment, this would call an image generation API or lookup:
-                        // return `<div class="aspect-video bg-neutral-800 text-white/50 text-center py-6 border border-white/10 my-4 text-xs">DIAGRAM PLACEHOLDER: ${p1}</div>`;
                         return `<div class="aspect-[4/3] bg-neutral-800 text-white/50 text-center py-6 border border-white/10 my-4 text-xs flex items-center justify-center font-mono">DIAGRAM: ${p1}</div>`;
                     });
                     
