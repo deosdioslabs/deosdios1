@@ -167,7 +167,10 @@
                             </span>
                             <span class="text-[10px] font-medium tracking-wide uppercase text-white/70">Odor Genome v1.0</span>
                         </div>
-                       
+                        
+                        <div class="text-[10px] font-medium tracking-wide uppercase text-white/70">
+                            | Success Rate Growing with Data (<a href="#faq" class="underline hover:text-white transition-colors">See FAQ</a>)
+                        </div>
                     </div>
 
                     <h1 class="text-5xl md:text-7xl font-serif font-light tracking-tight text-white mb-6 leading-[1.1]">
@@ -450,7 +453,7 @@
                     <div class="space-y-3">
                         <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
                             <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
-                                What exactly is the Odor Genome Protocol?
+                                What exactly is the **Odor Genome Protocol**?
                                 <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
                             </summary>
                             <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
@@ -472,7 +475,7 @@
                                 <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
                             </summary>
                             <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed max-w-xl">
-                                We are an objective analysis tool, not a retailer. Our recommendations come from high-quality, biochemically-sound lines. Brands we frequently match include Salt & Stone (for high-performance), Corpus (for luxury/sensitivity), Malin+Goetz (for a clean feel), and Necessaire (for acid-based control).
+                                We are an objective analysis tool, not a retailer. Our recommendations come from high-quality, biochemically-sound lines. Brands we frequently match include **Salt & Stone** (for high-performance), **Corpus** (for luxury/sensitivity), **Malin+Goetz** (for a clean feel), and **Necessaire** (for acid-based control).
                             </div>
                         </details>
                         <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
@@ -562,7 +565,7 @@
                             <h4 class="font-mono text-xs text-emerald-400 mb-1">Corynebacterium</h4>
                             <p class="text-xs text-white/70">The dominant bacterial genus responsible for producing the sharp, sour-smelling volatile fatty acids (BO). Your arch-nemesis.</p>
                         </div>
-                         <div class="py-2 border-b border-white/10">
+                        <div class="py-2 border-b border-white/10">
                             <h4 class="font-mono text-xs text-emerald-400 mb-1">Zinc Ricinoleate</h4>
                             <p class="text-xs text-white/70">A powerful chemical compound derived from castor oil. It traps and neutralizes odor molecules without interfering with the skin's natural flora or sweat function.</p>
                         </div>
@@ -586,7 +589,7 @@
                         <article class="h-full flex flex-col">
                             <div class="overflow-hidden rounded-lg mb-4 relative">
                                 <div class="aspect-[4/3] bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
-                                    <span class="iconify text-white/20" data-icon="lucide:microscope" data-width="48"></span>
+                                    
                                 </div>
                                 <div class="absolute top-3 left-3 bg-black/60 backdrop-blur px-2 py-1 rounded border border-white/10">
                                     <span class="text-[10px] font-mono text-emerald-400 uppercase">Science</span>
@@ -604,7 +607,7 @@
                         <article class="h-full flex flex-col">
                             <div class="overflow-hidden rounded-lg mb-4 relative">
                                 <div class="aspect-[4/3] bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
-                                    <span class="iconify text-white/20" data-icon="lucide:brain-circuit" data-width="48"></span>
+                                    
                                 </div>
                                 <div class="absolute top-3 left-3 bg-black/60 backdrop-blur px-2 py-1 rounded border border-white/10">
                                     <span class="text-[10px] font-mono text-white/60 uppercase">Toxicology</span>
@@ -622,7 +625,7 @@
                         <article class="h-full flex flex-col">
                             <div class="overflow-hidden rounded-lg mb-4 relative">
                                 <div class="aspect-[4/3] bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
-                                    <span class="iconify text-white/20" data-icon="lucide:shirt" data-width="48"></span>
+                                    [Image comparing cotton fiber structure versus synthetic polymer fiber structure]
                                 </div>
                                 <div class="absolute top-3 left-3 bg-black/60 backdrop-blur px-2 py-1 rounded border border-white/10">
                                     <span class="text-[10px] font-mono text-white/60 uppercase">Textiles</span>
@@ -677,7 +680,6 @@
         // EMAIL CAPTURE LOGIC (FIXED)
         // ==========================================
         function handleEmailCapture(event) {
-            // 1. Prevent form from submitting and reloading the page
             event.preventDefault();
             
             const emailInput = document.getElementById('email-input');
@@ -685,7 +687,6 @@
 
             if (email && email.includes('@') && email.includes('.')) {
                 
-                // 2. Build the personalized email content (mailto link)
                 const subject = encodeURIComponent("Welcome to the Deos Dios Tribe!");
                 const body = encodeURIComponent(
                     `Hi there,\n\n` +
@@ -696,16 +697,12 @@
                     `The Deos Dios Lab\n`
                 );
                 
-                // Using info@deosdios.com as the sender/cc, as requested
                 const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}&cc=info@deosdios.com`;
                 
-                // 3. Provide visual feedback 
                 alert(`Welcome aboard! We've prepared a special welcome email for you. Click OK to open your email client (this confirmation is from info@deosdios.com).`);
                 
-                // 4. Open the user's mail client 
                 window.open(mailtoLink, '_self');
                 
-                // Clear the input field
                 emailInput.value = '';
 
             } else {
@@ -877,14 +874,48 @@
 
         let questions = rawQuestions;
         
-        // Product Database: Must use real image and link URLs for a live site.
+        // ==========================================
+        // MEGA EXPANDED PRODUCT DATABASE (25+ OPTIONS)
+        // ==========================================
         const productDatabase = [
+            // --- SALT & STONE (Probiotic/High-Performance) ---
             { name: "Salt & Stone", variant: "Santal", tags: ["Probiotic", "Strong", "Woody", "Stick"], scent: "Woody / Earthy", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics", src: "https://i.imgur.com/2s4J4Q7.png", link: "https://www.saltandstone.com/santal" },
+            { name: "Salt & Stone", variant: "Hinoki", tags: ["Probiotic", "Strong", "Herbal", "Stick"], scent: "Woody / Herbal", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics", src: "IMAGE_SALT_STONE_HINOKI.png", link: "https://www.saltandstone.com/hinoki" },
+            { name: "Salt & Stone", variant: "Black Rose & Oud", tags: ["Probiotic", "Strong", "Floral", "Stick"], scent: "Floral / Woody", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics", src: "IMAGE_SALT_STONE_ROSE_OUD.png", link: "https://www.saltandstone.com/black-rose" },
+            { name: "Salt & Stone", variant: "Bergamot & Hinoki", tags: ["Probiotic", "Fresh", "Citrus", "Stick"], scent: "Fresh / Citrus", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics", src: "IMAGE_SALT_STONE_BERGAMOT_HINOKI.png", link: "https://www.saltandstone.com/bergamot-hinoki" },
+
+            // --- CORPUS (Luxury/Gentle Acid-Based) ---
             { name: "Corpus", variant: "Third Rose", tags: ["No Baking Soda", "Luxury", "Gel"], scent: "Floral / Sweet", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Acid-based", src: "https://i.imgur.com/K5bZt9H.png", link: "https://www.corpusnaturals.com/third-rose" },
-            { name: "Necessaire", variant: "The Deodorant Gel", tags: ["Acid-based", "AHA", "No Baking Soda", "Gel"], scent: "Clean / Unscented", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "AHAs / BHAs", src: "https://i.imgur.com/w9Nq7tq.png", link: "https://www.necessaire.com/deodorant-gel" },
+            { name: "Corpus", variant: "No. Green", tags: ["No Baking Soda", "Fresh", "Gel"], scent: "Fresh / Herbal", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Acid-based", src: "IMAGE_CORPUS_NO_GREEN.png", link: "https://www.corpusnaturals.com/no-green" },
+            { name: "Corpus", variant: "California", tags: ["No Baking Soda", "Citrus", "Gel"], scent: "Fresh / Citrus", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Acid-based", src: "IMAGE_CORPUS_CALIFORNIA.png", link: "https://www.corpusnaturals.com/california" },
+
+            // --- TARGETED ACIDIC SERUMS (AHA/BHA) ---
+            { name: "Necessaire", variant: "The Deodorant Gel (Unscented)", tags: ["Acid-based", "AHA", "No Baking Soda", "Gel"], scent: "Clean / Unscented", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "AHAs / BHAs", src: "https://i.imgur.com/w9Nq7tq.png", link: "https://www.necessaire.com/deodorant-gel" },
+            { name: "Kosas", variant: "AHA Serum (Serene Clean)", tags: ["AHA", "Serum", "Luxury"], scent: "Clean / Fresh", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "AHAs / BHAs", src: "IMAGE_KOSAS_SERENE_CLEAN.png", link: "YOUR_KOSAS_AHA_SERUM_LINK_SC" },
+            { name: "Kosas", variant: "AHA Serum (Fragrance-Free)", tags: ["AHA", "Serum", "Unscented"], scent: "Clean / Unscented", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "AHAs / BHAs", src: "IMAGE_KOSAS_FF.png", link: "YOUR_KOSAS_AHA_SERUM_LINK_FF" },
+            { name: "Lume", variant: "Whole Body Deodorant (Unscented)", tags: ["Mandelic Acid", "Whole-Body", "Cream"], scent: "Clean / Unscented", type: "Cream/Jar (Finger Application)", match: 0, bs_free: true, key_ingredient: "Mandelic Acid", src: "IMAGE_LUME_UNSCENTED.png", link: "YOUR_LUME_UNSCENTED_LINK" },
+            { name: "Lume", variant: "Whole Body Deodorant (Clean Tangerine)", tags: ["Mandelic Acid", "Whole-Body", "Cream"], scent: "Fresh / Citrus", type: "Cream/Jar (Finger Application)", match: 0, bs_free: true, key_ingredient: "Mandelic Acid", src: "IMAGE_LUME_TANGERINE.png", link: "YOUR_LUME_TANGERINE_LINK" },
+            
+            // --- CLASSIC NATURAL/CLEAN FORMULAS (Magnesium) ---
             { name: "Malin+Goetz", variant: "Eucalyptus", tags: ["Gel", "Alcohol Free", "Fresh"], scent: "Fresh / Citrus", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "https://i.imgur.com/R0sQYlY.png", link: "https://www.malinandgoetz.com/eucalyptus-deodorant" },
+            { name: "Malin+Goetz", variant: "Bergamot", tags: ["Gel", "Alcohol Free", "Citrus"], scent: "Fresh / Citrus", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_MALIN_GOETZ_BERGAMOT.png", link: "https://www.malinandgoetz.com/bergamot-deodorant" },
+            
+            // --- HIGH POTENCY/ABSORBENT (CONVENTIONAL NATURAL) ---
             { name: "Ursa Major", variant: "Hoppin' Fresh", tags: ["Baking Soda", "Charcoal", "Stick"], scent: "Herbal / Fresh", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Activated Charcoal", src: "https://i.imgur.com/y1vLzLp.png", link: "https://www.ursamajorvt.com/hoppin-fresh" },
-            { name: "Routine", variant: "Like a Boss", tags: ["Cream", "Natural", "High Potency"], scent: "Woody / Earthy", type: "Cream/Jar (Finger Application)", match: 0, bs_free: false, key_ingredient: "Baking Soda", src: "https://i.imgur.com/8m4x5A7.png", link: "https://www.routinecream.com/like-a-boss" }
+            { name: "Ursa Major", variant: "Sublime Sage Spray", tags: ["Spray", "Light", "Magnesium"], scent: "Herbal / Clean", type: "Spray/Mist", match: 0, bs_free: true, key_ingredient: "Magnesium", src: "IMAGE_URSA_MAJOR_SPRAY.png", link: "https://www.ursamajorvt.com/sublime-sage" },
+            { name: "Routine", variant: "Like a Boss (Cream)", tags: ["Cream", "Natural", "Baking Soda", "High Potency"], scent: "Woody / Earthy", type: "Cream/Jar (Finger Application)", match: 0, bs_free: false, key_ingredient: "Baking Soda", src: "https://i.imgur.com/8m4x5A7.png", link: "https://www.routinecream.com/like-a-boss" },
+            { name: "Routine", variant: "Sexy Sadie (Stick)", tags: ["Stick", "Natural", "Baking Soda"], scent: "Floral / Sweet", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Baking Soda", src: "IMAGE_ROUTINE_SEXY_SADIE.png", link: "https://www.routinecream.com/sexy-sadie" },
+            
+            // --- SENSITIVE MAINSTREAM (MAGNESIUM & BS-FREE) ---
+            { name: "Native", variant: "Sensitive - Coconut & Vanilla", tags: ["Sensitive", "No Baking Soda", "Magnesium"], scent: "Floral / Sweet", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_NATIVE_SENSITIVE_STICK.png", link: "YOUR_NATIVE_SENSITIVE_LINK_CV" },
+            { name: "Native", variant: "Sensitive - Charcoal", tags: ["Sensitive", "No Baking Soda", "Charcoal"], scent: "Clean / Unscented", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_NATIVE_SENSITIVE_CHARCOAL.png", link: "YOUR_NATIVE_SENSITIVE_LINK_CH" },
+            { name: "Native", variant: "Eucalyptus & Mint (Standard)", tags: ["Standard", "Baking Soda", "Fresh"], scent: "Fresh / Herbal", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Baking Soda", src: "IMAGE_NATIVE_STANDARD_STICK.png", link: "YOUR_NATIVE_STANDARD_LINK_EM" },
+            
+            // --- HIGH EFFICIENCY SPRAYS/MISC ---
+            { name: "Weleda", variant: "Sage Deodorant", tags: ["Spray", "Herbal", "Quick Dry"], scent: "Herbal / Clean", type: "Spray/Mist", match: 0, bs_free: true, key_ingredient: "Alcohol", src: "IMAGE_WELEDA_SAGE_SPRAY.png", link: "YOUR_WELEDA_SAGE_SPRAY_LINK" },
+            { name: "Dr. Teals", variant: "Magnesium Pure Epsom Salt", tags: ["Magnesium", "Absorbent", "Stick"], scent: "Clean / Unscented", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_DR_TEALS_MAGNESIUM.png", link: "YOUR_DR_TEALS_MAGNESIUM_LINK" },
+            { name: "Megababe", variant: "Rosy Pits Daily Deodorant", tags: ["Magnesium", "Arrowroot", "Stick"], scent: "Floral / Sweet", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_MEGABABE_ROSY_PITS.png", link: "YOUR_MEGABABE_ROSY_PITS_LINK" },
+            { name: "Tarte", variant: "Clean Queen Vegan Deodorant", tags: ["Arrowroot", "Clay", "Stick"], scent: "Clean / Unscented", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Clay", src: "IMAGE_TARTE_CLEAN_QUEEN.png", link: "YOUR_TARTE_CLEAN_QUEEN_LINK" }
         ];
 
         let currentQIndex = 0;
@@ -918,7 +949,7 @@
             const q = questions[currentQIndex];
             document.getElementById('q-current').innerText = currentQIndex + 1;
             document.getElementById('q-progress').style.width = ((currentQIndex) / questions.length) * 100 + "%";
-            document.getElementById('q-category').innerText = `// CATEGORY: ${q.c.toUpperCase()}`;
+            document.getElementById('q-category').innerText = "// CATEGORY: " + q.c.toUpperCase();
             document.getElementById('q-text').innerText = q.t;
 
             const qOptions = document.getElementById('q-options');
@@ -1093,7 +1124,7 @@
         }
 
         // ==========================================
-        // 3. FULL ARTICLE CONTENT DATABASE (Retained)
+        // 3. FULL ARTICLE CONTENT DATABASE (DIAGRAMS ADDED)
         // ==========================================
         const fullArticles = [
             {
@@ -1103,11 +1134,11 @@
                 content: `
                     <p>The common misconception is that the unpleasant odor we associate with sweat originates from the sweat itself. This is fundamentally untrue. Eccrine sweat, the fluid produced for thermoregulation, is essentially a sterile saline solution. The actual issue arises from apocrine sweat, a lipid and protein-rich secretion, and the bacterial ecosystem that metabolizes it.</p>
                     
-                    <p>The primary culprits are members of the *Corynebacterium* family, alongside some *Staphylococcus* strains. These bacteria digest the odorless compounds in apocrine sweat through a process known as bioconversion. The byproducts of this digestion are highly volatile, short-chain fatty acids, most notably isovaleric acid, which is responsible for the sharp, pungent scent we recognize as body odor.</p>
+                    <p>The primary culprits are members of the *Corynebacterium* family, alongside some *Staphylococcus* strains. These bacteria digest the odorless compounds in apocrine sweat through a process known as **bioconversion**. The byproducts of this digestion are highly volatile, short-chain fatty acids, most notably isovaleric acid, which is responsible for the sharp, pungent scent we recognize as body odor. </p>
 
-                    <p>Your internal environment - dictated by diet, stress, and hormonal activity is the direct fuel source for this bacterial action. For example, a diet rich in sulfur compounds (such as that found in brassicas, garlic, and onions) results in sulfurous metabolites being excreted. These molecules act as potent microbial food, supercharging the odor-producing efficiency of the bacteria and resulting in a much stronger, more persistent smell.</p>
+                    <p>Your internal environment - dictated by diet, stress, and hormonal activity - is the direct fuel source for this bacterial action. For example, a diet rich in sulfur compounds (such as that found in brassicas, garlic, and onions) results in sulfurous metabolites being excreted. These molecules act as potent microbial food, supercharging the odor-producing efficiency of the bacteria and resulting in a much stronger, more persistent smell.</p>
 
-                    <p>Understanding this microbial signature is the core of the Deos Dios Protocol. For individuals presenting a high *Corynebacterium* load (often signaled by a 'sour' or 'cheesy' smell), a simple absorbent product will fail. The correct strategy involves applying advanced counter-agents such as Alpha Hydroxy Acids (AHAs) to lower the underarm pH, making it hostile to bacteria, or targeted probiotics to introduce beneficial strains that competitively inhibit the odor producers. This is not about masking; it is about scientifically re-engineering the ecology of your skin.</p>
+                    <p>Understanding this microbial signature is the core of the Deos Dios Protocol. For individuals presenting a high *Corynebacterium* load (often signaled by a 'sour' or 'cheesy' smell), a simple absorbent product will fail. The correct strategy involves applying advanced counter-agents—such as Alpha Hydroxy Acids (AHAs) to lower the underarm pH, making it hostile to bacteria, or targeted probiotics to introduce beneficial strains that competitively inhibit the odor producers. This is not about masking; it is about scientifically re-engineering the ecology of your skin.</p>
                 `
             },
             {
@@ -1117,7 +1148,7 @@
                 content: `
                     <p>Antiperspirants offer a seemingly simple solution to wetness: aluminum salts like aluminum chlorohydrate. These salts dissolve in sweat and swell the keratin cells, creating a temporary plug that blocks the sweat duct. While effective at stopping perspiration, this intervention comes with a potential biological cost.</p>
 
-                    <p>The armpit region is anatomically crucial due to its dense concentration of lymph nodes. The lymphatic system is the body’s essential fluid filtration and detoxification network, and the armpits are a major drainage point. By routinely and chronically blocking the sweat ducts in this area, you are mechanically disrupting a natural excretory function right near a critical lymphatic hub.</p>
+                    <p>The armpit region is anatomically crucial due to its dense concentration of lymph nodes. The lymphatic system is the body’s essential fluid filtration and detoxification network, and the armpits are a major drainage point. By routinely and chronically blocking the sweat ducts in this area, you are mechanically disrupting a natural excretory function right near a critical lymphatic hub. </p>
 
                     <p>We believe in managing the *cause* of the odor (bacteria) rather than suppressing the natural function (sweat). Heavy metal bio-accumulation from long-term aluminum use remains a topic of clinical research, but the philosophy of clean biology suggests that uninhibited function is optimal. Transitioning away from antiperspirants allows the body to restore natural lymphatic drainage and sweat excretion.</p>
 
@@ -1157,8 +1188,16 @@
                 const article = fullArticles.find(a => a.id === targetId);
                 if (article) {
                     document.getElementById('article-title').innerText = article.title;
-                    document.getElementById('article-category').innerText = `// CATEGORY: ${article.category.toUpperCase()}`;
-                    document.getElementById('article-content').innerHTML = article.content;
+                    document.getElementById('article-category').innerText = "// CATEGORY: " + article.category.toUpperCase();
+                    
+                    // Filter out image tags for display (or integrate image rendering if supported)
+                    let contentHTML = article.content.replace(/\/g, (match, p1) => {
+                        // In a production environment, this would call an image generation API or lookup:
+                        // return `<div class="aspect-video bg-neutral-800 text-white/50 text-center py-6 border border-white/10 my-4 text-xs">DIAGRAM PLACEHOLDER: ${p1}</div>`;
+                        return `<div class="aspect-[4/3] bg-neutral-800 text-white/50 text-center py-6 border border-white/10 my-4 text-xs flex items-center justify-center font-mono">DIAGRAM: ${p1}</div>`;
+                    });
+                    
+                    document.getElementById('article-content').innerHTML = contentHTML;
                     articleDetail.style.display = 'block';
                 } else {
                     showSection('#home-hero');
