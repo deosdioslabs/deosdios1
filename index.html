@@ -878,14 +878,48 @@
         let questions = rawQuestions;
         
         // Product Database: Must use real image and link URLs for a live site.
-        const productDatabase = [
-            { name: "Salt & Stone", variant: "Santal", tags: ["Probiotic", "Strong", "Woody", "Stick"], scent: "Woody / Earthy", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics", src: "https://i.imgur.com/2s4J4Q7.png", link: "https://www.saltandstone.com/santal" },
-            { name: "Corpus", variant: "Third Rose", tags: ["No Baking Soda", "Luxury", "Gel"], scent: "Floral / Sweet", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Acid-based", src: "https://i.imgur.com/K5bZt9H.png", link: "https://www.corpusnaturals.com/third-rose" },
-            { name: "Necessaire", variant: "The Deodorant Gel", tags: ["Acid-based", "AHA", "No Baking Soda", "Gel"], scent: "Clean / Unscented", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "AHAs / BHAs", src: "https://i.imgur.com/w9Nq7tq.png", link: "https://www.necessaire.com/deodorant-gel" },
-            { name: "Malin+Goetz", variant: "Eucalyptus", tags: ["Gel", "Alcohol Free", "Fresh"], scent: "Fresh / Citrus", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "https://i.imgur.com/R0sQYlY.png", link: "https://www.malinandgoetz.com/eucalyptus-deodorant" },
-            { name: "Ursa Major", variant: "Hoppin' Fresh", tags: ["Baking Soda", "Charcoal", "Stick"], scent: "Herbal / Fresh", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Activated Charcoal", src: "https://i.imgur.com/y1vLzLp.png", link: "https://www.ursamajorvt.com/hoppin-fresh" },
-            { name: "Routine", variant: "Like a Boss", tags: ["Cream", "Natural", "High Potency"], scent: "Woody / Earthy", type: "Cream/Jar (Finger Application)", match: 0, bs_free: false, key_ingredient: "Baking Soda", src: "https://i.imgur.com/8m4x5A7.png", link: "https://www.routinecream.com/like-a-boss" }
-        ];
+       const productDatabase = [
+    // --- SALT & STONE (Probiotic/High-Performance) ---
+    { name: "Salt & Stone", variant: "Santal", tags: ["Probiotic", "Strong", "Woody", "Stick"], scent: "Woody / Earthy", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics", src: "https://i.imgur.com/2s4J4Q7.png", link: "https://www.saltandstone.com/santal" },
+    { name: "Salt & Stone", variant: "Hinoki", tags: ["Probiotic", "Strong", "Herbal", "Stick"], scent: "Woody / Herbal", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics", src: "IMAGE_SALT_STONE_HINOKI.png", link: "https://www.saltandstone.com/hinoki" },
+    { name: "Salt & Stone", variant: "Black Rose & Oud", tags: ["Probiotic", "Strong", "Floral", "Stick"], scent: "Floral / Woody", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics", src: "IMAGE_SALT_STONE_ROSE_OUD.png", link: "https://www.saltandstone.com/black-rose" },
+    { name: "Salt & Stone", variant: "Bergamot & Hinoki", tags: ["Probiotic", "Fresh", "Citrus", "Stick"], scent: "Fresh / Citrus", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Probiotics", src: "IMAGE_SALT_STONE_BERGAMOT_HINOKI.png", link: "https://www.saltandstone.com/bergamot-hinoki" },
+
+    // --- CORPUS (Luxury/Gentle Acid-Based) ---
+    { name: "Corpus", variant: "Third Rose", tags: ["No Baking Soda", "Luxury", "Gel"], scent: "Floral / Sweet", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Acid-based", src: "https://i.imgur.com/K5bZt9H.png", link: "https://www.corpusnaturals.com/third-rose" },
+    { name: "Corpus", variant: "No. Green", tags: ["No Baking Soda", "Fresh", "Gel"], scent: "Fresh / Herbal", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Acid-based", src: "IMAGE_CORPUS_NO_GREEN.png", link: "https://www.corpusnaturals.com/no-green" },
+    { name: "Corpus", variant: "California", tags: ["No Baking Soda", "Citrus", "Gel"], scent: "Fresh / Citrus", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Acid-based", src: "IMAGE_CORPUS_CALIFORNIA.png", link: "https://www.corpusnaturals.com/california" },
+    { name: "Corpus", variant: "The Botanist", tags: ["No Baking Soda", "Luxury", "Woody"], scent: "Woody / Herbal", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Acid-based", src: "IMAGE_CORPUS_BOTANIST.png", link: "https://www.corpusnaturals.com/the-botanist" },
+
+
+    // --- TARGETED ACIDIC SERUMS (AHA/BHA) ---
+    { name: "Necessaire", variant: "The Deodorant Gel (Unscented)", tags: ["Acid-based", "AHA", "No Baking Soda", "Gel"], scent: "Clean / Unscented", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "AHAs / BHAs", src: "https://i.imgur.com/w9Nq7tq.png", link: "https://www.necessaire.com/deodorant-gel" },
+    { name: "Kosas", variant: "AHA Serum (Serene Clean)", tags: ["AHA", "Serum", "Luxury"], scent: "Clean / Fresh", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "AHAs / BHAs", src: "IMAGE_KOSAS_SERENE_CLEAN.png", link: "YOUR_KOSAS_AHA_SERUM_LINK_SC" },
+    { name: "Kosas", variant: "AHA Serum (Fragrance-Free)", tags: ["AHA", "Serum", "Unscented"], scent: "Clean / Unscented", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "AHAs / BHAs", src: "IMAGE_KOSAS_FF.png", link: "YOUR_KOSAS_AHA_SERUM_LINK_FF" },
+    { name: "Lume", variant: "Whole Body Deodorant (Unscented)", tags: ["Mandelic Acid", "Whole-Body", "Cream"], scent: "Clean / Unscented", type: "Cream/Jar (Finger Application)", match: 0, bs_free: true, key_ingredient: "Mandelic Acid", src: "IMAGE_LUME_UNSCENTED.png", link: "YOUR_LUME_UNSCENTED_LINK" },
+    { name: "Lume", variant: "Whole Body Deodorant (Clean Tangerine)", tags: ["Mandelic Acid", "Whole-Body", "Cream"], scent: "Fresh / Citrus", type: "Cream/Jar (Finger Application)", match: 0, bs_free: true, key_ingredient: "Mandelic Acid", src: "IMAGE_LUME_TANGERINE.png", link: "YOUR_LUME_TANGERINE_LINK" },
+    
+    // --- CLASSIC NATURAL/CLEAN FORMULAS (Magnesium) ---
+    { name: "Malin+Goetz", variant: "Eucalyptus", tags: ["Gel", "Alcohol Free", "Fresh"], scent: "Fresh / Citrus", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "https://i.imgur.com/R0sQYlY.png", link: "https://www.malinandgoetz.com/eucalyptus-deodorant" },
+    { name: "Malin+Goetz", variant: "Bergamot", tags: ["Gel", "Alcohol Free", "Citrus"], scent: "Fresh / Citrus", type: "Roll-on/Gel", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_MALIN_GOETZ_BERGAMOT.png", link: "https://www.malinandgoetz.com/bergamot-deodorant" },
+    
+    // --- HIGH POTENCY/ABSORBENT (CONVENTIONAL NATURAL) ---
+    { name: "Ursa Major", variant: "Hoppin' Fresh (Stick)", tags: ["Baking Soda", "Charcoal", "Stick"], scent: "Herbal / Fresh", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Activated Charcoal", src: "https://i.imgur.com/y1vLzLp.png", link: "https://www.ursamajorvt.com/hoppin-fresh" },
+    { name: "Ursa Major", variant: "Sublime Sage Spray", tags: ["Spray", "Light", "Magnesium"], scent: "Herbal / Clean", type: "Spray/Mist", match: 0, bs_free: true, key_ingredient: "Magnesium", src: "IMAGE_URSA_MAJOR_SPRAY.png", link: "https://www.ursamajorvt.com/sublime-sage" },
+    { name: "Routine", variant: "Like a Boss (Cream)", tags: ["Cream", "Natural", "Baking Soda", "High Potency"], scent: "Woody / Earthy", type: "Cream/Jar (Finger Application)", match: 0, bs_free: false, key_ingredient: "Baking Soda", src: "https://i.imgur.com/8m4x5A7.png", link: "https://www.routinecream.com/like-a-boss" },
+    { name: "Routine", variant: "Sexy Sadie (Stick)", tags: ["Stick", "Natural", "Baking Soda"], scent: "Floral / Sweet", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Baking Soda", src: "IMAGE_ROUTINE_SEXY_SADIE.png", link: "https://www.routinecream.com/sexy-sadie" },
+    
+    // --- SENSITIVE MAINSTREAM (MAGNESIUM & BS-FREE) ---
+    { name: "Native", variant: "Sensitive - Coconut & Vanilla", tags: ["Sensitive", "No Baking Soda", "Magnesium"], scent: "Floral / Sweet", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_NATIVE_SENSITIVE_STICK.png", link: "YOUR_NATIVE_SENSITIVE_LINK_CV" },
+    { name: "Native", variant: "Sensitive - Charcoal", tags: ["Sensitive", "No Baking Soda", "Charcoal"], scent: "Clean / Unscented", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_NATIVE_SENSITIVE_CHARCOAL.png", link: "YOUR_NATIVE_SENSITIVE_LINK_CH" },
+    { name: "Native", variant: "Eucalyptus & Mint (Standard)", tags: ["Standard", "Baking Soda", "Fresh"], scent: "Fresh / Herbal", type: "Solid Stick", match: 0, bs_free: false, key_ingredient: "Baking Soda", src: "IMAGE_NATIVE_STANDARD_STICK.png", link: "YOUR_NATIVE_STANDARD_LINK_EM" },
+    
+    // --- HIGH EFFICIENCY SPRAYS/MISC ---
+    { name: "Weleda", variant: "Sage Deodorant", tags: ["Spray", "Herbal", "Quick Dry"], scent: "Herbal / Clean", type: "Spray/Mist", match: 0, bs_free: true, key_ingredient: "Alcohol", src: "IMAGE_WELEDA_SAGE_SPRAY.png", link: "YOUR_WELEDA_SAGE_SPRAY_LINK" },
+    { name: "Dr. Teals", variant: "Magnesium Pure Epsom Salt", tags: ["Magnesium", "Absorbent", "Stick"], scent: "Clean / Unscented", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_DR_TEALS_MAGNESIUM.png", link: "YOUR_DR_TEALS_MAGNESIUM_LINK" },
+    { name: "Megababe", variant: "Rosy Pits Daily Deodorant", tags: ["Magnesium", "Arrowroot", "Stick"], scent: "Floral / Sweet", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Magnesium Hydroxide", src: "IMAGE_MEGABABE_ROSY_PITS.png", link: "YOUR_MEGABABE_ROSY_PITS_LINK" },
+    { name: "Tarte", variant: "Clean Queen Vegan Deodorant", tags: ["Arrowroot", "Clay", "Stick"], scent: "Clean / Unscented", type: "Solid Stick", match: 0, bs_free: true, key_ingredient: "Clay", src: "IMAGE_TARTE_CLEAN_QUEEN.png", link: "YOUR_TARTE_CLEAN_QUEEN_LINK" }
+];
 
         let currentQIndex = 0;
         let userAnswers = {};
@@ -1196,3 +1230,4 @@
     </script>
 </body>
 </html>
+
