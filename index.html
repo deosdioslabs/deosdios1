@@ -7,12 +7,14 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 
     <style>
+        /* Base Styles */
         body {
             background-color: #030303;
             color: #ffffff;
@@ -24,6 +26,7 @@
         .font-serif { font-family: 'Newsreader', serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
 
+        /* Subtle Grid Background */
         .grid-bg {
             background-size: 50px 50px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
@@ -31,11 +34,13 @@
             mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
         }
 
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #030303; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #555; }
 
+        /* Shiny CTA */
         @property --gradient-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
         .shiny-cta {
             --gradient-angle: 0deg;
@@ -46,6 +51,7 @@
         }
         @keyframes border-spin { from { --gradient-angle: 0deg; } to { --gradient-angle: 360deg; } }
 
+        /* Glass Card */
         .glass-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -58,6 +64,7 @@
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
         }
         
+        /* Constellation Canvas */
         #constellation-canvas {
             width: 100%;
             height: 100%;
@@ -65,6 +72,7 @@
             cursor: crosshair;
         }
 
+        /* Seamless Marquee */
         .marquee-wrapper {
             display: flex;
             overflow: hidden;
@@ -86,9 +94,11 @@
             to { transform: translateX(calc(-100% - 3rem)); }
         }
 
+        /* Quiz Transitions */
         .fade-enter { opacity: 0; transform: translateY(10px); }
         .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 300ms, transform 300ms; }
         
+        /* Custom Checkbox/Radio styling for options */
         .option-button.selected {
             background-color: rgba(255, 255, 255, 0.15); 
             border-color: white;
@@ -99,6 +109,16 @@
             border-color: white;
         }
         
+        /* Manifesto specific styling */
+        .manifesto-block {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Print Styles for Report */
         @media print {
             body { background-color: white !important; color: black !important; }
             #quiz-results, #article-detail { 
@@ -106,7 +126,10 @@
                 color: black !important;
                 padding-top: 50px;
             }
+            #quiz-results h3, #quiz-results h4 { color: black !important; }
             .no-print { display: none !important; }
+            .product-image { filter: grayscale(100%); }
+            .report-summary-title { color: black !important; border-color: black !important; }
         }
     </style>
 </head>
@@ -123,6 +146,7 @@
         <div class="hidden md:flex items-center gap-8 mr-8">
             <a href="#protocol" class="text-xs font-normal text-white/60 hover:text-white transition-colors">Protocol</a>
             <a href="#manifesto" class="text-xs font-normal text-white/60 hover:text-white transition-colors">Manifesto</a>
+            <a href="#journal" class="text-xs font-normal text-white/60 hover:text-white transition-colors">Journal</a>
         </div>
         <a href="#protocol" class="bg-white hover:bg-neutral-200 text-black px-5 py-2 rounded-full text-xs font-medium transition-colors flex items-center gap-2">
             Start Analysis
@@ -133,6 +157,7 @@
     <div id="main-content">
         <section id="home-hero" class="relative z-10 pt-40 pb-16 lg:pt-48 lg:pb-24 px-6">
             <div class="container mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-16">
+                
                 <div class="flex-1 text-center lg:text-left">
                     <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-4">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5">
@@ -150,20 +175,39 @@
                     </h1>
 
                     <p class="text-lg text-white/60 font-light max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed tracking-tight">
-                        Stop buying products that fail your biology. We analyze 30 data points - from diet to dermis - to pair you with the one, perfect formula.
+                        Stop buying products that fail your biology. We analyze 30 data points—from diet to dermis—to pair you with the one, perfect formula.
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
                         <a href="#protocol" class="shiny-cta px-8 py-3 rounded-full text-sm font-medium text-white flex items-center gap-2 w-full sm:w-auto justify-center hover:-translate-y-px transition-transform">
                             <span class="iconify" data-icon="lucide:scan-face" data-width="16"></span>
-                            Take The Protocol
+                            Start Your 5-Minute Analysis
+                        </a>
+                        <a href="#journal" class="px-8 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all w-full sm:w-auto flex justify-center items-center">
+                            Read Our Expert Journal
                         </a>
                     </div>
+
+                    <p class="mt-8 text-xs font-mono text-white/40 tracking-widest uppercase">
+                        Join 1,000+ individuals who found their perfect match.
+                    </p>
                 </div>
 
                 <div class="flex-1 w-full relative h-[500px] flex items-center justify-center">
                     <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent rounded-2xl blur-2xl -z-10"></div>
+                    
                     <div class="relative w-full h-full max-w-lg aspect-square bg-[#050505] border border-white/10 rounded-2xl shadow-2xl overflow-hidden group">
+                        <div class="absolute top-4 left-4 z-20 pointer-events-none">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-emerald-500/50 animate-pulse"></div>
+                                <span class="text-[10px] font-mono text-white/40 uppercase tracking-widest">Microbiome Simulator</span>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute bottom-4 right-4 z-20 pointer-events-none text-right">
+                           <span class="text-[10px] font-mono text-white/20 uppercase">Interaction: Active</span>
+                        </div>
+
                         <canvas id="constellation-canvas"></canvas>
                     </div>
                 </div>
@@ -174,40 +218,53 @@
             <div class="marquee-wrapper">
                 <div class="marquee-content text-white/30 text-xs font-mono uppercase tracking-widest items-center">
                     <span>Saccharomyces Ferment</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
-                    <span>Mandelic Acid</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
-                    <span>Zinc Ricinoleate</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
-                    <span>Magnesium Hydroxide</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Maranta Arundinacea</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Activated Charcoal</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
                     <span>Lactobacillus</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Magnesium Hydroxide</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Shea Butter</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Zinc Ricinoleate</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
                 </div>
                 <div class="marquee-content text-white/30 text-xs font-mono uppercase tracking-widest items-center">
                     <span>Saccharomyces Ferment</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
-                    <span>Mandelic Acid</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
-                    <span>Zinc Ricinoleate</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
-                    <span>Magnesium Hydroxide</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Maranta Arundinacea</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Activated Charcoal</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
                     <span>Lactobacillus</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Magnesium Hydroxide</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Shea Butter</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                    <span>Zinc Ricinoleate</span><span class="w-1 h-1 bg-white/30 rounded-full"></span>
                 </div>
             </div>
         </div>
 
-        <section id="protocol" class="hidden py-24 px-6 relative z-10">
+        <section id="protocol" class="hidden py-24 px-6 relative z-10 bg-neutral-950/30">
             <div class="container mx-auto max-w-3xl">
-                <div id="quiz-app" class="glass-card min-h-[500px] rounded-2xl p-8 md:p-12 relative overflow-hidden">
+                
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-serif text-white mb-4 tracking-tight">The 30-Point Protocol</h2>
+                    <p class="text-white/50 max-w-lg mx-auto font-light text-sm">A comprehensive biological analysis to decode your personal scent.</p>
+                </div>
+
+                <div id="quiz-app" class="glass-card min-h-[500px] rounded-2xl p-8 md:p-12 relative overflow-hidden border border-white/10">
                     
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
+
                     <div id="quiz-start" class="h-full flex flex-col items-center justify-center text-center space-y-8 min-h-[400px]">
-                        <div class="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                            <span class="iconify text-white" data-icon="lucide:dna" data-width="36"></span>
+                        <div class="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center relative">
+                            <span class="iconify text-white animate-pulse" data-icon="lucide:dna" data-width="36"></span>
+                            <div class="absolute inset-0 border border-white/20 rounded-full animate-ping opacity-20"></div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-serif text-white mb-3">Begin 30-Point Sequence</h3>
-                            <p class="text-white/50 text-sm max-w-md mx-auto leading-relaxed">
-                                A clinical analysis of dermal integrity, sweat triggers, and microbial diet markers.
+                            <h3 class="text-2xl font-serif text-white mb-3">Begin Sequence</h3>
+                            <p class="text-white/50 text-sm max-w-md mx-auto leading-relaxed mb-4">
+                                This is a diagnostic tool, not a survey. Your personalized Odor Genome Report will be generated after completing the 30 questions.
                             </p>
-                            <div class="mt-4 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-emerald-500/50 bg-emerald-900/30">
+                            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-emerald-500/50 bg-emerald-900/30">
                                 <span class="text-xl font-bold font-mono text-emerald-300">$11.00</span>
-                                <span class="text-xs text-white/70">Analysis Fee</span>
+                                <span class="text-xs text-white/70">One-Time Analysis Fee</span>
                             </div>
                         </div>
-                        <button onclick="startQuiz()" class="bg-white text-black px-8 py-3 rounded-full text-sm font-medium hover:bg-neutral-200 transition-colors flex items-center gap-2">
+                        <button onclick="startQuiz()" class="bg-white text-black px-8 py-3 rounded-full text-sm font-medium hover:bg-neutral-200 transition-colors flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                             Initialize Protocol
                             <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
                         </button>
@@ -216,57 +273,105 @@
                     <div id="quiz-question" class="hidden h-full flex flex-col min-h-[400px]">
                         <div class="flex justify-between items-center mb-10">
                             <span class="text-[10px] font-mono text-white/40 uppercase tracking-widest">Variable <span id="q-current">1</span>/30</span>
-                            <div class="w-32 h-px bg-white/10">
-                                <div id="q-progress" class="h-full bg-white transition-all duration-300" style="width: 0%"></div>
+                            <div class="w-32 h-px bg-white/10 relative">
+                                <div id="q-progress" class="absolute left-0 top-0 h-full bg-white transition-all duration-300 shadow-[0_0_10px_white]" style="width: 0%"></div>
                             </div>
                         </div>
+
                         <div class="flex-grow flex flex-col justify-center">
-                            <span id="q-category" class="text-xs font-mono text-emerald-500 mb-4 block uppercase tracking-wider"></span>
-                            <h3 id="q-text" class="text-xl md:text-3xl font-serif text-white mb-8 leading-tight"></h3>
-                            <div id="q-options" class="grid gap-3"></div>
+                            <span id="q-category" class="text-xs font-mono text-emerald-500 mb-4 block uppercase tracking-wider">Category</span>
+                            <h3 id="q-text" class="text-xl md:text-3xl font-serif text-white mb-8 leading-tight">Question Text</h3>
+
+                            <div id="q-options" class="grid gap-3">
+                                </div>
                         </div>
+
                         <div class="mt-8 pt-6 border-t border-white/5 flex justify-between items-center">
-                            <button onclick="prevQuestion()" class="text-xs text-white/40 hover:text-white uppercase tracking-widest font-mono">Back</button>
-                            <button id="next-button" onclick="nextQuestion()" class="bg-white/10 text-white px-5 py-2 rounded-full text-xs disabled:opacity-30" disabled>Next Step</button>
+                            <button onclick="prevQuestion()" class="text-xs text-white/40 hover:text-white uppercase tracking-widest font-mono flex items-center gap-2">
+                                <span class="iconify" data-icon="lucide:arrow-left" data-width="12"></span> Back
+                            </button>
+                            <button id="next-button" onclick="nextQuestion()" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-xs font-medium transition-colors flex items-center gap-2 disabled:opacity-30" disabled>
+                                Next Step
+                                <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+                            </button>
                         </div>
                     </div>
 
-                    <div id="quiz-loading" class="hidden absolute inset-0 bg-black z-50 flex flex-col items-center justify-center">
-                        <div class="text-sm font-mono text-white/80 animate-pulse" id="loading-text">Sequencing...</div>
+                    <div id="quiz-loading" class="hidden absolute inset-0 bg-[#030303] z-50 flex flex-col items-center justify-center">
+                        <div class="relative w-16 h-16 mb-8">
+                            <div class="absolute inset-0 border-t-2 border-r-2 border-white rounded-full animate-spin"></div>
+                            <div class="absolute inset-2 border-b-2 border-l-2 border-white/30 rounded-full animate-spin" style="animation-direction: reverse;"></div>
+                        </div>
+                        <div class="text-sm font-mono text-white/80 animate-pulse" id="loading-text">Sequencing inputs...</div>
+                        <div class="mt-4 w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-emerald-500 animate-[width_2s_ease-in-out_infinite]" style="width: 30%"></div>
+                        </div>
                     </div>
 
                     <div id="quiz-results" class="hidden">
-                        <h4 class="text-2xl font-serif text-white mb-6">Biological Match Report</h4>
-                        <div class="glass-card p-6 space-y-4 mb-8">
-                            <div class="flex justify-between border-b border-white/10 pb-2">
-                                <span class="text-sm text-white/50">Core Challenge</span>
-                                <span id="report-challenge" class="text-sm italic"></span>
+                        <div class="flex flex-col md:flex-row justify-between items-start mb-8 pb-6 border-b border-white/10 no-print">
+                            <div>
+                                <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mb-1">Match Complete</div>
+                                <h3 class="text-2xl font-serif text-white">Your Optimized Formulation</h3>
+                                <p class="text-white/50 text-sm">A personalized report based on your 30 variables. Save this page for future reference.</p>
                             </div>
-                            <div class="flex justify-between border-b border-white/10 pb-2">
-                                <span class="text-sm text-white/50">Active Requirement</span>
-                                <span id="report-active" class="text-sm text-emerald-400"></span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-sm text-white/50">Lifestyle Factor</span>
-                                <span id="report-lifestyle" class="text-sm"></span>
+                            <div class="flex gap-4 mt-4 md:mt-0 text-right">
+                                <button onclick="window.print()" class="text-xs text-white/40 hover:text-white font-mono uppercase flex items-center gap-1">
+                                    <span class="iconify" data-icon="lucide:printer" data-width="12"></span> PRINT/SAVE REPORT
+                                </button>
+                                <button onclick="location.reload()" class="text-xs text-white/40 hover:text-white font-mono uppercase">
+                                    RE-ANALYZE
+                                </button>
                             </div>
                         </div>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div id="result-1" class="glass-card p-5 rounded-xl border-emerald-500/30 border">
-                                <div class="aspect-square bg-black/40 rounded-lg mb-4 flex items-center justify-center">
-                                    <img class="product-image w-full h-full object-contain p-4" src="" alt="">
+
+                        <div class="mb-12">
+                            <h4 class="text-xl font-serif text-white mb-4">Odor Genome Analysis</h4>
+                            <div class="glass-card p-6 space-y-4">
+                                <div class="flex justify-between items-start border-b border-white/10 pb-3">
+                                    <p class="text-sm font-medium text-white/70 w-1/3">Core Challenge</p>
+                                    <p id="report-challenge" class="text-sm font-serif italic text-white w-2/3 text-right">High Microbial Load / Baking Soda Sensitive</p>
                                 </div>
-                                <h4 class="product-name font-medium text-white text-sm"></h4>
-                                <p class="product-scent text-xs text-white/50 font-serif italic mb-4"></p>
-                                <a target="_blank" href="#" class="product-link block w-full py-2 text-center bg-white text-black rounded text-[10px] font-bold uppercase">Acquire Match</a>
+                                <div class="flex justify-between items-start border-b border-white/10 pb-3">
+                                    <p class="text-sm font-medium text-white/70 w-1/3">Active Requirement</p>
+                                    <p id="report-active" class="text-sm font-serif italic text-emerald-400 w-2/3 text-right">AHAs and Acidic pH Control</p>
+                                </div>
+                                <div class="flex justify-between items-start">
+                                    <p class="text-sm font-medium text-white/70 w-1/3">Lifestyle Co-factor</p>
+                                    <p id="report-lifestyle" class="text-sm font-serif italic text-white w-2/3 text-right">High Stress Output & Synthetic Textiles</p>
+                                </div>
                             </div>
-                            <div id="result-2" class="glass-card p-5 rounded-xl">
-                                <div class="aspect-square bg-black/40 rounded-lg mb-4 flex items-center justify-center">
-                                    <img class="product-image w-full h-full object-contain p-4" src="" alt="">
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div id="result-1" class="group bg-gradient-to-b from-white/10 to-white/5 border border-white/20 rounded-xl p-5 hover:border-white/40 transition-all cursor-pointer relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-3 flex items-center gap-2">
+                                    <span class="text-[10px] font-mono text-emerald-400 uppercase">Primary Match</span>
+                                    <span class="flex h-2 w-2">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                    </span>
                                 </div>
-                                <h4 class="product-name font-medium text-white text-sm"></h4>
-                                <p class="product-scent text-xs text-white/50 font-serif italic mb-4"></p>
-                                <a target="_blank" href="#" class="product-link block w-full py-2 text-center border border-white/20 text-white rounded text-[10px] font-bold uppercase">Alternative</a>
+                                <div class="aspect-square bg-black/40 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                                    <img class="product-image w-full h-full object-cover p-4" src="" alt="">
+                                </div>
+                                <h4 class="font-medium text-white mb-1 product-name text-sm">Brand Name</h4>
+                                <p class="text-xs text-white/50 mb-3 product-scent font-serif italic">Scent Profile</p>
+                                <div class="flex flex-wrap gap-1 mb-4 product-tags"></div>
+                                <a target="_blank" href="#" class="product-link w-full py-2 block text-center bg-white text-black rounded text-[10px] font-bold uppercase tracking-wide hover:bg-neutral-200 transition-colors no-print">Acquire Now &rarr;</a>
+                            </div>
+
+                            <div id="result-2" class="group bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors cursor-pointer opacity-80 hover:opacity-100">
+                                <div class="absolute top-0 right-0 p-3">
+                                    <span class="text-[10px] font-mono text-white/40 uppercase">Secondary Match</span>
+                                </div>
+                                <div class="aspect-square bg-black/40 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                                    <img class="product-image w-full h-full object-cover p-4" src="" alt="">
+                                </div>
+                                <h4 class="font-medium text-white mb-1 product-name text-sm">Brand Name</h4>
+                                <p class="text-xs text-white/50 mb-3 product-scent font-serif italic">Scent Profile</p>
+                                <div class="flex flex-wrap gap-1 mb-4 product-tags"></div>
+                                <a target="_blank" href="#" class="product-link w-full py-2 block text-center border border-white/20 rounded text-[10px] text-white uppercase tracking-wide hover:bg-white hover:text-black transition-colors no-print">Explore Alternative &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -276,101 +381,258 @@
         </section>
 
         <section id="manifesto" class="hidden py-24 px-6 border-t border-white/5 bg-neutral-950/50">
-            <div class="container mx-auto max-w-4xl text-center">
-                <h2 class="text-4xl font-serif text-white mb-12">The Declaration</h2>
-                <div class="grid md:grid-cols-3 gap-6 text-left">
-                    <div class="manifesto-block">
-                        <h3 class="text-emerald-400 font-mono text-xs mb-3">// I. REVOLUTION</h3>
-                        <p class="text-sm text-white/70">Personal scent is a biological fingerprint, not a flaw. Generic chemicals are the compromise; science is the solution.</p>
+            <div class="container mx-auto max-w-4xl">
+                
+                <div class="mb-20 text-center">
+                    <h2 class="text-4xl md:text-5xl font-serif text-white mb-12 tracking-tight">The Deos Dios Declaration</h2>
+                    <div class="grid md:grid-cols-3 gap-6 text-left">
+                        <div class="manifesto-block">
+                            <h3 class="text-emerald-400 font-mono text-xs mb-3">// I. THE REVOLUTION</h3>
+                            <p class="text-sm text-white/70 leading-relaxed">The search for reliability is over. We declare personal scent a biological fingerprint, not a flaw. We reject generic chemicals for treat-all biome identicals. Our authority is data; our mission is personalization.</p>
+                        </div>
+                        <div class="manifesto-block">
+                            <h3 class="text-emerald-400 font-mono text-xs mb-3">// II. THE ARCHITECTS</h3>
+                            <p class="text-sm text-white/70 leading-relaxed">We operate where skin biology meets chemistry. Our Protocol maps your diet, stress, and genetics to architect the precise active ingredients required for 24-hour neutrality.</p>
+                        </div>
+                        <div class="manifesto-block">
+                            <h3 class="text-emerald-400 font-mono text-xs mb-3">// III. THE AUTHORITY</h3>
+                            <p class="text-sm text-white/70 leading-relaxed">Objective, data-driven matches from the most respected, biochemically-sound lines in the industry. Your journey is now governed by science, not chance.</p>
+                        </div>
                     </div>
-                    <div class="manifesto-block">
-                        <h3 class="text-emerald-400 font-mono text-xs mb-3">// II. ARCHITECTS</h3>
-                        <p class="text-sm text-white/70">We map the interaction between apocrine proteins and bacterial enzymes to architect your optimal ecosystem.</p>
+                </div>
+
+                <div class="pt-10">
+                    <h2 class="text-3xl font-serif text-white mb-10 tracking-tight text-center">Protocol FAQ</h2>
+                    <div class="space-y-3">
+                        <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                            <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                                What is the Odor Genome Protocol?
+                                <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                            </summary>
+                            <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed">
+                                A 30-point biological diagnostic analyzing dermal sensitivity, dietary sulfur output, and apocrine sweat triggers to eliminate the failure points of natural deodorants.
+                            </div>
+                        </details>
+                        <details class="group bg-white/5 border border-white/10 rounded-lg open:bg-white/10 transition-all">
+                            <summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-medium text-white/90 select-none">
+                                Why do most products fail me?
+                                <span class="iconify transform group-open:rotate-180 transition-transform text-white/50" data-icon="lucide:chevron-down"></span>
+                            </summary>
+                            <div class="px-4 pb-4 text-xs text-white/50 leading-relaxed">
+                                Most failures are pH mismatches. High bacteria load requires acidic inhibition (AHAs), while heavy sweating requires mineral absorbents. We match your specific output to the right active agent.
+                            </div>
+                        </details>
                     </div>
-                    <div class="manifesto-block">
-                        <h3 class="text-emerald-400 font-mono text-xs mb-3">// III. AUTHORITY</h3>
-                        <p class="text-sm text-white/70">Data-driven matching with industry gold standards. No guesswork. No fails. Total neutrality.</p>
+                </div>
+
+                <div id="lexicon" class="pt-20">
+                    <h2 class="text-3xl font-serif text-white mb-10 tracking-tight text-center">The Odor Lexicon</h2>
+                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-4">
+                        <div class="py-2 border-b border-white/10">
+                            <h4 class="font-mono text-xs text-emerald-400 mb-1">Apocrine Sweat</h4>
+                            <p class="text-xs text-white/50">Stress-induced, protein-rich secretions that act as primary fuel for odor-causing bacteria.</p>
+                        </div>
+                        <div class="py-2 border-b border-white/10">
+                            <h4 class="font-mono text-xs text-emerald-400 mb-1">Bioconversion</h4>
+                            <p class="text-xs text-white/50">The process where skin bacteria convert odorless sweat into pungent, volatile organic compounds.</p>
+                        </div>
                     </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="journal" class="hidden py-24 px-6 border-t border-white/5 bg-neutral-950">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-3xl font-serif text-white mb-12 tracking-tight">Expert Insights</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <a href="#article-1" class="group cursor-pointer block">
+                        <article class="h-full flex flex-col">
+                            <div class="overflow-hidden rounded-lg mb-4 relative">
+                                <div class="aspect-[4/3] bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
+                                    <span class="iconify text-white/20" data-icon="lucide:microscope" data-width="48"></span>
+                                </div>
+                                <div class="absolute top-3 left-3 bg-black/60 backdrop-blur px-2 py-1 rounded border border-white/10">
+                                    <span class="text-[10px] font-mono text-emerald-400 uppercase">Science</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl text-white font-serif mb-2 group-hover:underline decoration-white/30 underline-offset-4">The Microbial Signature: Why Corynebacterium Matters</h3>
+                            <p class="text-white/50 text-sm leading-relaxed mb-4 line-clamp-3">Sweat is sterile. The odor is bioconversion. Learn how to strategically inhibit the bacteria responsible for your specific scent profile...</p>
+                            <span class="text-xs text-white/40 font-mono uppercase tracking-widest group-hover:text-white transition-colors">Read Full Analysis &rarr;</span>
+                        </article>
+                    </a>
+
+                    <a href="#article-2" class="group cursor-pointer block">
+                        <article class="h-full flex flex-col">
+                            <div class="overflow-hidden rounded-lg mb-4 relative">
+                                <div class="aspect-[4/3] bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
+                                    <span class="iconify text-white/20" data-icon="lucide:brain-circuit" data-width="48"></span>
+                                </div>
+                                <div class="absolute top-3 left-3 bg-black/60 backdrop-blur px-2 py-1 rounded border border-white/10">
+                                    <span class="text-[10px] font-mono text-white/60 uppercase">Toxicology</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl text-white font-serif mb-2 group-hover:underline decoration-white/30 underline-offset-4">Aluminum and the Lymphatic Hub</h3>
+                            <p class="text-white/50 text-sm leading-relaxed mb-4 line-clamp-3">Antiperspirants mechanically plug the body's detoxification path. We examine the long-term impact on axillary health...</p>
+                            <span class="text-xs text-white/40 font-mono uppercase tracking-widest group-hover:text-white transition-colors">Read Full Analysis &rarr;</span>
+                        </article>
+                    </a>
+
+                    <a href="#article-3" class="group cursor-pointer block">
+                        <article class="h-full flex flex-col">
+                            <div class="overflow-hidden rounded-lg mb-4 relative">
+                                <div class="aspect-[4/3] bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
+                                    <span class="iconify text-white/20" data-icon="lucide:shirt" data-width="48"></span>
+                                </div>
+                                <div class="absolute top-3 left-3 bg-black/60 backdrop-blur px-2 py-1 rounded border border-white/10">
+                                    <span class="text-[10px] font-mono text-white/60 uppercase">Textiles</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl text-white font-serif mb-2 group-hover:underline decoration-white/30 underline-offset-4">Fiber Science: The Synthetic Trap</h3>
+                            <p class="text-white/50 text-sm leading-relaxed mb-4 line-clamp-3">Polyester is a five-star hotel for odor-loving bacteria. Why natural fibers are your first line of defense...</p>
+                            <span class="text-xs text-white/40 font-mono uppercase tracking-widest group-hover:text-white transition-colors">Read Full Analysis &rarr;</span>
+                        </article>
+                    </a>
                 </div>
             </div>
         </section>
     </div>
 
+    <div id="article-detail" class="hidden py-24 px-6 relative z-10 min-h-screen bg-neutral-950/90">
+        <div class="container mx-auto max-w-4xl pt-16">
+            <a href="#journal" class="mb-8 inline-flex items-center gap-2 text-xs text-white/50 hover:text-white uppercase tracking-widest font-mono">
+                <span class="iconify" data-icon="lucide:arrow-left" data-width="12"></span> Back to Journal
+            </a>
+            <h1 id="article-title" class="text-4xl md:text-5xl font-serif text-white mb-6 tracking-tight"></h1>
+            <p id="article-category" class="text-sm font-mono text-emerald-400 uppercase mb-10"></p>
+            <div id="article-content" class="text-white/70 font-light text-lg space-y-8 leading-relaxed">
+                </div>
+        </div>
+    </div>
+
+    <footer class="bg-black pt-12 pb-8 border-t border-white/10 no-print">
+        <div class="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <span class="iconify text-white" data-icon="lucide:sparkles" data-width="14"></span>
+                <span class="text-xs font-serif italic text-white">Deos Dios</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#protocol" class="text-[10px] font-mono text-white/50 hover:text-white transition-colors uppercase">Protocol</a>
+                <a href="#manifesto" class="text-[10px] font-mono text-white/50 hover:text-white transition-colors uppercase">Manifesto</a>
+                <a href="#journal" class="text-[10px] font-mono text-white/50 hover:text-white transition-colors uppercase">Journal</a>
+            </div>
+            <span class="text-[10px] text-white/20 font-mono">© 2025 DEOS DIOS LLC. SCIENCE OF SCENT.</span>
+        </div>
+    </footer>
+
     <script>
-        // --- 1. Constellation Toy ---
+        // --- 1. CONSTELLATION SIMULATOR ---
         const canvas = document.getElementById('constellation-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
+        const mouse = { x: null, y: null };
 
         function resize() {
             if (canvas.parentElement) {
                 width = canvas.parentElement.offsetWidth;
                 height = canvas.parentElement.offsetHeight;
-                canvas.width = width;
-                canvas.height = height;
-                particles = Array.from({length: 60}, () => ({
-                    x: Math.random() * width, y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5
-                }));
+                canvas.width = width; canvas.height = height;
+                initParticles();
             }
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width; this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5; this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.baseColor = Math.random() > 0.9 ? '#10b981' : '#ffffff';
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+                if (mouse.x) {
+                    let dx = mouse.x - this.x, dy = mouse.y - this.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 100) { this.x -= dx/dist*2; this.y -= dy/dist*2; }
+                }
+            }
+            draw() {
+                ctx.fillStyle = this.baseColor;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = Array.from({length: 60}, () => new Particle());
         }
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
             ctx.strokeStyle = 'rgba(255,255,255,0.05)';
-            particles.forEach(p => {
-                p.x += p.vx; p.y += p.vy;
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
-                ctx.beginPath(); ctx.arc(p.x, p.y, 1, 0, Math.PI * 2); ctx.fillStyle = "#fff"; ctx.fill();
-            });
+            ctx.lineWidth = 0.5;
+            for(let i=0; i<particles.length; i++) {
+                for(let j=i+1; j<particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+                    let d = Math.sqrt(dx*dx + dy*dy);
+                    if(d < 100) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); }
+                }
+                particles[i].update(); particles[i].draw();
+            }
             requestAnimationFrame(animate);
         }
 
         window.addEventListener('resize', resize);
+        canvas.addEventListener('mousemove', e => { 
+            const r = canvas.getBoundingClientRect(); 
+            mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; 
+        });
+        canvas.addEventListener('mouseleave', () => mouse.x = null);
         resize(); animate();
 
-        // --- 2. Protocol Logic ---
+        // --- 2. 30-POINT PROTOCOL ENGINE ---
         const rawQuestions = [
-            { id: 0, t: "How does your skin react to citrus oils or fragrances?", c: "Safety", o: ["Highly Reactive", "Mildly Sensitive", "Tolerant"] },
-            { id: 1, t: "Ever experienced a rash from 'Baking Soda' deodorants?", c: "pH Pivot", o: ["Severe Burn", "Mild Redness", "No Reaction"] },
-            { id: 2, t: "Describe your skin texture:", c: "Dermal Biology", o: ["Dry/Eczema-prone", "Balanced", "Oily"] },
-            { id: 3, t: "Do you remove underarm hair?", c: "Dermal Safety", o: ["Yes, Shave", "Yes, Laser/Wax", "No"] },
-            { id: 4, t: "How soon after hair removal do you apply product?", c: "Dermal Safety", o: ["Immediately", "Hours later", "Next day"] },
-            { id: 5, t: "Do you have hyperpigmentation in the underarm area?", c: "Dermal Biology", o: ["Significant", "Slight", "None"] },
-            { id: 6, t: "When does odor first appear?", c: "Genome", o: ["Immediately", "Mid-day", "End of day"] },
-            { id: 7, t: "Describe your scent:", c: "Genome", o: ["Sour/Vinegary", "Musky/Oniony", "Metallic"] },
-            { id: 8, t: "Does your sweat leave yellow stains on white shirts?", c: "Protein Markers", o: ["Always", "Sometimes", "Never"] },
-            { id: 9, t: "Sweat trigger:", c: "Sweat Type", o: ["Heat (Eccrine)", "Stress (Apocrine)", "Both"] },
-            { id: 10, t: "Wetness level at a desk (1-10):", c: "Volume", o: ["1-3 (Dry)", "4-7 (Damp)", "8-10 (Wet)"] },
-            { id: 11, t: "Do you use clinical-strength antiperspirants?", c: "History", o: ["Yes", "Occasionally", "No"] },
-            { id: 12, t: "Daily water intake:", c: "Biochemistry", o: ["<1L", "1-2L", "2L+"] },
-            { id: 13, t: "High-sulfur food intake (Garlic/Onion):", c: "Biochemistry", o: ["Daily", "Often", "Rarely"] },
-            { id: 14, t: "Daily caffeine intake:", c: "Biochemistry", o: ["Heavy", "Moderate", "None"] },
-            { id: 15, t: "Supplement usage (B-Vitamins/Fenugreek):", c: "Biochemistry", o: ["Daily", "Occasionally", "None"] },
-            { id: 16, t: "Chronic stress level:", c: "Lifestyle", o: ["High", "Moderate", "Low"] },
-            { id: 17, t: "Weekly alcohol consumption:", c: "Biochemistry", o: ["Heavy", "Moderate", "None"] },
-            { id: 18, t: "Primary shirt material:", c: "Environment", o: ["Synthetic", "Cotton", "Linen/Wool"] },
-            { id: 19, t: "Environment humidity:", c: "Environment", o: ["High", "Variable", "Low"] },
-            { id: 20, t: "Weekly cardio intensity:", c: "Activity", o: ["High", "Moderate", "Low"] },
-            { id: 21, t: "Do you use antibacterial body wash?", c: "Microbiome", o: ["Yes", "Sometimes", "No"] },
-            { id: 22, t: "Use of fabric softeners:", c: "Environment", o: ["Yes", "Sometimes", "No"] },
-            { id: 23, t: "Preference:", c: "Format", o: ["Stick", "Cream", "Gel"] },
-            { id: 24, t: "Zero white residue requirement:", c: "Format", o: ["Mandatory", "Preferred", "Indifferent"] },
-            { id: 25, t: "Scent preference:", c: "Scent", o: ["Masking", "Neutralizing", "Unscented"] },
-            { id: 26, t: "Willingness to use a weekly detox mask?", c: "Commitment", o: ["Yes", "Maybe", "No"] },
-            { id: 27, t: "Budget (2 months):", c: "Value", o: ["$10", "$20", "$30+"] },
-            { id: 28, t: "Comfort with finger application:", c: "Format", o: ["Comfortable", "Prefer Stick", "Indifferent"] },
-            { id: 29, t: "Currently in detox (aluminum-quit) period?", c: "Status", o: ["Yes", "Just started", "No"] }
+            { id: 0, t: "How does your underarm skin react to citrus oils or fragrances?", c: "Safety", multi: false, o: ["Highly Reactive (Visible rash)", "Mildly Sensitive (Itchiness)", "Tolerant (Rarely react)"] },
+            { id: 1, t: "Have you ever experienced a red, peeling rash after using natural 'Baking Soda' deodorant?", c: "pH Pivot", multi: false, o: ["Yes - Severe burn", "Yes - Mild redness", "No reaction", "Never tried one"] },
+            { id: 2, t: "How soon after hair removal do you apply deodorant?", c: "Safety", multi: false, o: ["Immediately", "Hours later", "Next day", "N/A"] },
+            { id: 3, t: "Moisture level profile:", c: "Biology", multi: false, o: ["Chronic Dryness", "Balanced", "Visibly Oily"] },
+            { id: 4, t: "Presence of hyperpigmentation in axillary region?", c: "Biology", multi: false, o: ["Significant", "Mild", "None"] },
+            { id: 5, t: "Daily water consumption:", c: "Diet", multi: false, o: ["<1L", "1-2L", "2L+"] },
+            { id: 6, t: "Sulfur-rich food frequency (Garlic/Onion/Broccoli):", c: "Biochemistry", multi: false, o: ["Daily", "Weekly", "Rarely"] },
+            { id: 7, t: "Odor onset timing:", c: "Genome", multi: false, o: ["Rapid (<2h)", "Mid-day", "End of day only"] },
+            { id: 8, t: "PRIMARY sweat trigger:", c: "Trigger", multi: false, o: ["Stress/Anxiety", "Physical Heat", "Both"] },
+            { id: 9, t: "Scaling 1-10: Rest-state wetness level:", c: "Volume", multi: false, o: ["1-3 (Dry)", "4-7 (Damp)", "8-10 (Excessive)"] },
+            { id: 10, t: "Caffeine intake profile:", c: "Biochemistry", multi: false, o: ["Heavy (3+ cups)", "Moderate", "None"] },
+            { id: 11, t: "Clothing fabric primary material:", c: "Environment", multi: false, o: ["Synthetic", "Blends", "Natural (Cotton)"] },
+            { id: 12, t: "Odor profile character:", c: "Genome", multi: true, o: ["Sour/Vinegary", "Onion/Sulfur", "Musky", "Metallic"] },
+            { id: 13, t: "Nightly rest duration:", c: "Lifestyle", multi: false, o: ["<6h", "6-8h", "8h+"] },
+            { id: 14, t: "Cardiovascular exercise frequency:", c: "Activity", multi: false, o: ["Daily", "Weekly", "Rarely"] },
+            { id: 15, t: "Breakthrough odor presence at 2 PM?", c: "Genome", multi: false, o: ["Always", "During Stress", "Rarely"] },
+            { id: 16, t: "Currently in detox phase (quitting aluminum)?", c: "Transition", multi: false, o: ["Yes", "Just started", "No"] },
+            { id: 17, t: "Yellow/Dark protein staining on clothing?", c: "Markers", multi: false, o: ["Always", "Sometimes", "Never"] },
+            { id: 18, t: "Supplement intake (B-Vitamins/Fenugreek)?", c: "Biochemistry", multi: false, o: ["Yes", "No"] },
+            { id: 19, t: "Antibacterial body wash usage:", c: "Biome", multi: false, o: ["Daily", "Sometimes", "No"] },
+            { id: 20, t: "Shirt laundering method:", c: "Environment", multi: false, o: ["Softener/Scented", "Unscented", "Natural only"] },
+            { id: 21, t: "Preference for masking scent vs. neutralizing:", c: "Preference", multi: false, o: ["Masking", "Neutralizing", "Unscented"] },
+            { id: 22, t: "Format preference:", c: "Format", multi: false, o: ["Stick", "Cream (Finger)", "Gel/Spray"] },
+            { id: 23, t: "Zero white residue importance:", c: "Preference", multi: false, o: ["Essential", "Preferred", "None"] },
+            { id: 24, t: "Weekly detox mask commitment?", c: "Commitment", multi: false, o: ["Yes", "No"] },
+            { id: 25, t: "Primary life environment humidity:", c: "Environment", multi: false, o: ["High", "Moderate", "Dry"] },
+            { id: 26, t: "Weekly alcohol consumption profile:", c: "Biochemistry", multi: false, o: ["Heavy", "Moderate", "None"] },
+            { id: 27, t: "Budget per supply cycle:", c: "Value", multi: false, o: ["$25+", "$15-20", "<$12"] },
+            { id: 28, t: "Reapplication willingness frequency:", c: "Lifestyle", multi: false, o: ["Zero (Must last)", "Once", "Multiple"] },
+            { id: 29, t: "Ready for Odor Genome Sequence calculation?", c: "Final", multi: false, o: ["Initialize Results", "Review Data"] }
         ];
 
         const products = [
-            { name: "Corpus Naturals", variant: "Third Rose", tags: ["Luxury", "BS-Free"], chemistry: "Safety", key: "Plant Enzymes", bs: false, src: "https://i.imgur.com/K5bZt9H.png", link: "#" },
-            { name: "Necessaire", variant: "The Deodorant Gel", tags: ["AHA", "Acidic"], chemistry: "Acidic", key: "Mandelic Acid", bs: false, src: "https://i.imgur.com/w9Nq7tq.png", link: "#" },
-            { name: "Salt & Stone", variant: "Santal", tags: ["Probiotic", "Strong"], chemistry: "Bactericidal", key: "Probiotics", bs: true, src: "https://i.imgur.com/2s4J4Q7.png", link: "#" },
-            { name: "Lume", variant: "Whole Body", tags: ["Acidic", "High Potency"], chemistry: "Acidic", key: "Mandelic Acid", bs: false, src: "https://i.imgur.com/8m4x5A7.png", link: "#" },
-            { name: "Ursa Major", variant: "Hoppin Fresh", tags: ["Detox", "Clay"], chemistry: "Absorbent", key: "Kaolin Clay", bs: true, src: "https://i.imgur.com/y1vLzLp.png", link: "#" },
-            { name: "Malin+Goetz", variant: "Eucalyptus", tags: ["Clean", "Invisible"], chemistry: "Safety", key: "Citronellyl", bs: false, src: "https://i.imgur.com/R0sQYlY.png", link: "#" }
+            { name: "Corpus Naturals", variant: "Third Rose", type: "Gel/Spray", bs: false, chemistry: "Safety", key: "Plant Enzymes", src: "https://i.imgur.com/K5bZt9H.png", link: "#" },
+            { name: "Necessaire", variant: "The Deodorant Gel", type: "Gel/Spray", bs: false, chemistry: "Acidic", key: "Mandelic Acid", src: "https://i.imgur.com/w9Nq7tq.png", link: "#" },
+            { name: "Salt & Stone", variant: "Santal", type: "Stick", bs: true, chemistry: "Bactericidal", key: "Probiotics", src: "https://i.imgur.com/2s4J4Q7.png", link: "#" },
+            { name: "Lume", variant: "Whole Body", type: "Cream (Finger)", bs: false, chemistry: "Acidic", key: "Mandelic Acid", src: "https://i.imgur.com/8m4x5A7.png", link: "#" },
+            { name: "Ursa Major", variant: "Hoppin Fresh", type: "Stick", bs: true, chemistry: "Absorbent", key: "Kaolin Clay", src: "https://i.imgur.com/y1vLzLp.png", link: "#" },
+            { name: "Malin+Goetz", variant: "Eucalyptus", type: "Gel/Spray", bs: false, chemistry: "Safety", key: "Citronellyl", src: "https://i.imgur.com/R0sQYlY.png", link: "#" }
         ];
 
         let currentIdx = 0, answers = {};
@@ -385,7 +647,7 @@
             const q = rawQuestions[currentIdx];
             document.getElementById('q-current').innerText = currentIdx + 1;
             document.getElementById('q-progress').style.width = ((currentIdx + 1) / 30) * 100 + "%";
-            document.getElementById('q-category').innerText = `// ${q.c}`;
+            document.getElementById('q-category').innerText = `// ${q.c.toUpperCase()}`;
             document.getElementById('q-text').innerText = q.t;
             
             const optCont = document.getElementById('q-options');
@@ -393,44 +655,41 @@
             q.o.forEach(opt => {
                 const btn = document.createElement('button');
                 btn.className = `option-button text-left p-4 glass-card rounded-lg border border-white/10 ${answers[currentIdx] === opt ? 'selected' : ''}`;
-                btn.innerHTML = `<span class="text-sm">${opt}</span>`;
+                btn.innerHTML = `<span class="text-sm font-medium">${opt}</span>`;
                 btn.onclick = () => {
                     answers[currentIdx] = opt;
-                    document.getElementById('next-button').disabled = false;
                     renderQ();
                     if (currentIdx < 29) setTimeout(nextQuestion, 200);
+                    else calculate();
                 };
                 optCont.appendChild(btn);
             });
             document.getElementById('next-button').disabled = !answers[currentIdx];
         }
 
-        function nextQuestion() {
-            if (currentIdx < 29) { currentIdx++; renderQ(); }
-            else calculate();
-        }
-
-        function prevQuestion() { if (currentIdx > 0) { currentIdx--; renderQ(); } }
+        function nextQuestion() { currentIdx++; renderQ(); }
+        function prevQuestion() { if(currentIdx > 0) { currentIdx--; renderQ(); } }
 
         function calculate() {
             document.getElementById('quiz-question').classList.add('hidden');
             document.getElementById('quiz-loading').classList.remove('hidden');
             
             setTimeout(() => {
-                const isSensitive = answers[0] === "Highly Reactive" || answers[1] === "Severe Burn";
-                const highOdor = answers[6] === "Immediately" || answers[7] === "Sour/Vinegary";
+                const isSensitive = answers[0] === "Highly Reactive (Visible rash)" || answers[1] === "Yes - Severe burn";
+                const isSour = answers[12]?.includes("Sour/Vinegary");
                 
                 let matches = products.map(p => {
                     let score = 0;
-                    if (isSensitive && !p.bs) score -= 100;
-                    if (highOdor && p.chemistry === "Acidic") score += 50;
-                    if (answers[23] === p.type) score += 30;
+                    if (isSensitive && !p.bs) score += 100;
+                    if (isSensitive && p.bs) score -= 1000;
+                    if (isSour && p.chemistry === "Acidic") score += 100;
+                    if (answers[22] === p.type) score += 50;
                     return { ...p, score };
                 }).sort((a,b) => b.score - a.score);
 
                 document.getElementById('report-challenge').innerText = isSensitive ? "Dermal pH Sensitivity" : "Standard Microbiome";
                 document.getElementById('report-active').innerText = matches[0].key;
-                document.getElementById('report-lifestyle').innerText = answers[18];
+                document.getElementById('report-lifestyle').innerText = answers[11];
 
                 [1,2].forEach(num => {
                     const p = matches[num-1], el = document.getElementById(`result-${num}`);
@@ -441,18 +700,36 @@
 
                 document.getElementById('quiz-loading').classList.add('hidden');
                 document.getElementById('quiz-results').classList.remove('hidden');
-            }, 1500);
+            }, 2000);
         }
 
-        // --- 3. Navigation ---
-        function showSection() {
-            const hash = window.location.hash || '#home-hero';
+        // --- 3. JOURNAL & NAVIGATION ---
+        const fullArticles = [
+            { id: 'article-1', title: 'The Microbial Signature', category: 'Biology', content: 'Sweat is sterile. The odor is bioconversion.  Corynebacteria thrive on lipids. Mandelic Acid inhibits the enzymes responsible for the vinegary compounds...' },
+            { id: 'article-2', title: 'Aluminum and Dermal Health', category: 'Toxicology', content: 'Conventional antiperspirants plug the axillary glands.  This mechanical suppression alters the local microbiome diversity...' },
+            { id: 'article-3', title: 'The Synthetic Textile Trap', category: 'Environment', content: 'Synthetic fibers trap moisture and heat.  This environment supercharges bacterial proliferation compared to natural cotton...' }
+        ];
+
+        function showSection(targetHash) {
             document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
-            const target = document.querySelector(hash);
-            if (target) target.classList.remove('hidden');
+            document.getElementById('article-detail').classList.add('hidden');
+            
+            const targetId = targetHash.substring(1);
+            if (targetId.startsWith('article-')) {
+                const article = fullArticles.find(a => a.id === targetId);
+                document.getElementById('article-title').innerText = article.title;
+                document.getElementById('article-category').innerText = `// ${article.category.toUpperCase()}`;
+                document.getElementById('article-content').innerText = article.content;
+                document.getElementById('article-detail').classList.remove('hidden');
+            } else {
+                const s = document.getElementById(targetId) || document.getElementById('home-hero');
+                s.classList.remove('hidden');
+            }
+            window.scrollTo(0,0);
         }
-        window.addEventListener('hashchange', showSection);
-        showSection();
+
+        window.addEventListener('hashchange', () => showSection(window.location.hash));
+        showSection(window.location.hash);
     </script>
 </body>
 </html>
