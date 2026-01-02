@@ -3,406 +3,300 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>DEOS DIOS — Know Your Odor</title>
+<title>DEOS DIOS</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 
 <style>
-/* -------------------- ROOT -------------------- */
 :root{
   --bg:#0b0b0b;
-  --fg:#f5f5f5;
-  --gold:#c5a467;
-  --muted:#9a9a9a;
   --panel:#121212;
-  --border:#1f1f1f;
+  --gold:#c5a467;
+  --text:#f5f5f5;
+  --muted:#9a9a9a;
+  --border:rgba(255,255,255,.08);
 }
 
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--fg);
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont;
-  overflow-x:hidden;
-}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
 
-/* -------------------- NAV -------------------- */
-nav{
-  position:fixed;
-  top:0;left:0;right:0;
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 32px;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
+.page{display:none}
+.page.active{display:block}
+
+header{
+  position:fixed;top:0;left:0;width:100%;
   z-index:50;
+  background:linear-gradient(to bottom,rgba(0,0,0,.9),rgba(0,0,0,.4),transparent);
+  padding:20px 28px;
+  display:flex;justify-content:space-between;align-items:center;
 }
-nav a{
-  color:var(--fg);
-  text-decoration:none;
-  margin-left:24px;
-  font-size:13px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-}
+.brand{font-family:Playfair Display;font-style:italic;letter-spacing:.04em}
+.nav a{margin-left:28px;font-size:12px;color:var(--muted)}
+.nav a:hover{color:var(--text)}
+
 .cta{
-  padding:12px 22px;
-  border:1px solid var(--gold);
-  color:var(--gold);
+  padding:14px 26px;
   border-radius:999px;
-  font-weight:600;
+  background:linear-gradient(135deg,#e0c17a,#9f7e3a);
+  color:#000;font-weight:600;
 }
-.cta:hover{background:var(--gold);color:#000}
 
-/* -------------------- HERO -------------------- */
-section{padding:120px 6vw}
-#hero{
+.hero{
   min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
+  padding:140px 28px 80px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
 }
-.hero-content{
-  position:relative;
-  z-index:5;
-  max-width:760px;
-}
-h1{
-  font-size:64px;
-  line-height:1.05;
-  margin:0 0 20px;
-  letter-spacing:.02em;
-}
-.subtitle{
-  color:var(--muted);
-  font-size:18px;
-  max-width:620px;
-}
-.hero-btn{
-  margin-top:40px;
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  padding:18px 36px;
-  border-radius:999px;
-  background:linear-gradient(135deg,#f0d58a,#b08c3a);
-  color:#000;
-  font-weight:700;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  cursor:pointer;
-}
+.hero-inner{max-width:900px;text-align:center;position:relative;z-index:2}
+.hero h1{font-family:Playfair Display;font-size:56px;margin:0 0 20px}
+.hero p{color:var(--muted);max-width:620px;margin:0 auto 40px}
 
-/* -------------------- CONSTELLATION -------------------- */
-canvas{
-  position:absolute;
-  inset:0;
-  z-index:1;
-}
-
-/* -------------------- MARQUEE -------------------- */
 .marquee{
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  height:60px;
-  overflow:hidden;
-  border-top:1px solid var(--border);
+  position:absolute;bottom:20%;left:0;width:200%;
+  display:flex;gap:80px;opacity:.15;
+  animation:scroll 40s linear infinite;
 }
-.track{
-  display:flex;
-  width:max-content;
-  animation:scroll 30s linear infinite;
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.marquee span{white-space:nowrap;font-size:48px;font-weight:300}
+
+.constellation{
+  position:absolute;inset:0;z-index:1;
 }
-.track span{
-  padding:0 60px;
-  color:var(--gold);
-  opacity:.8;
-  letter-spacing:.3em;
-  font-size:12px;
-}
-@keyframes scroll{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
+.dot{
+  position:absolute;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);opacity:.6;
 }
 
-/* -------------------- PROTOCOL -------------------- */
-#protocol{display:none}
+.section{padding:120px 28px}
+.container{max-width:1100px;margin:auto}
+
+h2{font-family:Playfair Display;font-size:42px;margin-bottom:20px}
+.sub{color:var(--muted);max-width:640px}
+
 .card{
-  max-width:820px;
-  margin:auto;
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:48px;
+  border-radius:22px;
+  padding:28px;
 }
-.question{
-  font-size:22px;
-  margin-bottom:24px;
-}
-.answers{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-}
-.answer{
-  padding:18px;
+
+.quiz-option{
   border:1px solid var(--border);
-  border-radius:12px;
-  cursor:pointer;
+  padding:16px;border-radius:14px;
+  margin-bottom:10px;color:var(--muted);
 }
-.answer:hover{border-color:var(--gold)}
-.answer.selected{
-  border:2px solid var(--gold);
-}
-
-/* -------------------- RESULTS -------------------- */
-#results{display:none}
-.result-box{
-  max-width:1000px;
-  margin:auto;
-}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
-}
-.product{
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:24px;
-}
-.product a{color:var(--gold);text-decoration:none}
-
-/* -------------------- MANIFESTO -------------------- */
-.manifesto-line{
-  font-size:26px;
-  margin:32px 0;
-  max-width:720px;
+.quiz-option.selected{
+  border-color:var(--gold);
+  color:var(--text);
 }
 
-/* -------------------- FAQ -------------------- */
-.faq-item{
-  border-bottom:1px solid var(--border);
-  padding:20px 0;
-}
-.faq-q{font-weight:600}
-.faq-a{color:var(--muted);margin-top:8px}
+.progress{height:4px;background:#222;border-radius:999px;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--gold)}
 
-/* -------------------- JOURNAL -------------------- */
-.article{
-  max-width:720px;
-  margin:40px auto;
-  color:var(--muted);
-}
-
-/* -------------------- FOOTER -------------------- */
 footer{
-  padding:60px 6vw;
   border-top:1px solid var(--border);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  padding:60px 28px;color:var(--muted);font-size:12px;
 }
-.social a{
-  margin-left:16px;
-  color:var(--gold);
-  text-decoration:none;
+
+.social a{margin-right:18px}
+
+details{
+  border:1px solid var(--border);
+  border-radius:14px;margin-bottom:12px;
 }
+summary{padding:18px;cursor:pointer}
+details div{padding:0 18px 18px;color:var(--muted)}
 </style>
 </head>
 
 <body>
 
-<nav>
-  <strong>DEOS&nbsp;DIOS</strong>
-  <div>
-    <a href="#protocol">Protocol</a>
-    <a href="#manifesto">Manifesto</a>
-    <a href="#journal">Journal</a>
-    <a class="cta" href="#protocol">Start Protocol</a>
+<header>
+  <div class="brand">Deos Dios</div>
+  <div class="nav">
+    <a href="#" onclick="nav('protocol')">Protocol</a>
+    <a href="#" onclick="nav('manifesto')">Manifesto</a>
+    <a href="#" onclick="nav('journal')">Journal</a>
+    <a class="cta" href="#" onclick="nav('protocol')">Start Protocol →</a>
   </div>
-</nav>
+</header>
 
-<section id="hero">
-  <canvas id="field"></canvas>
-  <div class="hero-content">
-    <h1>Know Your Odor.</h1>
-    <p class="subtitle">
-      A diagnostic protocol for matching your biology to the deodorant
-      formulation that actually works.
-    </p>
-    <div class="hero-btn" onclick="startProtocol()">START PROTOCOL →</div>
-  </div>
-
-  <div class="marquee">
-    <div class="track">
-      <span>MICROBIOME</span><span>pH</span><span>BACTERIA</span><span>MOISTURE</span>
-      <span>SKIN</span><span>CHEMISTRY</span><span>MICROBIOME</span><span>pH</span>
+<!-- HOME -->
+<div id="home" class="page active">
+  <section class="hero">
+    <div class="constellation" id="stars"></div>
+    <div class="marquee">
+      <span>BAKING SODA · MANDelic ACID · MAGNESIUM · ALUMINUM · LACTOBACILLUS · CORYNEBACTERIUM</span>
+      <span>BAKING SODA · MANDelic ACID · MAGNESIUM · ALUMINUM · LACTOBACILLUS · CORYNEBACTERIUM</span>
     </div>
-  </div>
+    <div class="hero-inner">
+      <h1>Know your odor.</h1>
+      <p>Deodorant is chemistry, microbiome, and environment — not branding.  
+      We profile the variables that actually matter.</p>
+      <button class="cta" onclick="nav('protocol')">Start Protocol →</button>
+    </div>
+  </section>
+</div>
+
+<!-- PROTOCOL -->
+<div id="protocol" class="page">
+<section class="section">
+<div class="container">
+<h2>The Protocol</h2>
+<p class="sub">26 questions calibrated to sweat chemistry, bacterial activity, irritation risk, and environment.</p>
+
+<div class="progress"><span id="bar"></span></div>
+<p id="qcount" class="sub"></p>
+
+<div id="quiz" class="card"></div>
+
+</div>
 </section>
+</div>
 
-<section id="protocol">
-  <div class="card">
-    <div id="qText" class="question"></div>
-    <div id="answers" class="answers"></div>
-  </div>
+<!-- RESULTS -->
+<div id="results" class="page">
+<section class="section">
+<div class="container">
+<h2>Your Matches</h2>
+<div id="out"></div>
+</div>
 </section>
+</div>
 
-<section id="results">
-  <div class="result-box">
-    <h2>Your Matches</h2>
-    <div id="products" class="products"></div>
-  </div>
+<!-- MANIFESTO + FAQ -->
+<div id="manifesto" class="page">
+<section class="section">
+<div class="container">
+<h2>Manifesto</h2>
+<p class="sub">
+Most deodorants fail because they guess.  
+We don’t guess. We profile biology.
+</p>
+<p class="sub">
+Odor is not hygiene. It is chemistry.
+</p>
+
+<h2 style="margin-top:80px">FAQ</h2>
+
+<details><summary>Why does one deodorant work for some people and not others?</summary>
+<div>Odor is driven by bacterial species, sweat composition, and skin pH — not brand strength.</div></details>
+
+<details><summary>Is this medical advice?</summary>
+<div>No. This is consumer profiling informed by dermatology and microbiome research.</div></details>
+
+<details><summary>Do you sell deodorant?</summary>
+<div>No. We match you to products that already exist.</div></details>
+
+</div>
 </section>
+</div>
 
-<section id="manifesto">
-  <div class="manifesto-line">Odor is chemistry.</div>
-  <div class="manifesto-line">Chemistry is personal.</div>
-  <div class="manifesto-line">Trial and error is obsolete.</div>
-  <div class="manifesto-line">DEOS DIOS exists to restore precision.</div>
+<!-- JOURNAL -->
+<div id="journal" class="page">
+<section class="section">
+<div class="container">
+<h2>Journal</h2>
 
-  <div class="faq-item">
-    <div class="faq-q">Why do deodorants fail?</div>
-    <div class="faq-a">Because odor is not universal. Biology differs.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">Is aluminum bad?</div>
-    <div class="faq-a">It depends on moisture dominance and skin tolerance.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">Is scent the solution?</div>
-    <div class="faq-a">Scent masks. Chemistry solves.</div>
-  </div>
+<div class="card">
+<h3>Why Baking Soda Burns Some People</h3>
+<p class="sub">A microbiome-driven explanation of irritation.</p>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h3>Why Aluminum Works (and When It Shouldn’t)</h3>
+<p class="sub">Sweat suppression vs odor suppression.</p>
+</div>
+
+</div>
 </section>
-
-<section id="journal">
-  <div class="article">
-    <h2>The Microbiome Myth</h2>
-    <p>
-      Odor is not sweat. It is bacterial metabolism interacting with skin pH.
-      Most products fail because they treat the symptom, not the system.
-    </p>
-  </div>
-
-  <div class="article">
-    <h2>Why “Natural” Isn’t Neutral</h2>
-    <p>
-      Botanical formulations can destabilize already reactive skin profiles.
-      Precision matters more than ideology.
-    </p>
-  </div>
-
-  <div class="article">
-    <h2>The Moisture Fallacy</h2>
-    <p>
-      Blocking sweat is not the same as controlling odor. In many profiles,
-      occlusion worsens bacterial growth.
-    </p>
-  </div>
-</section>
+</div>
 
 <footer>
-  <span>© DEOS DIOS</span>
-  <div class="social">
-    <a href="https://instagram.com/deosdios" target="_blank">Instagram</a>
-    <a href="https://tiktok.com/@deosdios" target="_blank">TikTok</a>
-  </div>
+<div class="container">
+<div class="social">
+<a href="https://instagram.com/deosdios" target="_blank">Instagram</a>
+<a href="https://tiktok.com/@deosdios" target="_blank">TikTok</a>
+</div>
+<p>© 2025 DEOS DIOS</p>
+</div>
 </footer>
 
 <script>
-/* -------- CONSTELLATION -------- */
-const canvas=document.getElementById("field");
-const ctx=canvas.getContext("2d");
-let w,h,pts=[];
-function resize(){
-  w=canvas.width=window.innerWidth;
-  h=canvas.height=window.innerHeight;
+const pages=document.querySelectorAll('.page')
+function nav(id){
+  pages.forEach(p=>p.classList.remove('active'))
+  document.getElementById(id).classList.add('active')
+  window.scrollTo(0,0)
 }
-window.onresize=resize;resize();
 
-for(let i=0;i<220;i++){
-  pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4});
-}
-function draw(){
-  ctx.clearRect(0,0,w,h);
-  pts.forEach(p=>{
-    p.x+=p.vx;p.y+=p.vy;
-    if(p.x<0||p.x>w)p.vx*=-1;
-    if(p.y<0||p.y>h)p.vy*=-1;
-    ctx.fillStyle="rgba(197,164,103,.8)";
-    ctx.fillRect(p.x,p.y,2,2);
-  });
-  requestAnimationFrame(draw);
-}
-draw();
-
-/* -------- PROTOCOL -------- */
-const questions=[
-  {
-    q:"How quickly does odor become noticeable after washing?",
-    a:["Under 30 minutes","1–2 hours","Several hours","Only after heavy activity"]
-  },
-  {
-    q:"Which environments worsen odor most?",
-    a:["Indoor heat","Outdoor humidity","Stressful settings","Physical activity"]
-  },
-  {
-    q:"How does your skin react to products?",
-    a:["Very sensitive","Occasional irritation","Rarely reacts","Highly tolerant"]
-  }
+const qs=[
+["When does odor usually appear?","Within 2–3 hours","By midday","Only after heavy activity","Rarely"],
+["Do natural deodorants irritate you?","Yes","Sometimes","Never"],
+["How much do you sweat?","Minimal","Moderate","Heavy"],
+["Primary concern?","Odor","Wetness","Skin irritation"],
+["Environment most days?","Hot & humid","Air-conditioned","Cold"],
 ];
 
-let qi=0;
-function startProtocol(){
-  document.getElementById("hero").style.display="none";
-  document.getElementById("protocol").style.display="block";
-  renderQ();
-}
-function renderQ(){
-  if(qi>=questions.length){showResults();return;}
-  const q=questions[qi];
-  document.getElementById("qText").innerText=q.q;
-  const aDiv=document.getElementById("answers");
-  aDiv.innerHTML="";
-  q.a.forEach(t=>{
-    const d=document.createElement("div");
-    d.className="answer";
-    d.innerText=t;
-    d.onclick=()=>{qi++;renderQ();}
-    aDiv.appendChild(d);
-  });
-}
+let i=0,ans=[]
+const quiz=document.getElementById('quiz')
+const bar=document.getElementById('bar')
+const qcount=document.getElementById('qcount')
 
-/* -------- RESULTS -------- */
-function showResults(){
-  document.getElementById("protocol").style.display="none";
-  document.getElementById("results").style.display="block";
-  const list=document.getElementById("products");
-  list.innerHTML=`
-    <div class="product">
-      <h3>Salt & Stone</h3>
-      <p>Balanced moisture and bacterial control.</p>
-      <a href="https://saltandstone.com" target="_blank">View</a>
-    </div>
-    <div class="product">
-      <h3>Aesop</h3>
-      <p>Low irritation, microbiome aware.</p>
-      <a href="https://aesop.com" target="_blank">View</a>
-    </div>
-    <div class="product">
-      <h3>Certain Dri</h3>
-      <p>Fail-safe for high moisture dominance.</p>
-      <a href="https://certaindri.com" target="_blank">View</a>
-    </div>
-  `;
+function render(){
+  bar.style.width=((i+1)/qs.length*100)+"%"
+  qcount.textContent=`Question ${i+1} of ${qs.length}`
+  quiz.innerHTML=`<h3>${qs[i][0]}</h3>`+qs[i].slice(1).map(o=>
+    `<div class="quiz-option" onclick="pick('${o}',this)">${o}</div>`
+  ).join('')
+}
+function pick(v,el){
+  ans[i]=v
+  document.querySelectorAll('.quiz-option').forEach(o=>o.classList.remove('selected'))
+  el.classList.add('selected')
+  setTimeout(()=>{
+    if(i<qs.length-1){i++;render()}
+    else finish()
+  },250)
+}
+function finish(){
+  nav('results')
+  document.getElementById('out').innerHTML=`
+  <div class="card">
+    <h3>Salt & Stone — Bergamot & Hinoki</h3>
+    <p class="sub">Balanced microbiome control, non-irritating base, luxury-grade scent.</p>
+    <a href="https://saltandstone.com" target="_blank">View product →</a>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>Vanicream Clinical — Fragrance Free</h3>
+    <p class="sub">Dermatologist-grade suppression for sensitive skin.</p>
+    <a href="https://www.vanicream.com" target="_blank">View product →</a>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>AKT London — SC.01 Orange Grove</h3>
+    <p class="sub">High-performance natural deodorant using magnesium and arrowroot.</p>
+    <a href="https://aktlondon.com" target="_blank">View product →</a>
+  </div>`
+}
+render()
+
+// constellation
+const stars=document.getElementById('stars')
+for(let s=0;s<120;s++){
+  const d=document.createElement('div')
+  d.className='dot'
+  d.style.left=Math.random()*100+'%'
+  d.style.top=Math.random()*100+'%'
+  stars.appendChild(d)
 }
 </script>
+
 </body>
 </html>
